@@ -10,20 +10,19 @@ private:
 public:
     Ficha();
     Ficha(char caracter);
-    char getSimboloFicha(Ficha *inputFicha);
-
-
-
-    ~Ficha();
+    char getSimboloFicha();
+    bool estaBloqueadaFicha();
+    void bloquearFicha();
+    void desbloquearFicha();
+    virtual ~Ficha();
 
 
 };
 
 
 /*
-    • getSimboloFicha(ficha *): devuelve el símbolo de la ficha
-    • estaBloqueadaFicha(ficha *): devuelve true si la ficha se encuentra bloqueada
-    • void bloquearFicha(ficha *) : bloquea la ficha
+
+    
     • void desbloquearFicha(ficha *): desbloquea la ficha
     • ~FICHA() : nada
 

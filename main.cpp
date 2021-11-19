@@ -1,10 +1,16 @@
 #include "ficha.h"
+#include "casillero.h"
 #include <iostream>
 
 
+
 int main(){
-    Ficha* ficha1 = new Ficha('j');
-    std::cout<<ficha1->getSimboloFicha(ficha1)<<std::endl;
-    delete ficha1;
+    Ficha *vectorFichas = new Ficha[4];
+    delete[] vectorFichas;
+
+
+    Casillero *vectorCasilleros = new Casillero[4];
+    delete[] vectorCasilleros;
+
     return 0;
 }
