@@ -9,14 +9,14 @@ using namespace std;
 class Tablero {
 private:
     Lista<Lista<Lista<Casillero*>*>*>* casilleros; // casilleros es una lista de lista de punteros a casillero(puntero casillero pq es un tda)
-    int x;
-    int y;
-    int z;
+    int cantFilas;
+    int cantColumnas;
+    int cantEnProfundidad;
 
 public:
     //PRE: Los argumentos deben ser >0
     //POST: Crea un tablero de dimensiones x.y.z = cantcasillas
-    Tablero(int x, int y, int z);
+    Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad);
 
     //PRE:
     //POST:
@@ -28,16 +28,12 @@ public:
 
     //PRE: Recibe los valores de filas columnas y profundidad elegidos
     //POST: Coloca una nueva ficha en la casilla selecionada si es que no esta ocupada (Validar)
-    void setCasilla(int x, int y, int z, char ficha); //char seria la ficha, x ahora lo pongo asi y en casillero pongo char ficha,
+    void setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad, char ficha); //char seria la ficha, x ahora lo pongo asi y en casillero pongo char ficha,
 
     //PRE:
     //POST:
-    //  void moverFicha(int x1, int y2, int x2, int y2);
+    //void moverFicha(int x1, int y2, int x2, int y2);
     //validar
-
-
-    // void imprimirTablero(); //TDA TATETI
-
 
     // void verificarGanador(); //TDA TATETI
 
