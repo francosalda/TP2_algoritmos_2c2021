@@ -5,19 +5,18 @@
 #endif
 class Carta {
 private:
-Carta* sig;
 int habilidad;
 public:
 	/*
 	 * Pre:-
 	 * Post:Crea una carta.
 	 */
-	Carta(int numero);
+	Carta();
 	/*
 	 * Pre:-
-	 * Post:Devuelve el valor del puntero de una carta.
+	 * Post:Crea una carta con una habilidad.
 	 */
-	Carta* getSig();
+	Carta(int habilidad);
 	/*
 	 * Pre:-
 	 * Post:Devuelve el valor de habilidad de una carta.
@@ -29,14 +28,10 @@ public:
 	 * 6)Roba todas las cartas de otro jugador.
 	 */
 	int getHabilidad();
+
 	/*
 	 * Pre:-
-	 * Post:Inserta un puntero a una carta
-	 */
-	void setSig(Carta* carta);
-	/*
-	 * Pre:-
-	 * Post:Inserta el valor de habilidad de una carta
+	 * Post:asigna un valor a la habilidad
 	 */
 	void setHabilidad(int numero);
 	/*
