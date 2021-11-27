@@ -1,36 +1,17 @@
 #include "Mazo.h"
-#include "Carta.h"
-Mazo::Mazo() {
-	this->p=NULL;
-}
-int Mazo::getTope()
+Mazo::Mazo()
 {
-	if(this->p)
-	{
-		return this->p->habilidad;
-	}
-	else return 0;
+	this->mazo=new Pila<Carta>();
 }
-bool Mazo::estaVacia()
+void Mazo::agregarCarta(Carta dato)
 {
-	return !this->p;
+	this->mazo->push(dato);
 }
-void Mazo::push(int numero)
+int Mazo::sacarCarta(Carta & dato)
 {
-	Carta* aux=new Carta;
-	aux->setSig(this->p);
-	this->p=aux;
+	return this->mazo->pop(dato);
 }
-void Mazo::pop(int &x)
+Mazo::~Mazo()
 {
-	if(this->p)
-	{
-		Carta* aux=this->p;
-		x=this->p->getHabilidad();
-		this->p=aux->getSig();
-		delete aux;
-	}
-}
-Mazo::~Mazo(){
-
+	this->mazo->~Pila();
 }
