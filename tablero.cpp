@@ -20,7 +20,7 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
             Lista<Casillero *> *fila = new Lista<Casillero *>();
             for (int k = 0; k < this->cantColumnas; k++)
             {
-                Casillero *casillero = new Casillero(i, j, k);
+                Casillero *casillero = new Casillero();
                 fila->agregar(casillero);
             }
             columna->agregar(fila);
@@ -36,13 +36,14 @@ Tablero::~Tablero() {
 
 Casillero *Tablero::getCasilla(int filaIntroducida, int columnaIntroducida, int profundidadIntroducida) { //me devuleve el dato en la posicion x y
     //validar
-    if((filaIntroducida<0) || (columnaIntroducida<0) || (profundidadIntroducida<0) || (filaIntroducida>this->x)) || (columnaIntroducida>this->y) ||(profundidadIntroducida>this->z){
-        string CoordInvalidas = "coordenadas de casilleros iunvalidas";
-        throw Coordinvalidas;
+    if((filaIntroducida<0) || (columnaIntroducida<0) || (profundidadIntroducida<0)){// || (filaIntroducida>this->x)) || (columnaIntroducida>this->y) ||(profundidadIntroducida>this->z){
+     //   string CoordInvalidas = "coordenadas de casilleros iunvalidas";
+       // throw Coordinvalidas;
     }
-    return this->casilleros->getElemento(profundidadIntroducida)->getElemento(filaIntroducida)->getElemento(columnaIntroducida);
+   // return this->casilleros->getElemento(profundidadIntroducida)->getElemento(filaIntroducida)->getElemento(columnaIntroducida);
+    return NULL;
 }
 
 void Tablero::setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad, char ficha) {
-    this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad)->setFicha(ficha);
+    //this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad)->setFicha(ficha);
 }

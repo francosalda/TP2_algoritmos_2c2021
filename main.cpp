@@ -4,13 +4,13 @@
 
 
 
-int main(){
-    Ficha *vectorFichas = new Ficha[4];
-    delete[] vectorFichas;
+int main()
+{
 
+    /*interfaz */
 
-    Casillero *vectorCasilleros = new Casillero[4];
-    delete[] vectorCasilleros;
+    
+
 
     return 0;
 }
