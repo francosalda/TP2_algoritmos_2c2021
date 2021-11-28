@@ -10,11 +10,35 @@ class Pila {
 private:
 	Nodo<T>* p;
 public:
+	/*
+	 * Pre:-
+	 * Post: Inicializa la pila vacia para su uso
+	 */
 	Pila();
+	/*
+	 * Pre: el elemento no es vacio
+	 * Post: agrega el elemento a la pila
+	 */
 	void push(T dato);
+	/*
+	 * Pre: que la pila no este vacía
+	 * Post: retorna y elimina el último elemento de la pila
+	 */
 	int pop(T &dato);
+	/*
+	 * Pre:-
+	 * Post: indica si la pila tiene algún elemento
+	 */
 	bool estaVacia();
+	/*
+	 * Pre:-
+	 * Post: devuelve el contenido del último elemento de la pila
+	 */
 	T getTope();
+	/*
+	 * Pre:-
+	 * Post: elimina la pila, no el contenido
+	 */
 	virtual ~Pila();
 };
 template <class T>Pila<T>::Pila()
@@ -35,7 +59,7 @@ template <class T>int Pila<T>::pop(T &dato)
 		this->p=aux->obtenerSiguiente();
 		dato=aux->obtenerDato();
 		delete aux;
-		return 1;
+		return dato;
 	}
 	return -1;
 }
@@ -49,6 +73,9 @@ template <class T>T Pila<T>::getTope()
 }
 template <class T> Pila<T>::~Pila()
 {
-	//me falta definir el destructor de la pila
+	while(!this->estaVacia())
+	{
+		this->pop();
+	}
 }
 #endif /* PILA_H_ */
