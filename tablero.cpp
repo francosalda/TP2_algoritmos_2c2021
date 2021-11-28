@@ -27,6 +27,25 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
         }
         this->casilleros->agregar(columna);
     }
+//ASIGNO LOS VECINOS
+    for (int i = 0; i < getAncho(); i++) { //el primer for me agarra la primer columna
+        for (int j = 0; j < getAlto(); j++) { //el segundo for me define la fila
+            for (int k = 0; k < getProfundidad(); k++) { //el 3er for la profundidad
+                Casillero *casillero = getCasilla(i, j, k);
+                for (int l = -1; l < 1; l++) {
+                    for (int m = -1; m < 1; m++) {
+                        for (int n = -1; n < 1; n++) {
+                            if (existeLaCasilla(i + l, j + m, k + n)) { //Implementar existeLaCasilla (>0, <ancho, <alto, <profundo)
+                                //Con este if resolvemos la parte imaginaria(osea los que estarian en NULL porq estan por fuera del tablero)
+                                Casillero *casilleroVecino = getCasilla(i + l, j + m, k +n); //SI NO EXISTE LA CASILLA, getCasilla tendria q devolver excepcoion
+                                casilleroVecino->asignarVecino(l, m, n, casilleroVecino);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
