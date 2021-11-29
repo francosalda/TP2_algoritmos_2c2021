@@ -10,7 +10,7 @@ int main()
 
     Tateti * juegoActual = new Tateti();
     juegoActual->iniciarJuego();
-    juegoActual->imprimirJugadores();
+   juegoActual->jugarJuego();
 
     delete juegoActual;
     return 0;

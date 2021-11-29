@@ -12,6 +12,7 @@ Jugador::Jugador(string nombre,char simboloFicha)
 	 /// ATENCION PERDIDA DE MEMORIA DE FICHAS , !!!!!!!!!!!!!!!!
 	this->fichaJugador =  new Ficha(simboloFicha);
 	this-> mazoJugador = NULL;
+	this->idJugador = 0;
 }
 
 
@@ -34,8 +35,8 @@ void Jugador::setNombreJugador(string nombre)
 
 }
 
-/* POST :Devuelve la ficha que tiene asignada el jugador*/
-char Jugador:: obtenerFichaJugador()
+/* POST :Devuelve el caracter que representa la ficha del jugador*/
+char Jugador:: obtenerSimboloFichaJugador()
 {
 	return this->fichaJugador->getSimboloFicha();
 }
@@ -44,4 +45,23 @@ char Jugador:: obtenerFichaJugador()
 void Jugador::setFichaJugador(Ficha * nuevaFicha)
 {
 	this->fichaJugador = nuevaFicha;
+}
+
+/*
+PRE: la ficha fue creada anteriormente
+POST: libera la memoria de la ficha del jugador*/
+void Jugador::destruirFichaJugador()
+{
+	delete  this->fichaJugador;
+}
+/*
+PRE: el jugador existe
+POST: devuelve la ID del jugador*/
+size_t Jugador:: obtenerIdJugador()
+{
+	return this->idJugador;
+}
+void Jugador::setearIdJugador(size_t id)
+{
+	this->idJugador = id;
 }
