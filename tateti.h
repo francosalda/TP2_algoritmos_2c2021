@@ -17,6 +17,7 @@ class Tateti
 		void iniciarJuego();
 		void imprimirJugadores();
 		void destruirJugadores();
+		void jugarTateti();
 		/*asignarTablero();
 		asignarFichasJugador();
 		imprimirTablero();

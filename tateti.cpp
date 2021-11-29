@@ -22,12 +22,12 @@ Tateti::Tateti()
 
 
 
+
 void Tateti:: iniciarJuego()
 {
 	cout<<"--------------->Bienvenido a TATETI   Multiplayer<-----------------------\n";
 	asignarJugadores();
 
-	
 
 
 }
@@ -91,4 +91,10 @@ void Tateti::destruirJugadores()
 	}
 
 
+}
+
+
+void Tateti::jugarTateti()
+{
+	
 }
