@@ -1,5 +1,6 @@
 #ifndef  TATETI_H
 #define TATETI_H
+#include "Lista.h"
 #include "tablero.h"
 #include "jugador.h"
 
@@ -14,6 +15,7 @@
 llevan a cabo los turnos 
 .cantidadJugadasRealizadas :Lleva la cuenta de la cantidad
 de jugadas que se realizaron en la partida actual
+.mazoPrincipal: Es el mazo principal del juego
 */
 
 class Tateti
@@ -23,6 +25,7 @@ class Tateti
 		Lista <Jugador *>  listaDeJugadores; 
 		Lista <Jugador *> *colaDeTurnos; //debe ser en realidad una cola de turnos de jugadores
 		size_t cantidadJugadasRealizadas;
+		Mazo * mazoPrincipal;
 		// Tablero  tableroAnterior;
 	public:
 		Tateti();
@@ -36,6 +39,8 @@ class Tateti
 		void iniciarJuego();
 		void jugarJuego();
 		bool hayGanador();
+		void CrearMazoPrincipal();
+		void destruiMazoPrincipal();
 //metodos relacionados al tablero
 		
 		/*asignarTablero();

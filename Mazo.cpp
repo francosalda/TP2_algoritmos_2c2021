@@ -1,9 +1,17 @@
 #include "Mazo.h"
 
 /*
-POST: inicializa un mazo de cartas vacio*/
-Mazo::Mazo()
+POST: Crea una mazo con una cantidad de cartas sin efecto
+*/
+
+Mazo::Mazo(int cantidadCartas)
 {
+	Carta * nuevaCarta = NULL;
+	for(int i = 0 ; i <cantidadCartas ; i++ )
+	{
+		nuevaCarta = new Carta(CARTA_SIN_EFECTO);
+		this->mazoCartas.agregar(nuevaCarta);
+	}
 }
 
 /*
@@ -23,29 +31,32 @@ Carta * Mazo::obtenerCartaSuperior()
 {
 	// se deuelve la ultima carta agregada al mazo es decir la superior
 	return this->mazoCartas.obtener(0);
-}
-/*POST: libera la memoria de todo lo que conforma
-el mazo*/
-Mazo::~Mazo()
+}/*POST: Libera la memoria dinamica de un mazo*/
+void Mazo::destruirMazo()
 {
 	this->mazoCartas.iniciarCursor();
-	while(mazoCartas.avanzarCursor())
+	while(this->mazoCartas.avanzarCursor())
 	{
 	delete this->mazoCartas.obtenerCursor();
 	}
+}
+
+
+Mazo::~Mazo()
+{
+	
 
 }
 /*
-Post: devuelve un mazo al cual
-se le asignaron cartas con efectos aleatorios
+Post: asgina de manera aleatoria
+efectos a las cartas de un mazo
 */
 void Mazo::barajarMazo()
 {
-	Carta * nuevaCarta = NULL;
-	for(int i = 0 ; i <MAX_CANTIDAD_CARTAS_MAZO ; i++ )
+	this->mazoCartas.iniciarCursor();
+	while(this->mazoCartas.avanzarCursor())
 	{
-		nuevaCarta = new Carta(nuevaCarta->generarEfectoAleatorio());
-		this->mazoCartas.agregar(nuevaCarta);
+		this->mazoCartas.obtenerCursor()->setHabilidad(this->mazoCartas.obtenerCursor()->generarEfectoAleatorio());
 	}
 
 }

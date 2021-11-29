@@ -13,6 +13,7 @@ Tateti::Tateti()
 	this->tableroDeJuego = NULL;
 	this ->colaDeTurnos = NULL;
 	this->cantidadJugadasRealizadas= 0;
+	this->mazoPrincipal = NULL;
 
 }
 
@@ -25,6 +26,7 @@ void Tateti:: iniciarJuego()
 	this->crearJugadores();
 	this->imprimirJugadores();
 	this->asignarTurnosJugadores();
+	this->CrearMazoPrincipal();
 	//this-> cargar_tablero()
 }
 
@@ -77,11 +79,7 @@ void Tateti::  crearJugadores()
 
 }
 
-/*POST: libera toda la memoria dinamic asociada al tateti*/
-Tateti::~Tateti()
-{
-	destruirJugadores();
-}
+
 
 /*libera la memoria de los jugadores, faltaria liberar la memoria del contenido de ellos (fichas,etc)*/
 void Tateti::destruirJugadores()
@@ -98,14 +96,34 @@ void Tateti::destruirJugadores()
 
 }
 
-/*POST: carga la lista de turnos del tateti
+/*POST: carga la cola de turnos del tateti
 con los jugadores presentes*/
 void  Tateti::asignarTurnosJugadores()
 {
 
-	
+// carga en la cola de turnos la lista de jugadores.
+
+
 
 }
+/*Post: crea el mazo principal del juego*/
+void  Tateti:: CrearMazoPrincipal()
+{
+	Mazo * nuevoMazo = NULL;
+	nuevoMazo = new Mazo(CANTIDAD_CARTAS_MAZO_PRINCIPAL);
+	nuevoMazo->barajarMazo();
+	this->mazoPrincipal = nuevoMazo;
+
+}
+
+void  Tateti:: destruiMazoPrincipal()
+{
+	this->mazoPrincipal->destruirMazo();
+
+	delete this->mazoPrincipal;
+}
+
+
 
 /*POST: devuelve true si algun jugador logro realizar
 el tateti*/
@@ -118,6 +136,10 @@ void Tateti::jugarJuego()
 {
 	while(!hayGanador())
 	{
+		int x;
+		cout<<"Ingrese donde desea colocar la ficha: \n";
+		cin >>x;
+
 		// colocar fichas en tablero
 		//dar una carta a cada jugador luego de su turno
 		// si ya se colocaron todas las fichas moverlas
@@ -128,4 +150,13 @@ void Tateti::jugarJuego()
 
 
 	
+}
+
+
+
+/*POST: libera toda la memoria dinamic asociada al tateti*/
+Tateti::~Tateti()
+{
+	destruirJugadores();
+	destruiMazoPrincipal();
 }
