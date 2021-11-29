@@ -4,6 +4,14 @@
 #include <iostream>
 using namespace std;
 
+
+/*[TDA CASILLERO]
+    .contenidoCasillero : Es la ficha almacenada por el casillero
+    .turnosRestantesDesbloqueo: es la cantidad de turnos antes de poder desbloquearse
+    .casilleroVacio: indica si un casillero contiene una ficha
+    .casilleroAnulado: indica si  en ese casillero puede colocarse una ficha
+*/
+
 class Casillero{
 
 private:
@@ -12,9 +20,8 @@ private:
     size_t turnosRestantesDesbloqueo;
     bool casilleroVacio;
     bool casilleroAnulado;
+
     void vaciarCasillero();
-
-
     //edit matriz vecinos
     char ficha;
     Casillero **** vecinos;
@@ -24,15 +31,18 @@ private:
 public:
     Casillero();
     virtual ~Casillero();
+
     bool estaCasilleroVacio();
     bool estaCasilleroAnulado();
-    void anularCasillero();
     void copiarCasillero(Casillero* dest);
-    size_t getTurnosRestantesDesbloqueo(); 
+    
     void setTurnosRestantesDesbloqueo(size_t cantidadTurnos);
+    size_t getTurnosRestantesDesbloqueo(); 
     void decrementarTurnosRestantesDesbloqueo();
+
     void bloquearFichaDelCasillero();
     void setFicha(char ficha);
+    void anularCasillero();
 
     //edit matriz vecinos
     /*

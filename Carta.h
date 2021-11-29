@@ -1,43 +1,34 @@
-#ifndef CARTA_H_
-#define CARTA_H_
-#ifndef NULL
-#define NULL 0
-#endif
+#ifndef CARTA_H
+#define CARTA_H
+
+
+/*tipos de efectos de las cartas disponibles*/
+typedef enum 
+{
+	CARTA_SIN_EFECTO, // carta sin efecto
+	CARTA_PERDER_TURNO, //Hace perder el turno a un jugador
+	CARTA_BLOQUEAR_FICHA,//Bloquea la ficha de un jugador
+	CARTA_ANULAR_CASILLERO,//Anula un casillero del tablero
+	CARTA_VOLVER_JUGADA,//Vuelve atras una jugada del turno.
+	CARTA_ELIMINAR_CARTA,//Elimina una carta de un jugador.
+	CARTA_ROBAR_CARTAS//Roba todas las cartas de otro jugador.
+}
+habilidadCarta_t; 
+
+/*	[TDA CARTA]:
+	.habilidadCarta: indica el tipo de efecto que  tiene la carta
+*/
+
 class Carta {
 private:
-int habilidad;
-public:
-	/*
-	 * Pre:-
-	 * Post:Crea una carta.
-	 */
-	Carta();
-	/*
-	 * Pre:-
-	 * Post:Crea una carta con una habilidad.
-	 */
-	Carta(int habilidad);
-	/*
-	 * Pre:-
-	 * Post:Devuelve el valor de habilidad de una carta.
-	 * 1)Hace perder el turno a un jugador
-	 * 2)Bloquea la ficha de un jugador
-	 * 3)Anula un casillero del tablero
-	 * 4)vuelve atras una jugada del turno.
-	 * 5)Elimina una carta de un jugador.
-	 * 6)Roba todas las cartas de otro jugador.
-	 */
-	int getHabilidad();
+habilidadCarta_t habilidadCarta;
 
-	/*
-	 * Pre:-
-	 * Post:asigna un valor a la habilidad
-	 */
-	void setHabilidad(int numero);
-	/*
-	 * Pre:-
-	 * Post:Destruye una carta.
-	 */
+public:
+	Carta();
+	Carta(habilidadCarta_t efectoCarta);
+	void setHabilidad(habilidadCarta_t numero);
+	habilidadCarta_t getHabilidad();
+	habilidadCarta_t generarEfectoAleatorio();
 	virtual ~Carta();
 };
 

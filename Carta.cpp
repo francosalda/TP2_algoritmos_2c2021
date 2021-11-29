@@ -1,19 +1,43 @@
 #include "Carta.h"
+
+
+/*
+Post:Crea una carta sin ninguna habilidad/efecto asociado.
+*/
 Carta::Carta()
 {
-	this->habilidad=0;
+	this->habilidadCarta= CARTA_SIN_EFECTO;
 }
-Carta::Carta(int numero)
+/*
+Post:Crea una carta con la habilidad 'efecto'
+*/
+Carta::Carta(habilidadCarta_t efecto)
 {
-	this->habilidad=numero;
+	this->habilidadCarta=efecto;
 }
-void Carta::setHabilidad(int numero)
+/*
+Post: devuelve un efecto aleatorio de los disponibles
+*/
+ habilidadCarta_t Carta:: generarEfectoAleatorio()
 {
-	this->habilidad=numero;
+	// se debe generar un ramdom .....
+	return CARTA_SIN_EFECTO;
 }
-int Carta::getHabilidad()
+/*
+Pre: la carta existe
+Post:asigna a una carta la habilidad 'efecto'
+*/
+void Carta::setHabilidad(habilidadCarta_t efecto)
 {
-	return this->habilidad;
+	this->habilidadCarta=efecto;
+}
+/*
+Pre: la carta existe
+Post:devuelve el efecto asociado a la carta
+*/
+habilidadCarta_t Carta::getHabilidad()
+{
+	return this->habilidadCarta;
 }
 Carta::~Carta()
 {

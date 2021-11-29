@@ -103,11 +103,28 @@ con los jugadores presentes*/
 void  Tateti::asignarTurnosJugadores()
 {
 
+	
+
 }
 
-
+/*POST: devuelve true si algun jugador logro realizar
+el tateti*/
+bool Tateti::hayGanador()
+{
+	return false;
+}
+/*es el bucle principal del juego*/
 void Tateti::jugarJuego()
 {
+	while(!hayGanador())
+	{
+		// colocar fichas en tablero
+		//dar una carta a cada jugador luego de su turno
+		// si ya se colocaron todas las fichas moverlas
+		//usar las cartas
+		//etc...
+
+	}
 
 
 	

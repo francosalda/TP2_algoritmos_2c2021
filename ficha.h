@@ -1,7 +1,12 @@
 #ifndef FICHA_H
 #define FICHA_H
 #define SIMBOLO_VACIO ' '
-/*                 */
+
+/*  [TDA FICHA]
+    .simbolo : es el caracter representativo de la ficha
+    .establoqueada: representa si la ficha puede moverse o no
+
+*/
 class Ficha{
 
 private:
@@ -18,16 +23,4 @@ public:
 
 
 };
-
-
-/*
-
-    
-    • void desbloquearFicha(ficha *): desbloquea la ficha
-    • ~FICHA() : nada
-
-*/
-
-
-
 #endif 

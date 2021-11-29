@@ -15,26 +15,21 @@ Jugador::Jugador(string nombre,char simboloFicha)
 	this->idJugador = 0;
 }
 
-
 /**/
 Jugador::~Jugador()
 {
 
 }
-
+/*POST: Setea el nombre del jugador*/
+void Jugador::setNombreJugador(string nombre)
+{
+	this->nombreJugador = nombre;
+}
 /*POST: Devuelve el nombre del jugador*/
 string Jugador::obtenerNombreJugador()
 {
 	return this->nombreJugador;
 }
-
-/*POST: Setea el nombre del jugador*/
-void Jugador::setNombreJugador(string nombre)
-{
-	this->nombreJugador = nombre;
-
-}
-
 /* POST :Devuelve el caracter que representa la ficha del jugador*/
 char Jugador:: obtenerSimboloFichaJugador()
 {

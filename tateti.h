@@ -35,6 +35,7 @@ class Tateti
 //metodos relacionados a la partida
 		void iniciarJuego();
 		void jugarJuego();
+		bool hayGanador();
 //metodos relacionados al tablero
 		
 		/*asignarTablero();
