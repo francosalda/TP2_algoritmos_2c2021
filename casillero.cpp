@@ -15,7 +15,7 @@ Casillero::Casillero(){
     this->casilleroAnulado = false;
 
     //edit
-    this->casilleroVecino = new Casillero*[2][2][2];
+   // this->casilleroVecino = new Casillero*[2][2][2];
     //
 
     std::cout<<"casillero VACIA CREADA"<<std::endl;
@@ -85,15 +85,18 @@ void Casillero::bloquearFichaDelCasillero(){
 
 
 //edit
-void Casillero::setFicha(char ficha) {
-    this->ficha = ficha;
+void Casillero::setFicha(char inputFicha) {
+    //this->ficha = inputFicha;
+
 }
 void Casillero::asignarVecino(int l, int m, int n, Casillero *casilleroVecino){
-    this->vecinos[l+1][m+1][n+1]; //donde l m n son alto ancho profundo
+   // this->vecinos[l+1][m+1][n+1]; //donde l m n son alto ancho profundo
+    //return NULL;
 }
 
 Casillero *Casillero::getVecino(int l, int m, int n) {
-    return nullptr;
+    return NULL;
+    //return nullptr;
 }
 bool Casillero::tieneVecino(int l, int m, int n) {
     return false;

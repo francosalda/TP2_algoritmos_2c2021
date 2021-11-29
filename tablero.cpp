@@ -28,7 +28,7 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
         this->casilleros->agregar(columna);
     }
 //ASIGNO LOS VECINOS
-    for (int i = 0; i < getAncho(); i++) { //el primer for me agarra la primer columna
+    /*for (int i = 0; i < getAncho(); i++) { //el primer for me agarra la primer columna
         for (int j = 0; j < getAlto(); j++) { //el segundo for me define la fila
             for (int k = 0; k < getProfundidad(); k++) { //el 3er for la profundidad
                 Casillero *casillero = getCasilla(i, j, k);
@@ -45,7 +45,7 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
                 }
             }
         }
-    }
+    }*/
 }
 
 
