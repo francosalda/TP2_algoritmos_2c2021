@@ -27,17 +27,20 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
         }
         this->casilleros->agregar(columna);
     }
+
 //ASIGNO LOS VECINOS
-    /*for (int i = 0; i < getAncho(); i++) { //el primer for me agarra la primer columna
-        for (int j = 0; j < getAlto(); j++) { //el segundo for me define la fila
-            for (int k = 0; k < getProfundidad(); k++) { //el 3er for la profundidad
-                Casillero *casillero = getCasilla(i, j, k);
-                for (int l = -1; l < 1; l++) {
-                    for (int m = -1; m < 1; m++) {
-                        for (int n = -1; n < 1; n++) {
-                            if (existeLaCasilla(i + l, j + m, k + n)) { //Implementar existeLaCasilla (>0, <ancho, <alto, <profundo)
+// edit matriz vecinos // Algoritmo que Crea la matriz de vecinos // Terminado, falta implementar existeLaCasilla
+/*
+    for (int i = 0; i < this->cantColumnas; i++) { //el primer for me agarra la primer columna
+        for (int j = 0; j < this->cantFilas; j++) { //el segundo for me define la fila
+            for (int k = 0; k < this->cantEnProfundidad; k++) { //el 3er for la profundidad
+                Casillero *casillero = this->getCasilla(i, j, k);
+                for (int l = -1; l < 2; l++) {
+                    for (int m = -1; m < 2; m++) {
+                        for (int n = -1; n < 2; n++) {
+                            if (existeLaCasilla(i + l, j + m, k + n)) {   //Implementar existeLaCasilla (>0, <ancho, <alto, <profundo)
                                 //Con este if resolvemos la parte imaginaria(osea los que estarian en NULL porq estan por fuera del tablero)
-                                Casillero *casilleroVecino = getCasilla(i + l, j + m, k +n); //SI NO EXISTE LA CASILLA, getCasilla tendria q devolver excepcoion
+                                Casillero *casilleroVecino = this->getCasilla(i + l, j + m, k +n); //SI NO EXISTE LA CASILLA, getCasilla tendria q devolver excepcoion
                                 casilleroVecino->asignarVecino(l, m, n, casilleroVecino);
                             }
                         }
@@ -45,9 +48,11 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
                 }
             }
         }
-    }*/
-}
+    }
+    */
+//edit matriz vecinos
 
+}
 
 Tablero::~Tablero() {
 //destruir casilleros
@@ -59,10 +64,38 @@ Casillero *Tablero::getCasilla(int filaIntroducida, int columnaIntroducida, int 
      //   string CoordInvalidas = "coordenadas de casilleros iunvalidas";
        // throw Coordinvalidas;
     }
-   // return this->casilleros->getElemento(profundidadIntroducida)->getElemento(filaIntroducida)->getElemento(columnaIntroducida);
-    return NULL;
+   return this->casilleros->obtener(profundidadIntroducida)->obtener(filaIntroducida)->obtener(columnaIntroducida);
+   // return NULL;
 }
 
 void Tablero::setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad, char ficha) {
-    //this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad)->setFicha(ficha);
+    ((this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad)->setFicha(ficha)));
 }
+
+
+//edit matriz vecinos //TERMINAR!!
+/*
+ * //Algoritmo que verifica el ganador
+ *
+bool Tablero::hayTateti(Casillero *casilleroOrigen, direccion) { //casilleroOrigen es donde estoy parado(revisar que seria)
+    casilleroOrigen->getVecinos();
+    int longitudesAdyacentes[3][3][3];
+
+    for (int i = 0; i <3 ; i++) {
+        for (int j = 0; j <3 ; j++) {
+            for (int k = 0; k <3 ; k++) {
+                longitudesAdyacentes[i][j][k] = casilleroOrigen->getLongitud(i,j,k); //Devuelve la longitud de los casiilrros usados x la misma ficha
+            }
+        }
+    }
+    for (int i = 0; i <3 ; i++) {
+        for (int j = 0; j <3 ; j++) {
+            for (int k = 0; k <3 ; k++) {
+                longitudesAdyacentes[i][j][k];
+
+            }
+        }
+    }
+}
+*/
+//edit matriz vecinos

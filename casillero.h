@@ -2,6 +2,7 @@
 #define CASILLLERO_H
 #include "ficha.h"
 #include <iostream>
+using namespace std;
 
 class Casillero{
 
@@ -13,13 +14,14 @@ private:
     bool casilleroAnulado;
     void vaciarCasillero();
 
-    //edit
-    char ficha();
-    Casillero **** vecinos();
-    //
+
+    //edit matriz vecinos
+    char ficha;
+    Casillero **** vecinos;
+    //edit matriz vecinos
+
 
 public:
-
     Casillero();
     virtual ~Casillero();
     bool estaCasilleroVacio();
@@ -30,14 +32,18 @@ public:
     void setTurnosRestantesDesbloqueo(size_t cantidadTurnos);
     void decrementarTurnosRestantesDesbloqueo();
     void bloquearFichaDelCasillero();
-
-    //edit
     void setFicha(char ficha);
+
+    //edit matriz vecinos
+    /*
     void asignarVecino(int l, int m, int n, Casillero* casilleroVecino);
-    Casillero *getVecino(int l, int m, int n);
     bool tieneVecino(int l, int m, int n);
     void existeLaCasilla();
-    //
+    unsigned int getLongitud(unsigned int i, unsigned int j, unsigned int k);
+    Casillero *getVecino(unsigned int i,unsigned int j,unsigned int k);
+     */
+    //edit matriz vecinos
+
 
 };
 

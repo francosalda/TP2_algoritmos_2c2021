@@ -30,13 +30,16 @@ public:
     //POST: Coloca una nueva ficha en la casilla selecionada si es que no esta ocupada (Validar)
     void setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad, char ficha); //char seria la ficha, x ahora lo pongo asi y en casillero pongo char ficha,
 
+
+    //edit matriz vecinos
+    /*
+    bool hayTateti(Casillero* casilleroOrigen, direccion);
+     */
+    //edit matriz vecinos
+
+
     //PRE:
     //POST:
-    //void moverFicha(int x1, int y2, int x2, int y2);
-    //validar
-
-    // void verificarGanador(); //TDA TATETI
-
 };
 
 
