@@ -9,7 +9,8 @@ Jugador::Jugador(string nombre,char simboloFicha)
 {
 
 	this->nombreJugador = nombre;
-	this->fichaJugador = new Ficha(simboloFicha);
+	 /// ATENCION PERDIDA DE MEMORIA DE FICHAS , !!!!!!!!!!!!!!!!
+	this->fichaJugador =  new Ficha(simboloFicha);
 	this-> mazoJugador = NULL;
 }
 

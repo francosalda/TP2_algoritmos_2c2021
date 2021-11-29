@@ -20,7 +20,7 @@ Ficha::Ficha(char caracter){
     this->estaBloqueada = false;
     this->simbolo = caracter;
 
-std::cout<<"caracter ingresado en la ficha"<<std::endl;
+//std::cout<<"caracter ingresado en la ficha"<<std::endl;
 
 }
 /*
