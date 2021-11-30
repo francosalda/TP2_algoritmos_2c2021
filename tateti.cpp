@@ -11,7 +11,6 @@ ser cargada su configuracion */
 Tateti::Tateti()
 {
 	this->tableroDeJuego = NULL;
-	this ->colaDeTurnos = NULL;
 	this->cantidadJugadasRealizadas= 0;
 	this->mazoPrincipal = NULL;
 
@@ -25,7 +24,7 @@ void Tateti:: iniciarJuego()
 	cout<<"--------------->Bienvenido a TATETI   Multiplayer<-----------------------\n";
 	this->crearJugadores();
 	this->imprimirJugadores();
-	this->asignarTurnosJugadores();
+	this->inicializarTurnosJugadores();
 	this->CrearMazoPrincipal();
 	//this-> cargar_tablero()
 }
@@ -96,10 +95,17 @@ void Tateti::destruirJugadores()
 
 }
 
-/*POST: carga la cola de turnos del tateti
-con los jugadores presentes*/
-void  Tateti::asignarTurnosJugadores()
+/*POST: inicia la cola de turnos del tateti
+con los jugadores presentes en el orden en el que se ingresaron por interfaz*/
+void  Tateti::inicializarTurnosJugadores()
 {
+//	this->listaDeJugadores.iniciarCursor();
+	//while(listaDeJugadores.avanzarCursor())
+	//{
+	//	this->colaDeTurnos.acolar(listaDeJugadores.avanzarCursor().obtenerCursor()); 
+	//}
+
+	
 
 // carga en la cola de turnos la lista de jugadores.
 
@@ -145,14 +151,20 @@ void Tateti::jugarJuego()
 		// si ya se colocaron todas las fichas moverlas
 		//usar las cartas
 		//etc...
+		AvanzarTurno();
 
 	}
 
 
 	
 }
+/*Post: avanza el turno actual al siguiente jugador
+en la cola de turnos*/
+void AvanzarTurno()
+{
+	//this->turnoActual =
 
-
+}
 
 /*POST: libera toda la memoria dinamic asociada al tateti*/
 Tateti::~Tateti()

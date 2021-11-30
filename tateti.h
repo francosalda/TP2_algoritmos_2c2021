@@ -3,8 +3,10 @@
 #include "Lista.h"
 #include "tablero.h"
 #include "jugador.h"
+#include "Cola.h"
 
 #define MAX_CANTIDAD_JUGADORES 20
+#define CANTIDAD_CARTAS_MAZO_PRINCIPAL 50 
 
 
 /* [TDA Tateti]:
@@ -16,6 +18,7 @@ llevan a cabo los turnos
 .cantidadJugadasRealizadas :Lleva la cuenta de la cantidad
 de jugadas que se realizaron en la partida actual
 .mazoPrincipal: Es el mazo principal del juego
+.turnoActual : indica  de que jugador es el turno actual
 */
 
 class Tateti
@@ -23,9 +26,10 @@ class Tateti
 	private:
 		Tablero *tableroDeJuego;
 		Lista <Jugador *>  listaDeJugadores; 
-		Lista <Jugador *> *colaDeTurnos; //debe ser en realidad una cola de turnos de jugadores
+		Lista <Jugador *> colaDeTurnos; //debe ser en realidad una cola de turnos de jugadores
 		size_t cantidadJugadasRealizadas;
 		Mazo * mazoPrincipal;
+		Judador * turnoActual;
 		// Tablero  tableroAnterior;
 	public:
 		Tateti();
@@ -33,7 +37,7 @@ class Tateti
 //metodos relacionados a los jugadores
 		void crearJugadores();
 		void imprimirJugadores();
-		void asignarTurnosJugadores();
+		void inicializarTurnosJugadores();
 		void destruirJugadores();
 //metodos relacionados a la partida
 		void iniciarJuego();
@@ -41,6 +45,7 @@ class Tateti
 		bool hayGanador();
 		void CrearMazoPrincipal();
 		void destruiMazoPrincipal();
+		void AvanzarTurno();
 //metodos relacionados al tablero
 		
 		/*asignarTablero();

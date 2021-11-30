@@ -2,7 +2,7 @@
 #define MAZO_H
 #include "Lista.h" 
 #include "Carta.h"
-#define CANTIDAD_CARTAS_MAZO_PRINCIPAL 50 
+
 /* [TDA MAZO]:
 	.mazoCartas : es el conjunto de todas las cartas que posee el mazo
 
