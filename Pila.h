@@ -1,81 +1,92 @@
-
-//Despues le pongo las pre y post.
-
+/*
+ * Pila.h
+ *
+ *  Created on: 26/11/2021
+ *      Author: algo2
+ */
 
 #ifndef PILA_H_
 #define PILA_H_
+
 #include "Nodo.h"
-template <class T>
-class Pila {
+
+template<class T> class Pila {
+
 private:
-	Nodo<T>* p;
+	Nodo<T>* tope;
+	unsigned int tamanio;
+
 public:
-	/*
-	 * Pre:-
-	 * Post: Inicializa la pila vacia para su uso
-	 */
+
+    /**
+     * pre:
+     * post: inicializa la pila vacia para su uso
+     */
 	Pila();
-	/*
-	 * Pre: el elemento no es vacio
-	 * Post: agrega el elemento a la pila
-	 */
-	void push(T dato);
-	/*
-	 * Pre: que la pila no este vacía
-	 * Post: retorna y elimina el último elemento de la pila
-	 */
-	int pop(T &dato);
-	/*
-	 * Pre:-
-	 * Post: indica si la pila tiene algún elemento
-	 */
-	bool estaVacia();
-	/*
-	 * Pre:-
-	 * Post: devuelve el contenido del último elemento de la pila
-	 */
-	T getTope();
-	/*
-	 * Pre:-
-	 * Post: elimina la pila, no el contenido
-	 */
+
+    /**
+     * pre:
+     * post: elimina la pila, no el contenido
+     */
 	virtual ~Pila();
+
+    /*
+     * post: indica si la cola tiene algún elemento.
+     */
+	bool estaVacia();
+
+    /*
+     * pre: el elemento no es vacio
+     * post: agrega el elemento a la pila
+     */
+	void apilar(const T& elemento);
+
+    /*
+     * pre :
+     * post: devuelve el elemento en el tope de la pila
+     */
+	T& desapilar();
+
+    /*
+	* post: devuelve la cantidad de elementos que tiene la cola.
+	*/
+    unsigned int contarElementos();
 };
-template <class T>Pila<T>::Pila()
-{
-	this->p=NULL;
+
+template<class T> Pila<T>::Pila() {
+    this->tope = NULL;
+    this->tamanio = 0;
 }
-template <class T>void Pila<T>::push(T dato)
-{
-	Nodo<T>* aux=new Nodo<T>(dato);
-	aux->cambiarSiguiente(this->p);
-	this->p=aux;
+
+template<class T> Pila<T>::~Pila() {
+    while (!this->estaVacia()) {
+        this->desapilar();
+    }
 }
-template <class T>int Pila<T>::pop(T &dato)
-{
-	if(this->p)
-	{
-		Nodo<T>* aux=this->p;
-		this->p=aux->obtenerSiguiente();
-		dato=aux->obtenerDato();
-		delete aux;
-		return dato;
-	}
-	return -1;
+
+template<class T> bool Pila<T>::estaVacia() {
+    return (this->tamanio == 0);
 }
-template <class T>bool Pila<T>::estaVacia()
-{
-	return !this->p;
+
+template<class T> void Pila<T>::apilar(const T& elemento) {
+	Nodo<T>* nuevo = new Nodo<T>(elemento);
+	nuevo->cambiarSiguiente(this->tope);
+	this->tope = nuevo;
 }
-template <class T>T Pila<T>::getTope()
-{
-	return this->p->obtenerDato();
+
+template<class T> unsigned int Pila<T>::contarElementos() {
+    return this->tamanio;
 }
-template <class T> Pila<T>::~Pila()
-{
-	while(!this->estaVacia())
-	{
-		this->pop();
-	}
+
+template<class T> T& Pila<T>::desapilar() {
+    T elemento;
+    if (!this->estaVacia()) {
+        elemento = this->tope->obtenerDato();
+        Nodo<T>* aBorrar = this->tope;
+        this->tope = this->tope->getSiguiente();
+        delete aBorrar;
+    }
+    return elemento;
 }
+
 #endif /* PILA_H_ */
