@@ -151,7 +151,7 @@ void Tateti::jugarJuego()
 		// si ya se colocaron todas las fichas moverlas
 		//usar las cartas
 		//etc...
-		AvanzarTurno();
+		//AvanzarTurno();
 
 	}
 

@@ -29,7 +29,7 @@ class Tateti
 		Lista <Jugador *> colaDeTurnos; //debe ser en realidad una cola de turnos de jugadores
 		size_t cantidadJugadasRealizadas;
 		Mazo * mazoPrincipal;
-		Judador * turnoActual;
+		Jugador * turnoActual;
 		// Tablero  tableroAnterior;
 	public:
 		Tateti();
