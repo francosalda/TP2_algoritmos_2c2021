@@ -99,11 +99,12 @@ void Tateti::destruirJugadores()
 con los jugadores presentes en el orden en el que se ingresaron por interfaz*/
 void  Tateti::inicializarTurnosJugadores()
 {
-//	this->listaDeJugadores.iniciarCursor();
-	//while(listaDeJugadores.avanzarCursor())
-	//{
-	//	this->colaDeTurnos.acolar(listaDeJugadores.avanzarCursor().obtenerCursor()); 
-	//}
+
+	this->listaDeJugadores.iniciarCursor();
+	while(listaDeJugadores.avanzarCursor())
+	{
+		this->colaDeTurnos.acolar(listaDeJugadores.obtenerCursor()); 
+	}
 
 	
 
