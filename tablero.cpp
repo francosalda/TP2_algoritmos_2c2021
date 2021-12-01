@@ -34,13 +34,14 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
 Tablero::~Tablero() {
 
     this->casilleros->iniciarCursor();
+
     while(this->casilleros->estaVacia())
     {
         this->casilleros->obtenerCursor()->iniciarCursor();
         while(this->casilleros->obtenerCursor()->estaVacia())
         {
         (this->casilleros->obtenerCursor())->obtenerCursor()->iniciarCursor();
-        (this->casilleros->obtenerCursor())->avanzarCursor();    
+         
 
             while((this->casilleros->obtenerCursor())->obtenerCursor()->estaVacia())
             {
@@ -49,9 +50,11 @@ Tablero::~Tablero() {
                 (this->casilleros->obtenerCursor())->obtenerCursor()->avanzarCursor();
             }
             delete this->casilleros->obtenerCursor()->obtenerCursor();
-            this->casilleros->avanzarCursor();
+            (this->casilleros->obtenerCursor())->avanzarCursor();  
         }
+
         delete this->casilleros->obtenerCursor();
+        this->casilleros->avanzarCursor();
     }
     delete this->casilleros;
 //destruir casilleros
