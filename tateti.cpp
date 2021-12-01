@@ -25,7 +25,7 @@ void Tateti:: iniciarJuego()
 	this->crearJugadores();
 	this->imprimirJugadores();
 	this->inicializarTurnosJugadores();
-	this->CrearMazoPrincipal();
+	this->crearMazoPrincipal();
 	//this-> cargar_tablero()
 }
 
@@ -33,7 +33,8 @@ void Tateti:: iniciarJuego()
 
 void Tateti::imprimirJugadores()
 {
-	cout<<"Los jugadores se esta partida son:\n";
+	cout<<"-------------------------------------------\n";
+	cout<<"Los jugadores de esta partida son:\n";
 	this->listaDeJugadores.iniciarCursor();
 	while(this->listaDeJugadores.avanzarCursor())
 	{
@@ -42,7 +43,7 @@ void Tateti::imprimirJugadores()
 		cout<<" con la ficha : "<<this->listaDeJugadores.obtenerCursor()->obtenerSimboloFichaJugador()<<"\n";
 	}
 
-
+	cout<<"-------------------------------------------\n";
 }
 
 /*POST: inicializa la lista de jugadores del tateti
@@ -65,9 +66,9 @@ void Tateti::  crearJugadores()
 	for(size_t i = 0; i < inputCantidadJugadores;i++)
 	{
 
-		cout<<"Ingrese el nombre del jugador:\n";
+		cout<<"Ingrese el nombre del jugador "<<i<<":\n";
 		cin>>nombreJugador;
-		cout<<"Ingrese la ficha del jugador (1 caracter):\n";
+		cout<<"Ingrese la ficha del jugador "<<i<<" (1 caracter):\n";
 		cin >>simboloFicha; //falta validar fichas
 		nuevoJugador = new Jugador(nombreJugador,simboloFicha);
 		nuevoJugador->setearIdJugador(i);
@@ -114,7 +115,7 @@ void  Tateti::inicializarTurnosJugadores()
 
 }
 /*Post: crea el mazo principal del juego*/
-void  Tateti:: CrearMazoPrincipal()
+void  Tateti:: crearMazoPrincipal()
 {
 	Mazo * nuevoMazo = NULL;
 	nuevoMazo = new Mazo(CANTIDAD_CARTAS_MAZO_PRINCIPAL);
@@ -141,18 +142,39 @@ bool Tateti::hayGanador()
 /*es el bucle principal del juego*/
 void Tateti::jugarJuego()
 {
-	while(!hayGanador())
-	{
-		int x;
-		cout<<"Ingrese donde desea colocar la ficha: \n";
-		cin >>x;
+	int filaIngresada,columnaIngresada,profundidadIngresada;
 
+	cout<<"[DEBUG]: (SOLO 6 rondas y corta ya que no tenemos chequearganador() aun)\n";
+
+	while(!hayGanador() && this->cantidadJugadasRealizadas < 6) // el '3' solo para que no haiga un bucle infinito por ahora
+	{
+
+
+		this->turnoActual = colaDeTurnos.desacolar();
+
+
+		cout<<"-> [Ronda: "<<this->cantidadJugadasRealizadas <<"] Es el turno del jugador ["<<this->turnoActual->obtenerIdJugador()<<"]: '"<<this->turnoActual->obtenerNombreJugador()<<"'\n";
+		cout<<"Ingrese la fila donde desea colocar su ficha : \n";
+		cin >> filaIngresada;
+		cout<<"Ingrese la Columna donde desea colocar su ficha : \n";
+		cin >> columnaIngresada;
+		cout<<"Ingrese la profundidad donde desea colocar su ficha : \n";
+		cin >> profundidadIngresada;
 		// colocar fichas en tablero
 		//dar una carta a cada jugador luego de su turno
 		// si ya se colocaron todas las fichas moverlas
 		//usar las cartas
 		//etc...
-		//AvanzarTurno();
+
+
+
+		
+		
+
+
+		this->avanzarTurno();
+		 
+
 
 	}
 
@@ -160,10 +182,12 @@ void Tateti::jugarJuego()
 	
 }
 /*Post: avanza el turno actual al siguiente jugador
-en la cola de turnos*/
-void AvanzarTurno()
+en la cola de turnos e incrementa la cantidad de jugadasrealizadas en 1*/
+void Tateti:: avanzarTurno()
 {
-	//this->turnoActual =
+	//pone el jugador actual al final de la cola
+	this->colaDeTurnos.acolar(this->turnoActual);
+	this->cantidadJugadasRealizadas++;
 
 }
 

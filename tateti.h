@@ -43,9 +43,9 @@ class Tateti
 		void iniciarJuego();
 		void jugarJuego();
 		bool hayGanador();
-		void CrearMazoPrincipal();
+		void crearMazoPrincipal();
 		void destruiMazoPrincipal();
-		void AvanzarTurno();
+		void avanzarTurno();
 //metodos relacionados al tablero
 		
 		/*asignarTablero();
