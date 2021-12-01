@@ -30,7 +30,6 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
 
 //ASIGNO LOS VECINOS
 // edit matriz vecinos // Algoritmo que Crea la matriz de vecinos // Terminado, falta implementar existeLaCasilla
-/*
     for (int i = 0; i < this->cantColumnas; i++) { //el primer for me agarra la primer columna
         for (int j = 0; j < this->cantFilas; j++) { //el segundo for me define la fila
             for (int k = 0; k < this->cantEnProfundidad; k++) { //el 3er for la profundidad
@@ -49,7 +48,7 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
             }
         }
     }
-    */
+
 //edit matriz vecinos
 
 }
@@ -73,10 +72,44 @@ void Tablero::setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad,
 }
 
 
+void Tablero::crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad) {
+
+    Casillero *casilla;
+
+    for (int i = 0; i < this->cantFilas; i++) {
+        for (int j = 0; j < this->cantColumnas; j++) {
+            for (int k = 0; k < this->cantEnProfundidad; k++) {
+
+                casilla = this->getCasilla(i,j,k);
+                Casillero**** matrizVecinal = new Casillero***();
+
+                    for (int l = 0; l <3; l++) {
+                        //Casillero *** columna = new Casillero**();
+                        matrizVecinal[l] = new Casillero** ();
+                        for (int m = 0; m < 3; m++) {
+                            matrizVecinal[l][m] = new Casillero*();
+                            for (int n = 0; n < 3; n++) {
+                                matrizVecinal[l][m][n] = new Casillero();
+                            }
+                        }
+                    }
+                    casilla->asignarMatrizVecinos(matrizVecinal);
+                }
+            }
+        }
+}
+
+bool Tablero::existeLaCasilla(int m, int n, int l) {
+    return true;
+}
+
+
+
+
+
 //edit matriz vecinos //TERMINAR!!
-/*
- * //Algoritmo que verifica el ganador
- *
+  //Algoritmo que verifica el ganador
+ /*
 bool Tablero::hayTateti(Casillero *casilleroOrigen, direccion) { //casilleroOrigen es donde estoy parado(revisar que seria)
     casilleroOrigen->getVecinos();
     int longitudesAdyacentes[3][3][3];

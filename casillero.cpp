@@ -13,8 +13,9 @@ Casillero::Casillero(){
     this->casilleroAnulado = false;
 
     //edit matriz vecinos
-   // this->vecinos = new Casillero*[3[3][3];
+   // this->vecinos = new Casillero*[3][3][3];
     //edit matriz vecinos
+
 
 }
 
@@ -95,13 +96,16 @@ void Casillero::setFicha(char ficha) {
     this->ficha = ficha;
 }
 
-//edit matriz vecinos
-/*
- *
-void Casillero::asignarVecino(int l, int m, int n, Casillero *casilleroVecino){
-    this->vecinos[l+1][m+1][n+1] = casilleroVecino; //donde l m n son alto ancho profundo
+void Casillero::asignarMatrizVecinos(Casillero ****matrizVec) {
+    this->matrizDeVecinos = matrizVec;
 }
 
+//edit matriz vecinos
+
+void Casillero::asignarVecino(int l, int m, int n, Casillero *casilleroVecino){
+    this->matrizDeVecinos[l+1][m+1][n+1] = casilleroVecino; //donde l m n son alto ancho profundo
+}
+/*
 bool Casillero::tieneVecino(int l, int m, int n) {
     return false;
 }

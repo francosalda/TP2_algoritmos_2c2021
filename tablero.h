@@ -31,6 +31,10 @@ public:
     void setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad, char ficha); //char seria la ficha, x ahora lo pongo asi y en casillero pongo char ficha,
 
 
+    void crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad);
+
+    bool existeLaCasilla(int m, int n, int l);
+
     //edit matriz vecinos
     /*
     bool hayTateti(Casillero* casilleroOrigen, direccion);

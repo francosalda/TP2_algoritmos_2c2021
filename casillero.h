@@ -24,7 +24,7 @@ private:
     void vaciarCasillero();
     //edit matriz vecinos
     char ficha;
-    Casillero **** vecinos;
+    Casillero**** matrizDeVecinos;
     //edit matriz vecinos
 
 
@@ -44,11 +44,17 @@ public:
     void setFicha(char ficha);
     void anularCasillero();
 
+    void asignarMatrizVecinos(Casillero**** matrizVec);
+
+    void asignarVecino(int l, int m, int n, Casillero* casilleroVecino);
+
+
+
     //edit matriz vecinos
     /*
-    void asignarVecino(int l, int m, int n, Casillero* casilleroVecino);
     bool tieneVecino(int l, int m, int n);
     void existeLaCasilla();
+
     unsigned int getLongitud(unsigned int i, unsigned int j, unsigned int k);
     Casillero *getVecino(unsigned int i,unsigned int j,unsigned int k);
      */
