@@ -34,19 +34,21 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
 Tablero::~Tablero() {
 
     this->casilleros->iniciarCursor();
-    while(this->casilleros->estaVacia()){
-
+    while(this->casilleros->estaVacia())
+    {
         this->casilleros->obtenerCursor()->iniciarCursor();
-        while(this->casilleros->obtenerCursor()->estaVacia()){
-            (this->casilleros->obtenerCursor())->obtenerCursor()->iniciarCursor();
-            (this->casilleros->obtenerCursor())->avanzarCursor();    
+        while(this->casilleros->obtenerCursor()->estaVacia())
+        {
+        (this->casilleros->obtenerCursor())->obtenerCursor()->iniciarCursor();
+        (this->casilleros->obtenerCursor())->avanzarCursor();    
 
-            while((this->casilleros->obtenerCursor())->obtenerCursor()->estaVacia()){
+            while((this->casilleros->obtenerCursor())->obtenerCursor()->estaVacia())
+            {
                 /*borrar memoria de ficha cuando  se pida la misma*/
                 delete (this->casilleros->obtenerCursor())->obtenerCursor()->obtenerCursor();
                 (this->casilleros->obtenerCursor())->obtenerCursor()->avanzarCursor();
             }
-            delete this->casillero->obtenerCursor()->obtenerCursor()
+            delete this->casilleros->obtenerCursor()->obtenerCursor();
             this->casilleros->avanzarCursor();
         }
         delete this->casilleros->obtenerCursor();
@@ -55,14 +57,20 @@ Tablero::~Tablero() {
 //destruir casilleros
 }
 
-Casillero *Tablero::getCasilla(int filaIntroducida, int columnaIntroducida, int profundidadIntroducida) { //me devuleve el dato en la posicion x y
+Casillero *Tablero::getCasilla(int filaIntroducida, int columnaIntroducida, int profundidadIntroducida) 
+{ //me devuleve el dato en la posicion x y
     //validar
-    if((filaIntroducida<0) || (columnaIntroducida<0) || (profundidadIntroducida<0) || (filaIntroducida>this->x)) || (columnaIntroducida>this->y) ||(profundidadIntroducida>this->z){
+    if((filaIntroducida<0) || (columnaIntroducida<0) || (profundidadIntroducida<0) || (filaIntroducida>this->cantFilas) || (columnaIntroducida>this->cantColumnas) ||(profundidadIntroducida>this->cantEnProfundidad))
+    {
         string CoordInvalidas = "coordenadas de casilleros iunvalidas";
-        throw Coordinvalidas;
+        throw CoordInvalidas;
     }
     return this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad);
+
+
 }
+
+
 
 void Tablero::setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad, char ficha) {
     this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad)->setFicha(ficha);
