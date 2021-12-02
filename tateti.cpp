@@ -24,7 +24,7 @@ del Tateti mediante la interaccion con el usuario*/
 void Tateti:: iniciarJuego()
 {
 	cout<<"--------------->Bienvenido a TATETI   Multiplayer<-----------------------\n";
-	//this->crearTablero();
+	this->crearTablero();
 	this->crearJugadores();
 	this->imprimirJugadores();
 	this->inicializarTurnosJugadores();
@@ -198,4 +198,10 @@ Tateti::~Tateti()
 {
 	destruirJugadores();
 	destruiMazoPrincipal();
+	
+	//delete this->tableroDeJuego;
 }
+
+
+
+

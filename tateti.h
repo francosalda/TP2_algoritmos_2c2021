@@ -48,6 +48,7 @@ class Tateti
 		void avanzarTurno();
 //metodos relacionados al tablero
 		void crearTablero();
+	 
 		/*asignarTablero();
 		asignarFichasJugador();
 		imprimirTablero();

@@ -40,6 +40,7 @@ public:
     //PRE:
     //POST:
     bool existeLaCasilla(int m, int n, int l);
+  Lista<Lista<Lista<Casillero*>*>*>* obtenerMatrizTablero();
 
     //edit matriz vecinos
     /*

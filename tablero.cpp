@@ -14,17 +14,19 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
     this->cantEnProfundidad=cantEnProfundidad; 
 
     Lista<Lista <Lista<Casillero *>*>*> * filas  = new Lista<Lista <Lista<Casillero *>*>*>();
-    for(int i=0; i<this->cantFilas; i++) {
+
+    for(int i=0; i<this->cantFilas; i++)
+    {
         Lista<Lista <Casillero *>*> *columnas = new Lista<Lista <Casillero *>*>();
-        for (int j=0; j<this->cantColumnas; j++) {
-            Lista<Casillero *> * profundidad = new Lista<Casillero *>() ;
+        for (int j=0; j<this->cantColumnas; j++) 
+        {
+            Lista<Casillero *> * profundidad = new Lista<Casillero *>();
             for (int k = 0; k < this->cantEnProfundidad; k++)
             {
                 Casillero* nuevoCasillero = new Casillero();
                 profundidad->agregar(nuevoCasillero);
             }
             columnas->agregar(profundidad);
-
         }
         filas->agregar(columnas);
     }
@@ -33,19 +35,56 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
 
 Tablero::~Tablero() {
 
+
+     Lista<Lista <Lista<Casillero *>*>*> * filas = this->casilleros;
+     filas->iniciarCursor();
+     while(! (filas->estaVacia()))
+     {
+        Lista<Lista <Casillero *>*> *columnas  = filas->obtenerCursor();
+        columnas->iniciarCursor();
+        while(!(columnas->estaVacia()))
+        {
+            Lista<Casillero *> * profundidad = columnas->obtenerCursor();
+
+            while(!(profundidad->estaVacia()))
+            {
+
+                delete profundidad->obtenerCursor();
+                profundidad->avanzarCursor();
+
+            }
+            columnas->avanzarCursor();
+           
+
+        } delete columnas;
+
+
+
+      
+        filas->avanzarCursor();
+     }delete filas;
+
+        
+        
+      
+
+
+
+/*
     this->casilleros->iniciarCursor();
 
-    while(this->casilleros->estaVacia())
+    while(! (this->casilleros->estaVacia()))
     {
         this->casilleros->obtenerCursor()->iniciarCursor();
-        while(this->casilleros->obtenerCursor()->estaVacia())
+
+        while(!(this->casilleros->obtenerCursor()->estaVacia()))
         {
         (this->casilleros->obtenerCursor())->obtenerCursor()->iniciarCursor();
          
 
-            while((this->casilleros->obtenerCursor())->obtenerCursor()->estaVacia())
+            while(!((this->casilleros->obtenerCursor())->obtenerCursor()->estaVacia()))
             {
-                /*borrar memoria de ficha cuando  se pida la misma*/
+               
                 delete (this->casilleros->obtenerCursor())->obtenerCursor()->obtenerCursor();
                 (this->casilleros->obtenerCursor())->obtenerCursor()->avanzarCursor();
             }
@@ -57,7 +96,7 @@ Tablero::~Tablero() {
         this->casilleros->avanzarCursor();
     }
     delete this->casilleros;
-//destruir casilleros
+//destruir casilleros*/
 }
 
 Casillero *Tablero::getCasilla(int filaIntroducida, int columnaIntroducida, int profundidadIntroducida) 
@@ -89,7 +128,7 @@ void Tablero::verificar(int cantFilas, int cantColumnas, int cantEnProfundidad, 
 
 void Tablero::crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad) {
 
-    Casillero *casilla;
+   Casillero *casilla;
 
     for (int i = 0; i < this->cantFilas; i++) {
         for (int j = 0; j < this->cantColumnas; j++) {
@@ -113,6 +152,11 @@ void Tablero::crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProf
         }
     }
 }
+
+Lista<Lista<Lista<Casillero*>*>*>* Tablero::obtenerMatrizTablero()
+{
+    return this->casilleros;
+}   
 
 bool Tablero::existeLaCasilla(int m, int n, int l) {
     if(
