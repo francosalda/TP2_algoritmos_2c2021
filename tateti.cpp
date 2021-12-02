@@ -57,11 +57,7 @@ void Tateti::  crearJugadores()
 	cout<<"Ingrese la cantidad de jugadores: \n";
 	size_t inputCantidadJugadores = 2;
 	cin>>(inputCantidadJugadores); //falta verificar rango
-	if(inputCantidadJugadores < 2 || inputCantidadJugadores > MAX_CANTIDAD_JUGADORES)
-	{
-		return;
-	}
-
+	
 	string nombreJugador ;
 	Jugador *nuevoJugador = NULL;
 	char simboloFicha = ' ';
@@ -163,6 +159,13 @@ void Tateti::jugarJuego()
 		cin >> columnaIngresada;
 		cout<<"Ingrese la profundidad donde desea colocar su ficha : \n";
 		cin >> profundidadIngresada;
+
+		if(filaIngresada < 0 ||columnaIngresada <0 ||   profundidadIngresada < 0)
+		{
+			cout<<"[Error]: Posicion invalida, intenta con una una fila/columna/pŕofundidad mayor a 0\n";
+			return;
+		}
+
 		// colocar fichas en tablero
 		//dar una carta a cada jugador luego de su turno
 		// si ya se colocaron todas las fichas moverlas
