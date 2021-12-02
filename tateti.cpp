@@ -166,15 +166,13 @@ void Tateti::jugarJuego()
 		//usar las cartas
 		//etc...
 
-
-
-		
-		
+        if (this->tableroDeJuego->existeLaCasilla(filaIngresada,columnaIngresada,profundidadIngresada))
+        {
+            this->tableroDeJuego->setCasilla(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
+        }
 
 
 		this->avanzarTurno();
-		 
-
 
 	}
 
