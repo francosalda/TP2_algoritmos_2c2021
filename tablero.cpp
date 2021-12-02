@@ -79,6 +79,37 @@ void Tablero::setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad,
     this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad)->setFicha(ficha);
 }
 
+void Tablero::verificar(int cantFilas, int cantColumnas, int cantEnProfundidad, char ficha) {
+    
+    if(this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad)->obtenerFicha() == ficha){
+    std::cout<<"funciono xd"<<std::endl;
+    }
+}
+/*
+void Tablero::setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad, char ficha){
+
+    this->casilleros->iniciarCursor();
+    this->casilleros->obtenerCursor()->iniciarCursor();
+    (this->casilleros->obtenerCursor())->obtenerCursor()->iniciarCursor();
+
+    for(int i = 0; i < cantFilas; i++)
+    {
+        this->casilleros->avanzarCursor();
+        for(int y = 0; y< cantColumnas; y++)
+        {
+            (this->casilleros->obtenerCursor())->avanzarCursor();       
+
+            for(int z = 0; z < cantEnProfundidad; z++)
+            {
+                (this->casilleros->obtenerCursor())->obtenerCursor()->avanzarCursor();
+            }
+            
+        }
+
+    }
+    (this->casilleros->obtenerCursor())->obtenerCursor()->obtenerCursor()->setFicha(ficha);
+}
+*/
 void Tablero::crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad) {
 
     Casillero *casilla;
@@ -144,7 +175,6 @@ bool Tablero::existeLaCasilla(int m, int n, int l) {
 
 //edit matriz vecinos //TERMINAR!!
 //Algoritmo que verifica el ganador
-/*
 bool Tablero::hayTateti(Casillero *casilleroOrigen, direccion) { //casilleroOrigen es donde estoy parado(revisar que seria)
    casilleroOrigen->getVecinos();
    int longitudesAdyacentes[3][3][3];

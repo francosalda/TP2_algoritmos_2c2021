@@ -96,6 +96,12 @@ void Casillero::setFicha(char ficha) {
     this->ficha = ficha;
 }
 
+
+char Casillero::obtenerFicha() {
+    return this->ficha;
+}
+
+
 void Casillero::asignarMatrizVecinos(Casillero ****matrizVec) {
     this->matrizDeVecinos = matrizVec;
 }

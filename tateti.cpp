@@ -16,12 +16,15 @@ Tateti::Tateti()
 
 }
 
-
+void Tateti:: crearTablero(){
+	this->tableroDeJuego = new Tablero(3, 3, 3);
+}
 /*POST: realiza la configuracion inicial de los parametros 
 del Tateti mediante la interaccion con el usuario*/
 void Tateti:: iniciarJuego()
 {
 	cout<<"--------------->Bienvenido a TATETI   Multiplayer<-----------------------\n";
+	this->crearTablero();
 	this->crearJugadores();
 	this->imprimirJugadores();
 	this->inicializarTurnosJugadores();
@@ -146,7 +149,7 @@ void Tateti::jugarJuego()
 
 	cout<<"[DEBUG]: (SOLO 6 rondas y corta ya que no tenemos chequearganador() aun)\n";
 
-	while(!hayGanador() && this->cantidadJugadasRealizadas < 6) // el '3' solo para que no haiga un bucle infinito por ahora
+	while( this->cantidadJugadasRealizadas < 3) // el '3' solo para que no haiga un bucle infinito por ahora
 	{
 
 
@@ -166,13 +169,11 @@ void Tateti::jugarJuego()
 		//usar las cartas
 		//etc...
 
-        if (this->tableroDeJuego->existeLaCasilla(filaIngresada,columnaIngresada,profundidadIngresada))
-        {
-            this->tableroDeJuego->setCasilla(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
-        }
-
-
+        
+		this->tableroDeJuego->setCasilla(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
+		this->tableroDeJuego->verificar(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
 		this->avanzarTurno();
+
 
 	}
 

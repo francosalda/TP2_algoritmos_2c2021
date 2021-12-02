@@ -47,7 +47,7 @@ public:
     void asignarMatrizVecinos(Casillero**** matrizVec);
 
     void asignarVecino(int l, int m, int n, Casillero* casilleroVecino);
-
+    char obtenerFicha();
 
 
     //edit matriz vecinos
