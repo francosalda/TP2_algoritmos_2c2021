@@ -107,6 +107,12 @@ void Tablero::crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProf
 }
 
 bool Tablero::existeLaCasilla(int m, int n, int l) {
+    if(
+    this->cantFilas < m ||
+    this->cantColumnas < n ||
+    this->cantEnProfundidad < l){
+        return false;
+    }
     return true;
 }
 
