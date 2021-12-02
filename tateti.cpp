@@ -24,7 +24,7 @@ del Tateti mediante la interaccion con el usuario*/
 void Tateti:: iniciarJuego()
 {
 	cout<<"--------------->Bienvenido a TATETI   Multiplayer<-----------------------\n";
-	this->crearTablero();
+	//this->crearTablero();
 	this->crearJugadores();
 	this->imprimirJugadores();
 	this->inicializarTurnosJugadores();
@@ -149,7 +149,7 @@ void Tateti::jugarJuego()
 
 	cout<<"[DEBUG]: (SOLO 6 rondas y corta ya que no tenemos chequearganador() aun)\n";
 
-	while( this->cantidadJugadasRealizadas < 3) // el '3' solo para que no haiga un bucle infinito por ahora
+	while( this->cantidadJugadasRealizadas < 6) // el '3' solo para que no haiga un bucle infinito por ahora
 	{
 
 
@@ -170,8 +170,8 @@ void Tateti::jugarJuego()
 		//etc...
 
         
-		this->tableroDeJuego->setCasilla(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
-		this->tableroDeJuego->verificar(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
+		///this->tableroDeJuego->setCasilla(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
+		//this->tableroDeJuego->verificar(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
 		this->avanzarTurno();
 
 

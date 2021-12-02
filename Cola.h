@@ -43,7 +43,7 @@ public:
      * pre: el elemento no es vacio
      * post: agrega el elemento a la cola
      */
-    void acolar (const T elemento);
+    void acolar (const T& elemento);
 
     /*
      * pre: el elemento no es vacio
@@ -74,17 +74,20 @@ template<class T> bool Cola<T>::estaVacia() {
 }
 
 
-template<class T> void Cola<T>::acolar(const T elemento) {
+template<class T> void Cola<T>::acolar(const T& elemento) {
 
     Nodo<T>* nuevo = new Nodo<T>(elemento);
+
     if (this->estaVacia()) {
         nuevo->cambiarSiguiente(NULL);
         this->frente = nuevo;
+
     } else {
-      nuevo->cambiarSiguiente(this->frente);
-        this->ultimo = nuevo;
+      nuevo->cambiarSiguiente(this->ultimo);
+        
         
     }
+    this->ultimo = nuevo;
     this->tamanio++;
 }
 template<class T> unsigned int Cola<T>::contarElementos() {
@@ -100,30 +103,34 @@ template<class T> T Cola<T>::desacolar() {
 
     if (this->frente != NULL) {
 
-        this->tamanio--;
+        
         elemento = this->frente->obtenerDato();
-         
-          /*si habia un unico elemento que es el frente y el ultimo a la vez*/
-         if(this->tamanio == 0)
+        /*si habia un unico elemento que es el frente y el ultimo a la vez*/
+         if(this->tamanio == 1)
         {
             delete this->frente;
             this->frente = NULL;
             this->ultimo = NULL;
+            this->tamanio--;
             return elemento;
         }
+         
+          
        
         //recorro y actualizo cual es el elemento del frente
           Nodo<T>* ptr_auxiliar = NULL;
           Nodo<T>* nuevoFrente = this->ultimo;
-         ptr_auxiliar = this->ultimo->obtenerSiguiente();
+
+        ptr_auxiliar = this->ultimo->obtenerSiguiente();
         while( ptr_auxiliar != this->frente)
         {
             ptr_auxiliar = ptr_auxiliar->obtenerSiguiente();
-            nuevoFrente = ptr_auxiliar;
+            nuevoFrente = nuevoFrente->obtenerSiguiente();
         }
         delete ptr_auxiliar;
         nuevoFrente->cambiarSiguiente(NULL);
         this->frente = nuevoFrente;
+        this->tamanio--;
     }
 
 
