@@ -12,6 +12,7 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
     this->cantFilas=cantFilas;
     this->cantColumnas=cantColumnas;
     this->cantEnProfundidad=cantEnProfundidad; 
+
     Lista<Lista <Lista<Casillero *>*>*> * filas  = new Lista<Lista <Lista<Casillero *>*>*>();
     for(int i=0; i<this->cantFilas; i++) {
         Lista<Lista <Casillero *>*> *columnas = new Lista<Lista <Casillero *>*>();
@@ -28,61 +29,8 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
         filas->agregar(columnas);
     }
     this->casilleros = filas;
-
-/*
-    this-> casilleros = new Lista<Lista<Lista<Casillero*>*>*>(); //esto crea el puntero a primero de la lista, con todo en nuuull
-
-    for(int i=0; i<this->cantFilas; i++) {
-
-        Lista<Lista<Casillero*>*>* filas = new Lista<Lista<Casillero*>*> ();
-        for (int j=0; j<this->cantColumnas; j++) {
-            Lista<Casillero *> *columnas = new Lista<Casillero *>();
-            for (int k = 0; k < this->cantEnProfundidad; k++)
-            {
-                Casillero *casillero = new Casillero();
-
-                ///(this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad))->agregar(casillero);
-                columnas->agregar(casillero);
-                //fila->agregar(columnas);            
-            }
-            //std::cout<< columnas->contarElementos()<<std::endl;
-            filas->agregar(columnas); 
-        }
-        //std::cout<< filas->contarElementos()<<std::endl;
-    this->casilleros->agregar(filas);
-    }
-    std::cout<< casilleros->contarElementos()<<std::endl;
-    */
 }
 
-/*
-
-Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
-    if ((cantFilas < 2) || (cantColumnas<2) || (cantEnProfundidad<2))
-    {
-        string DimensionInvalida = "dimensiones de tablero incorrectas";
-        throw DimensionInvalida;
-    }
-    this->cantFilas=cantFilas;
-    this->cantColumnas=cantColumnas;
-    this->cantEnProfundidad=cantEnProfundidad;
-    this-> casilleros = new Lista<Lista<Lista<Casillero*>*>*>(); //esto crea el puntero a primero de la lista, con todo en nuuull
-
-    for(int i=0; i<this->cantEnProfundidad; i++) {
-        Lista<Lista<Casillero*>*>* columna = new Lista<Lista<Casillero*>*> ();
-        for (int j=0; j<this->cantFilas; j++) {
-            Lista<Casillero *> *fila = new Lista<Casillero *>();
-            for (int k = 0; k < this->cantColumnas; k++)
-            {
-                Casillero *casillero = new Casillero();
-                fila->agregar(casillero);
-            }
-            columna->agregar(fila);
-        }
-        this->casilleros->agregar(columna);
-    }
-}
-*/
 Tablero::~Tablero() {
 
     this->casilleros->iniciarCursor();
@@ -138,31 +86,7 @@ void Tablero::verificar(int cantFilas, int cantColumnas, int cantEnProfundidad, 
         std::cout<<"funciono xd"<<std::endl;
     }
 }
-/*
-void Tablero::setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad, char ficha){
 
-    this->casilleros->iniciarCursor();
-    this->casilleros->obtenerCursor()->iniciarCursor();
-    (this->casilleros->obtenerCursor())->obtenerCursor()->iniciarCursor();
-
-    for(int i = 0; i < cantFilas; i++)
-    {
-        this->casilleros->avanzarCursor();
-        for(int y = 0; y< cantColumnas; y++)
-        {
-            (this->casilleros->obtenerCursor())->avanzarCursor();       
-
-            for(int z = 0; z < cantEnProfundidad; z++)
-            {
-                (this->casilleros->obtenerCursor())->obtenerCursor()->avanzarCursor();
-            }
-            
-        }
-
-    }
-    (this->casilleros->obtenerCursor())->obtenerCursor()->obtenerCursor()->setFicha(ficha);
-}
-*/
 void Tablero::crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad) {
 
     Casillero *casilla;
