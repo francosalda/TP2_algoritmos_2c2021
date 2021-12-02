@@ -147,8 +147,7 @@ void Tateti::jugarJuego()
 
 	while( this->cantidadJugadasRealizadas < 6) // el '3' solo para que no haiga un bucle infinito por ahora
 	{
-
-
+		this->cantidadJugadasRealizadas++;
 		this->turnoActual = colaDeTurnos.desacolar();
 
 
@@ -160,10 +159,11 @@ void Tateti::jugarJuego()
 		cout<<"Ingrese la profundidad donde desea colocar su ficha : \n";
 		cin >> profundidadIngresada;
 
-		if(filaIngresada < 0 ||columnaIngresada <0 ||   profundidadIngresada < 0)
+		if(filaIngresada < 1 || filaIngresada  > 3 ||columnaIngresada <1 || columnaIngresada > 3 ||   profundidadIngresada < 1 ||profundidadIngresada>3)
 		{
-			cout<<"[Error]: Posicion invalida, intenta con una una fila/columna/pŕofundidad mayor a 0\n";
-			return;
+			cout<<"[Error]: Posicion invalida, intenta con una mayor a 0! PIERDES EL TURNO\n";
+			this->avanzarTurno();
+			continue;
 		}
 
 		// colocar fichas en tablero
@@ -184,12 +184,12 @@ void Tateti::jugarJuego()
 	
 }
 /*Post: avanza el turno actual al siguiente jugador
-en la cola de turnos e incrementa la cantidad de jugadasrealizadas en 1*/
+en la cola de turnos */
 void Tateti:: avanzarTurno()
 {
 	//pone el jugador actual al final de la cola
 	this->colaDeTurnos.acolar(this->turnoActual);
-	this->cantidadJugadasRealizadas++;
+	
 
 }
 
