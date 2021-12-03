@@ -43,11 +43,11 @@ public:
     void bloquearFichaDelCasillero();
     void setFicha(char ficha);
     void anularCasillero();
-
+    char obtenerFicha();
     //void asignarMatrizVecinos(Casillero**** matrizVec);
 
     //void asignarVecino(int l, int m, int n, Casillero* casilleroVecino);
-    char obtenerFicha();
+
 
 
     //edit matriz vecinos

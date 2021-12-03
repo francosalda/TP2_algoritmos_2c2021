@@ -12,6 +12,7 @@ Casillero::Casillero(){
     this->casilleroVacio = true;
     this->casilleroAnulado = false;
 
+
     //edit matriz vecinos
    // this->vecinos = new Casillero*[3][3][3];
     //edit matriz vecinos

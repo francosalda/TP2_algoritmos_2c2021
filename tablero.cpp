@@ -3,43 +3,6 @@
 #include "casillero.h"
 
 
-/*-------------------------------------------------------------------------------------------------*/
-/*Metodos de prueba para la perdida de memoria del tablero*/
-
-Tablero::Tablero()
-{
-    this->cantFilas=3;
-    this->cantColumnas=3;
-    this->cantEnProfundidad=3; 
-
-   
-   //  Lista<Lista <Lista<Casillero *>*>*> * filas  = new Lista<Lista <Lista<Casillero *>*>*>;
-     //Lista<Lista <Casillero *>*> *columnas = new Lista<Lista <Casillero *>*>;
-     Lista<Casillero *> * profundidad = new Lista<Casillero *>;
-
-
-     for (int k = 0; k < this->cantEnProfundidad; k++)
-     {
-        Casillero * nuevoCasillero = new Casillero;
-        //profundidad->agregar(nuevoCasillero);
-     }
-
-
-    delete profundidad;
-}
-void Tablero::destruirTablero()
-{
-    
-
-
-
-
-}
-
-
-/*-------------------------------------------------------------------------------------------------*/
-
-
 Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
     if ((cantFilas < 2) || (cantColumnas<2) || (cantEnProfundidad<2))
     {
@@ -76,43 +39,30 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
 
 Tablero::~Tablero() {
 
+     Lista<Lista <Lista<Casillero *>*>*> * filas = this->casilleros;
 
+     while(filas->avanzarCursor())
+     {
+        Lista<Lista <Casillero *>*> *columnas = this->casilleros->obtenerCursor();
+        while(columnas->avanzarCursor())
+        {
+
+            Lista<Casillero *> * profundidad = columnas->obtenerCursor();
+            while(profundidad->avanzarCursor())
+            {
+                delete profundidad->obtenerCursor();
+
+            }delete profundidad;
+
+        }delete columnas;
+
+
+     }delete filas;
+   
+     
+}
     
 
-        
-        
-      
-
-
-
-/*
-    this->casilleros->iniciarCursor();
-
-    while(! (this->casilleros->estaVacia()))
-    {
-        this->casilleros->obtenerCursor()->iniciarCursor();
-
-        while(!(this->casilleros->obtenerCursor()->estaVacia()))
-        {
-        (this->casilleros->obtenerCursor())->obtenerCursor()->iniciarCursor();
-         
-
-            while(!((this->casilleros->obtenerCursor())->obtenerCursor()->estaVacia()))
-            {
-               
-                delete (this->casilleros->obtenerCursor())->obtenerCursor()->obtenerCursor();
-                (this->casilleros->obtenerCursor())->obtenerCursor()->avanzarCursor();
-            }
-            delete this->casilleros->obtenerCursor()->obtenerCursor();
-            (this->casilleros->obtenerCursor())->avanzarCursor();  
-        }
-
-        delete this->casilleros->obtenerCursor();
-        this->casilleros->avanzarCursor();
-    }
-    delete this->casilleros;
-//destruir casilleros*/
-}
 
 Casillero *Tablero::getCasilla(int filaIntroducida, int columnaIntroducida, int profundidadIntroducida) 
 { //me devuleve el dato en la posicion x y

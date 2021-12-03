@@ -42,8 +42,7 @@ public:
     bool existeLaCasilla(int m, int n, int l);
   Lista<Lista<Lista<Casillero*>*>*>* obtenerMatrizTablero();
 
-  void destruirTablero();
-
+  
 
     //edit matriz vecinos
     /*

@@ -106,7 +106,11 @@ template<class T> Lista<T>::Lista(Lista<T>&otraLista)
 }
 template<class T>bool Lista<T>::estaVacia()
 {
-    return (this->tamanio == 0);
+    if(this->tamanio == 0)
+    {
+        return true;
+    }
+    return false;
 }
 
 
