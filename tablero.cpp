@@ -3,6 +3,43 @@
 #include "casillero.h"
 
 
+/*-------------------------------------------------------------------------------------------------*/
+/*Metodos de prueba para la perdida de memoria del tablero*/
+
+Tablero::Tablero()
+{
+    this->cantFilas=3;
+    this->cantColumnas=3;
+    this->cantEnProfundidad=3; 
+
+   
+   //  Lista<Lista <Lista<Casillero *>*>*> * filas  = new Lista<Lista <Lista<Casillero *>*>*>;
+     //Lista<Lista <Casillero *>*> *columnas = new Lista<Lista <Casillero *>*>;
+     Lista<Casillero *> * profundidad = new Lista<Casillero *>;
+
+
+     for (int k = 0; k < this->cantEnProfundidad; k++)
+     {
+        Casillero * nuevoCasillero = new Casillero;
+        //profundidad->agregar(nuevoCasillero);
+     }
+
+
+    delete profundidad;
+}
+void Tablero::destruirTablero()
+{
+    
+
+
+
+
+}
+
+
+/*-------------------------------------------------------------------------------------------------*/
+
+
 Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
     if ((cantFilas < 2) || (cantColumnas<2) || (cantEnProfundidad<2))
     {
@@ -12,15 +49,15 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
     this->cantFilas=cantFilas;
     this->cantColumnas=cantColumnas;
     this->cantEnProfundidad=cantEnProfundidad; 
+    Lista<Lista <Lista<Casillero *>*>*> * filas  = new Lista<Lista <Lista<Casillero *>*>*>;
 
-    Lista<Lista <Lista<Casillero *>*>*> * filas  = new Lista<Lista <Lista<Casillero *>*>*>();
-
-    for(int i=0; i<this->cantFilas; i++)
+    for(int i=0;  i<this->cantFilas; i++)
     {
-        Lista<Lista <Casillero *>*> *columnas = new Lista<Lista <Casillero *>*>();
+        Lista<Lista <Casillero *>*> *columnas = new Lista<Lista <Casillero *>*>;
         for (int j=0; j<this->cantColumnas; j++) 
         {
-            Lista<Casillero *> * profundidad = new Lista<Casillero *>();
+            Lista<Casillero *> * profundidad = new Lista<Casillero *>;
+
             for (int k = 0; k < this->cantEnProfundidad; k++)
             {
                 Casillero* nuevoCasillero = new Casillero();
@@ -33,36 +70,14 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
     this->casilleros = filas;
 }
 
+
+
+
+
 Tablero::~Tablero() {
 
 
-     Lista<Lista <Lista<Casillero *>*>*> * filas = this->casilleros;
-     filas->iniciarCursor();
-     while(! (filas->estaVacia()))
-     {
-        Lista<Lista <Casillero *>*> *columnas  = filas->obtenerCursor();
-        columnas->iniciarCursor();
-        while(!(columnas->estaVacia()))
-        {
-            Lista<Casillero *> * profundidad = columnas->obtenerCursor();
-
-            while(!(profundidad->estaVacia()))
-            {
-
-                delete profundidad->obtenerCursor();
-                profundidad->avanzarCursor();
-
-            }
-            columnas->avanzarCursor();
-           
-
-        } delete columnas;
-
-
-
-      
-        filas->avanzarCursor();
-     }delete filas;
+    
 
         
         
@@ -126,7 +141,7 @@ void Tablero::verificar(int cantFilas, int cantColumnas, int cantEnProfundidad, 
     }
 }
 
-void Tablero::crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad) {
+/*void Tablero::crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad) {
 
    Casillero *casilla;
 
@@ -151,7 +166,7 @@ void Tablero::crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProf
             }
         }
     }
-}
+}*/
 
 Lista<Lista<Lista<Casillero*>*>*>* Tablero::obtenerMatrizTablero()
 {

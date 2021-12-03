@@ -17,7 +17,8 @@ Tateti::Tateti()
 }
 
 void Tateti:: crearTablero(){
-	this->tableroDeJuego = new Tablero(3, 3, 3);
+	//this->tableroDeJuego = new Tablero(3, 3, 3);
+	this->tableroDeJuego = new Tablero();
 }
 /*POST: realiza la configuracion inicial de los parametros 
 del Tateti mediante la interaccion con el usuario*/
@@ -29,7 +30,7 @@ void Tateti:: iniciarJuego()
 	this->imprimirJugadores();
 	this->inicializarTurnosJugadores();
 	this->crearMazoPrincipal();
-	//this-> cargar_tablero()
+	
 }
 
 /*Imprime la lista de jugadores actuales con sus fichas*/
@@ -198,8 +199,9 @@ Tateti::~Tateti()
 {
 	destruirJugadores();
 	destruiMazoPrincipal();
-	
+	this->tableroDeJuego->destruirTablero();
 	//delete this->tableroDeJuego;
+	delete this->tableroDeJuego;
 }
 
 

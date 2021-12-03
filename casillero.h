@@ -44,9 +44,9 @@ public:
     void setFicha(char ficha);
     void anularCasillero();
 
-    void asignarMatrizVecinos(Casillero**** matrizVec);
+    //void asignarMatrizVecinos(Casillero**** matrizVec);
 
-    void asignarVecino(int l, int m, int n, Casillero* casilleroVecino);
+    //void asignarVecino(int l, int m, int n, Casillero* casilleroVecino);
     char obtenerFicha();
 
 

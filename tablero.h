@@ -17,7 +17,7 @@ public:
     //PRE: Los argumentos deben ser >0
     //POST: Crea un tablero de dimensiones x.y.z = cantcasillas
     Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad);
-
+    Tablero();
     //PRE:
     //POST:
     virtual ~Tablero();
@@ -35,12 +35,15 @@ public:
    
     //PRE:
     //POST:
-    void crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad);
+   // void crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad);
 
     //PRE:
     //POST:
     bool existeLaCasilla(int m, int n, int l);
   Lista<Lista<Lista<Casillero*>*>*>* obtenerMatrizTablero();
+
+  void destruirTablero();
+
 
     //edit matriz vecinos
     /*

@@ -102,7 +102,7 @@ char Casillero::obtenerFicha() {
 }
 
 
-void Casillero::asignarMatrizVecinos(Casillero ****matrizVec) {
+/*void Casillero::asignarMatrizVecinos(Casillero ****matrizVec) {
     this->matrizDeVecinos = matrizVec;
 }
 
@@ -111,6 +111,7 @@ void Casillero::asignarMatrizVecinos(Casillero ****matrizVec) {
 void Casillero::asignarVecino(int l, int m, int n, Casillero *casilleroVecino){
     this->matrizDeVecinos[l+1][m+1][n+1] = casilleroVecino; //donde l m n son alto ancho profundo
 }
+*/
 /*
 bool Casillero::tieneVecino(int l, int m, int n) {
     return false;
