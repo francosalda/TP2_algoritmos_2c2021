@@ -34,20 +34,27 @@ class Tateti
 	public:
 		Tateti();
 		~Tateti();
-//metodos relacionados a los jugadores
+//metodos relacionados a los jugadores del tateti
 		void crearJugadores();
+		void destruirJugadores();
 		void imprimirJugadores();
 		void inicializarTurnosJugadores();
-		void destruirJugadores();
-//metodos relacionados a la partida
+		bool FichaYaOcupadaPorOtroJugador(char simboloFichaElegido);
+//metodos relacionados a la partida de tateti
 		void iniciarJuego();
 		void jugarJuego();
 		bool hayGanador();
 		void crearMazoPrincipal();
 		void destruiMazoPrincipal();
 		void avanzarTurno();
-//metodos relacionados al tablero
+		void solicitarIngresoDeCordenadas(int &filas, int &columnas,int & profundidad);
+		size_t obtenerMinimaCantidadJugadasTateti();
+		size_t obtenerCantidadJugadoresActuales();
+		bool solicitarIngresoNuevaFicha(int &filas, int &columnas,int & profundidad);
+//metodos relacionados al tablero del tateti
 		void crearTablero();
+		bool estaCasilleroLibre(size_t fila,size_t columna,size_t profundidad);
+		bool estaEnRangoValido(int fila,int columna,int profundidad);
 	 
 		/*asignarTablero();
 		asignarFichasJugador();

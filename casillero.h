@@ -8,7 +8,6 @@ using namespace std;
 /*[TDA CASILLERO]
     .contenidoCasillero : Es la ficha almacenada por el casillero
     .turnosRestantesDesbloqueo: es la cantidad de turnos antes de poder desbloquearse
-    .casilleroVacio: indica si un casillero contiene una ficha
     .casilleroAnulado: indica si  en ese casillero puede colocarse una ficha
 */
 
@@ -18,7 +17,6 @@ private:
 
     Ficha *contenidoCasillero;
     size_t turnosRestantesDesbloqueo;
-    bool casilleroVacio;
     bool casilleroAnulado;
 
     void vaciarCasillero();

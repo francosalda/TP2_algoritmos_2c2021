@@ -9,7 +9,6 @@ Post: Inicializa un casillero listo para colocarle una ficha
 Casillero::Casillero(char simboloFicha){
     this->contenidoCasillero = new Ficha(simboloFicha);
     this->turnosRestantesDesbloqueo = 0;
-    this->casilleroVacio = true;
     this->casilleroAnulado = false;
 
 
@@ -32,8 +31,13 @@ Casillero::~Casillero()
 /*
 Post: : devuelve true si el casillero esta vacio
 */
-bool Casillero::estaCasilleroVacio(){
-    return this->casilleroVacio;
+bool Casillero::estaCasilleroVacio()
+{
+    if(this->contenidoCasillero->getSimboloFicha() == SIMBOLO_FICHA_VACIA)
+    {
+        return true;
+    }
+    return false;
 }
 /* Post: devuelve true si el casillero esta anulado para colocar fichas*/
 bool Casillero::estaCasilleroAnulado(){
@@ -49,12 +53,13 @@ void Casillero::anularCasillero(){
 /*
 PRE: el casillero existe
 Post: vacia un casillero para que pueda colocarse otra ficha
+asignandole la ficha vacia
 */
 void Casillero::vaciarCasillero(){
-    this->contenidoCasillero = NULL;
+    this->contenidoCasillero->setSimboloFicha(SIMBOLO_FICHA_VACIA);
     this->turnosRestantesDesbloqueo = 0;
-    this->casilleroVacio = true;
     this->casilleroAnulado = false;
+
 }
 /*
 PRE: el casillero existe
@@ -62,7 +67,7 @@ Post: copia el contenido de un casillero a otro casillero
 */
 void Casillero::copiarCasillero(Casillero* dest){
     dest->contenidoCasillero = this->contenidoCasillero;
-    dest->casilleroVacio = false;
+
 }
 
 /*

@@ -9,49 +9,29 @@ using namespace std;
 class Tablero {
 private:
     Lista<Lista<Lista<Casillero*>*>*>* casilleros; // casilleros es una lista de lista de punteros a casillero(puntero casillero pq es un tda)
-    int cantFilas;
-    int cantColumnas;
-    int cantEnProfundidad;
+    size_t cantFilas;
+    size_t cantColumnas;
+    size_t cantEnProfundidad;
 
 public:
-    //PRE: Los argumentos deben ser >0
-    //POST: Crea un tablero de dimensiones x.y.z = cantcasillas
-    Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad);
+    Tablero(size_t cantFilas, size_t cantColumnas, size_t cantEnProfundidad);
     Tablero();
-    //PRE:
-    //POST:
     virtual ~Tablero();
-
-    //PRE: Recibe los valores de filas columnas y profundidad elegidos
-    //POST: Devuelve la ficha que se encuentra en la casilla elegida
-    Casillero *getCasilla(int filaIntroducida, int columnaIntroducida, int profundidadIntroducida);
-
-    //PRE: Recibe los valores de filas columnas y profundidad elegidos
-    //POST: Coloca una nueva ficha en la casilla selecionada si es que no esta ocupada (Validar)
-    
-    void setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad, char simboloFicha); //char seria la ficha, x ahora lo pongo asi y en casillero pongo char ficha,
-
-   
-    //PRE:
-    //POST:
-   // void crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad);
-
-    //PRE:
-    //POST:
-    bool existeLaCasilla(int m, int n, int l);
-  Lista<Lista<Lista<Casillero*>*>*>* obtenerMatrizTablero();
-
+    Casillero *getCasillero(size_t filaIntroducida, size_t columnaIntroducida, size_t profundidadIntroducida);
+    void setCasilla(size_t cantFilas, size_t cantColumnas, size_t cantEnProfundidad, char simboloFicha); 
+    size_t getCantFilasTablero();
+    size_t getCantColumnasTablero();
+    size_t getCantProfundidadTablero();
   
-
-    //edit matriz vecinos
-    /*
-    bool hayTateti(Casillero* casilleroOrigen, direccion);
-     */
-    //edit matriz vecinos
+   
+    
+    bool existeLaCasilla(size_t m, size_t n, size_t l);
+    Lista<Lista<Lista<Casillero*>*>*>* obtenerMatrizTablero();
 
 
-    //PRE:
-    //POST:
+    // bool hayTateti(Casillero* casilleroOrigen, direccion);
+    // void crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad);
+
 };
 
 

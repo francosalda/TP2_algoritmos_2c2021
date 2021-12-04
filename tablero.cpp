@@ -4,7 +4,7 @@
 
 
 
-Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
+Tablero::Tablero(size_t cantFilas, size_t cantColumnas, size_t cantEnProfundidad) {
     if ((cantFilas < 2) || (cantColumnas<2) || (cantEnProfundidad<2))
     {
         string DimensionInvalida = "dimensiones de tablero incorrectas";
@@ -15,14 +15,14 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
     this->cantEnProfundidad=cantEnProfundidad; 
     Lista<Lista <Lista<Casillero *>*>*> * filas  = new Lista<Lista <Lista<Casillero *>*>*>;
 
-    for(int i=0;  i<this->cantFilas; i++)
+    for(size_t i=0;  i<this->cantFilas; i++)
     {
         Lista<Lista <Casillero *>*> *columnas = new Lista<Lista <Casillero *>*>;
-        for (int j=0; j<this->cantColumnas; j++) 
+        for (size_t j=0; j<this->cantColumnas; j++) 
         {
             Lista<Casillero *> * profundidad = new Lista<Casillero *>;
 
-            for (int k = 0; k < this->cantEnProfundidad; k++)
+            for (size_t k = 0; k < this->cantEnProfundidad; k++)
             {
                 Casillero* nuevoCasillero = new Casillero(SIMBOLO_FICHA_VACIA);
                 profundidad->agregar(nuevoCasillero);
@@ -57,10 +57,8 @@ Tablero::~Tablero() {
 
         }delete columnas;
 
-
      }delete filas;
    
-     
 }
     
 /*
@@ -68,17 +66,14 @@ Pre: existe el tablero y el casillero solicitado
 Post: devuelve el casillero ubicado en la posicion [fila][columna][profundidad]
 */
 
-Casillero * Tablero::getCasilla(int fila, int columna, int profundidad) 
+Casillero * Tablero::getCasillero(size_t fila, size_t columna, size_t profundidad) 
 { 
     if((fila <= 0) || (columna<= 0) || (profundidad <=0) || (fila>this->cantFilas) || (columna>this->cantColumnas) ||(profundidad>this->cantEnProfundidad))
     {
-        string CoordInvalidas = "coordenadas de casilleros iunvalidas";
+        string CoordInvalidas = "coordenadas de casilleros invalidas";
         throw CoordInvalidas;
     }
-
     return this->casilleros->obtener(fila)->obtener(columna)->obtener(profundidad);
-
-
 }
 
 
@@ -86,10 +81,79 @@ Casillero * Tablero::getCasilla(int fila, int columna, int profundidad)
 Pre: existe el casillero establecido y esta en el rango del tablero
 Post:Establece la ficha del casillero ubicado en la posicion [fila][columna][profundidad] 
 con el simbolo 'simboloFicha'*/
-void Tablero::setCasilla(int fila, int columna, int profundidad, char simboloFicha) {
+void Tablero::setCasilla(size_t fila, size_t columna, size_t profundidad, char simboloFicha) {
     this->casilleros->obtener(fila)->obtener(columna)->obtener(profundidad)->setSimboloFichaDelCasillero(simboloFicha);
 
 }
+
+Lista<Lista<Lista<Casillero*>*>*>* Tablero::obtenerMatrizTablero()
+{
+    return this->casilleros;
+}   
+
+bool Tablero::existeLaCasilla(size_t m, size_t n, size_t l) {
+    if(
+    this->cantFilas < m ||
+    this->cantColumnas < n ||
+    this->cantEnProfundidad < l){
+        return false;
+    }
+    return true;
+}
+
+/*
+Pre: existe el tablero
+Post:Devuelve la cantidad de filas que posee el tablero
+*/
+size_t Tablero::getCantFilasTablero()
+{
+    return this->cantFilas;
+}
+/*
+Pre: existe el tablero
+Post:Devuelve la cantidad de columnas que posee el tablero
+*/
+size_t Tablero::getCantColumnasTablero()
+{
+    return this->cantColumnas;
+}
+/*
+Pre: existe el tablero
+Post:Devuelve la profundidad que posee el tablero
+*/
+size_t Tablero::getCantProfundidadTablero()
+{
+    return this->cantEnProfundidad;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*void Tablero::crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad) {
@@ -119,20 +183,8 @@ void Tablero::setCasilla(int fila, int columna, int profundidad, char simboloFic
     }
 }*/
 
-Lista<Lista<Lista<Casillero*>*>*>* Tablero::obtenerMatrizTablero()
-{
-    return this->casilleros;
-}   
 
-bool Tablero::existeLaCasilla(int m, int n, int l) {
-    if(
-    this->cantFilas < m ||
-    this->cantColumnas < n ||
-    this->cantEnProfundidad < l){
-        return false;
-    }
-    return true;
-}
+
 
 //ASIGNO LOS VECINOS
 // edit matriz vecinos // Algoritmo que Asigna la matriz de vecinos //falta implementar existeLaCasilla
