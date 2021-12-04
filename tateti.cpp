@@ -173,12 +173,13 @@ void Tateti::jugarJuego()
 		//usar las cartas
 		//etc...
 
-        
-		///this->tableroDeJuego->setCasilla(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
-		//this->tableroDeJuego->verificar(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
+		//guarda la ficha ingresada
+		this->tableroDeJuego->setCasilla(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
+		
+		//cout<<"[DEBUG]Se ingreso: "<< (this->tableroDeJuego->getCasilla(filaIngresada,columnaIngresada,profundidadIngresada))->obtenerSimboloFichaDelCasillero()<<"\n";
+		
+
 		this->avanzarTurno();
-
-
 	}
 
 

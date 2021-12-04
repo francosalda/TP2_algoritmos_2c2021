@@ -1,6 +1,6 @@
 #ifndef FICHA_H
 #define FICHA_H
-#define SIMBOLO_VACIO ' '
+#define SIMBOLO_FICHA_VACIA ' '
 
 /*  [TDA FICHA]
     .simbolo : es el caracter representativo de la ficha
@@ -15,6 +15,7 @@ private:
 public:
     Ficha();
     Ficha(char caracter);
+    void setSimboloFicha(char nuevoSimbolo);
     char getSimboloFicha();
     bool estaBloqueadaFicha();
     void bloquearFicha();

@@ -23,13 +23,11 @@ private:
 
     void vaciarCasillero();
     //edit matriz vecinos
-    char ficha;
     Casillero**** matrizDeVecinos;
-    //edit matriz vecinos
 
 
 public:
-    Casillero();
+    Casillero(char simboloFicha);
     virtual ~Casillero();
 
     bool estaCasilleroVacio();
@@ -41,9 +39,10 @@ public:
     void decrementarTurnosRestantesDesbloqueo();
 
     void bloquearFichaDelCasillero();
-    void setFicha(char ficha);
+    void setSimboloFichaDelCasillero(char simboloFicha);
+    char obtenerSimboloFichaDelCasillero();
     void anularCasillero();
-    char obtenerFicha();
+  
     //void asignarMatrizVecinos(Casillero**** matrizVec);
 
     //void asignarVecino(int l, int m, int n, Casillero* casilleroVecino);
@@ -58,8 +57,7 @@ public:
     unsigned int getLongitud(unsigned int i, unsigned int j, unsigned int k);
     Casillero *getVecino(unsigned int i,unsigned int j,unsigned int k);
      */
-    //edit matriz vecinos
-
+    
 
 };
 

@@ -3,6 +3,7 @@
 #include "casillero.h"
 
 
+
 Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
     if ((cantFilas < 2) || (cantColumnas<2) || (cantEnProfundidad<2))
     {
@@ -23,7 +24,7 @@ Tablero::Tablero(int cantFilas, int cantColumnas, int cantEnProfundidad) {
 
             for (int k = 0; k < this->cantEnProfundidad; k++)
             {
-                Casillero* nuevoCasillero = new Casillero();
+                Casillero* nuevoCasillero = new Casillero(SIMBOLO_FICHA_VACIA);
                 profundidad->agregar(nuevoCasillero);
             }
             columnas->agregar(profundidad);
@@ -62,34 +63,34 @@ Tablero::~Tablero() {
      
 }
     
+/*
+Pre: existe el tablero y el casillero solicitado
+Post: devuelve el casillero ubicado en la posicion [fila][columna][profundidad]
+*/
 
-
-Casillero *Tablero::getCasilla(int filaIntroducida, int columnaIntroducida, int profundidadIntroducida) 
-{ //me devuleve el dato en la posicion x y
-    //validar
-    if((filaIntroducida<0) || (columnaIntroducida<0) || (profundidadIntroducida<0) || (filaIntroducida>this->cantFilas) || (columnaIntroducida>this->cantColumnas) ||(profundidadIntroducida>this->cantEnProfundidad))
+Casillero * Tablero::getCasilla(int fila, int columna, int profundidad) 
+{ 
+    if((fila <= 0) || (columna<= 0) || (profundidad <=0) || (fila>this->cantFilas) || (columna>this->cantColumnas) ||(profundidad>this->cantEnProfundidad))
     {
         string CoordInvalidas = "coordenadas de casilleros iunvalidas";
         throw CoordInvalidas;
     }
-    return this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad);
+
+    return this->casilleros->obtener(fila)->obtener(columna)->obtener(profundidad);
 
 
 }
 
 
+/*
+Pre: existe el casillero establecido y esta en el rango del tablero
+Post:Establece la ficha del casillero ubicado en la posicion [fila][columna][profundidad] 
+con el simbolo 'simboloFicha'*/
+void Tablero::setCasilla(int fila, int columna, int profundidad, char simboloFicha) {
+    this->casilleros->obtener(fila)->obtener(columna)->obtener(profundidad)->setSimboloFichaDelCasillero(simboloFicha);
 
-void Tablero::setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad, char ficha) {
-    this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad)->setFicha(ficha);
 }
 
-void Tablero::verificar(int cantFilas, int cantColumnas, int cantEnProfundidad, char ficha) {
-    std::cout<<this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad)->obtenerFicha()<<std::endl;
-    if(this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad)->obtenerFicha() == ficha){
-        std::cout<<this->casilleros->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad)->obtenerFicha()<<std::endl;
-        std::cout<<"funciono xd"<<std::endl;
-    }
-}
 
 /*void Tablero::crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad) {
 

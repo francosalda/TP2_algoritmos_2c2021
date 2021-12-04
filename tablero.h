@@ -29,8 +29,7 @@ public:
     //PRE: Recibe los valores de filas columnas y profundidad elegidos
     //POST: Coloca una nueva ficha en la casilla selecionada si es que no esta ocupada (Validar)
     
-    void setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad, char ficha); //char seria la ficha, x ahora lo pongo asi y en casillero pongo char ficha,
-    void verificar(int cantFilas, int cantColumnas, int cantEnProfundidad, char ficha);
+    void setCasilla(int cantFilas, int cantColumnas, int cantEnProfundidad, char simboloFicha); //char seria la ficha, x ahora lo pongo asi y en casillero pongo char ficha,
 
    
     //PRE:

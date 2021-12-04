@@ -6,8 +6,8 @@
 /*
 Post: Inicializa un casillero listo para colocarle una ficha
 */
-Casillero::Casillero(){
-    this->contenidoCasillero = NULL;
+Casillero::Casillero(char simboloFicha){
+    this->contenidoCasillero = new Ficha(simboloFicha);
     this->turnosRestantesDesbloqueo = 0;
     this->casilleroVacio = true;
     this->casilleroAnulado = false;
@@ -20,7 +20,13 @@ Casillero::Casillero(){
 
 }
 
-Casillero::~Casillero(){
+Casillero::~Casillero()
+{
+    if(this->contenidoCasillero)
+    {
+        delete  this->contenidoCasillero;    
+    }
+    
 }
 
 /*
@@ -89,17 +95,15 @@ void Casillero::bloquearFichaDelCasillero(){
     //(this->contenidoCasillero)->bloquearFicha();
 
 }
-/*
-Post : Asigna una ficha al casillero
-*/
 
-void Casillero::setFicha(char ficha) {
-    this->ficha = ficha;
+
+void Casillero::setSimboloFichaDelCasillero(char simboloFicha) {
+    this->contenidoCasillero->setSimboloFicha(simboloFicha);
 }
 
 
-char Casillero::obtenerFicha() {
-    return this->ficha;
+char Casillero::obtenerSimboloFichaDelCasillero() {
+    return this->contenidoCasillero->getSimboloFicha();
 }
 
 

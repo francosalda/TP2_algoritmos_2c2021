@@ -1,13 +1,10 @@
 #include "ficha.h"
-#include <iostream>
-
-
 /*
 Post: Inicializa una ficha totalemente vacia
 */
 Ficha::Ficha(){
     this->estaBloqueada = false;
-    this->simbolo = SIMBOLO_VACIO;
+    this->simbolo = SIMBOLO_FICHA_VACIA;
 }
 /*
 Post : devuelve una ficha  conteniendo el caracter ingresado por el jugador
@@ -17,21 +14,26 @@ Ficha::Ficha(char caracter){
     this->simbolo = caracter;
 
 }
-/*
-pre: la ficha fue creada anteriormente
-post: se elimina la ficha
-*/
 
-Ficha::~Ficha(){
-
+Ficha::~Ficha()
+{
 }
 /*
 pre: la ficha existe
-post: devuelve el caracter contenido en la ficha
+post: devuelve el caracter que representa  la ficha
 */
 
 char Ficha::getSimboloFicha(){
     return this->simbolo;
+}
+/*
+pre: la ficha existe
+post: setea el caracter que representa  la ficha
+*/
+void Ficha::setSimboloFicha(char nuevoSimbolo)
+{
+
+    this->simbolo = nuevoSimbolo;
 }
 
 /*
