@@ -134,6 +134,8 @@ void  Tateti:: crearMazoPrincipal()
 	Mazo * nuevoMazo = NULL;
 	nuevoMazo = new Mazo(CANTIDAD_CARTAS_MAZO_PRINCIPAL);
 	nuevoMazo->barajarMazo();
+
+
 	this->mazoPrincipal = nuevoMazo;
 
 }

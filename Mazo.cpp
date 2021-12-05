@@ -1,4 +1,7 @@
 #include "Mazo.h"
+#include <cstdlib> 
+#include <ctime> 
+#include <iostream>
 
 /*
 POST: Crea una mazo con una cantidad de cartas sin efecto
@@ -30,7 +33,10 @@ POST: devuelve la carta superior del mazo
 Carta * Mazo::obtenerCartaSuperior()
 {
 	// se deuelve la ultima carta agregada al mazo es decir la superior
-	return this->mazoCartas.obtener(0);
+	Carta * cartaSuperior = this->mazoCartas.obtener(this->mazoCartas.contarElementos());
+	//this->mazoCartas.remover(this->mazoCartas.contarElementos()); habilitar luego... 
+
+	return cartaSuperior;
 }/*POST: Libera la memoria dinamica de un mazo*/
 void Mazo::destruirMazo()
 {
@@ -53,6 +59,7 @@ efectos a las cartas de un mazo
 */
 void Mazo::barajarMazo()
 {
+	srand(static_cast<unsigned int>(std::time(NULL))); 
 	this->mazoCartas.iniciarCursor();
 	while(this->mazoCartas.avanzarCursor())
 	{

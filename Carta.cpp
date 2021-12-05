@@ -1,5 +1,9 @@
 #include "Carta.h"
 
+#include <cstdlib> 
+#include <ctime> 
+#include <iostream>
+
 
 /*
 Post:Crea una carta sin ninguna habilidad/efecto asociado.
@@ -17,11 +21,13 @@ Carta::Carta(habilidadCarta_t efecto)
 }
 /*
 Post: devuelve un efecto aleatorio de los disponibles
+
 */
  habilidadCarta_t Carta:: generarEfectoAleatorio()
 {
-	// se debe generar un ramdom .....
-	return CARTA_SIN_EFECTO;
+     
+    int efectoRandom = (rand()%6)+1;
+	return (habilidadCarta_t)efectoRandom;
 }
 /*
 Pre: la carta existe
