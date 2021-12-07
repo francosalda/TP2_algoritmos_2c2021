@@ -33,7 +33,7 @@ void Tateti:: iniciarJuego()
 	this->inicializarTurnosJugadores();
 	this->crearMazoPrincipal();
 	this->crearMazoJugadores();
-	//this->mazoPrincipal->imprimirMazo();
+
 	
 }
 
@@ -41,8 +41,7 @@ void Tateti:: iniciarJuego()
 
 void Tateti::imprimirJugadores()
 {
-	cout<<"-------------------------------------------\n";
-	cout<<"Los jugadores de esta partida son:\n";
+	cout<<"-----------JUGADORES DE LA PARTIDA ------------------\n";
 	this->listaDeJugadores.iniciarCursor();
 	while(this->listaDeJugadores.avanzarCursor())
 	{
@@ -175,6 +174,7 @@ void Tateti::jugarJuego()
 		this->turnoActual = colaDeTurnos.desacolar();
 		cout<<"-> [Ronda: "<<this->cantidadJugadasRealizadas <<"] Es el turno del jugador ["<<this->turnoActual->obtenerIdJugador()<<"]: '"<<this->turnoActual->obtenerNombreJugador()<<"'\n";
 		
+
 		if(cantidadJugadasRealizadas < minimasJugadasAntesDeMover)
 		{
 			//si fallo el ingreso de una ficha nueva por estar fuera de rango, pierde el turno
@@ -183,15 +183,17 @@ void Tateti::jugarJuego()
 				cantidadJugadasRealizadas--;
 				this->avanzarTurno();
 				continue;
-			}
-
-			
-		
+			}	
+		this->repartirCartaAlJugador();
 		//si esta en un rango valido guarda la ficha ingresada en el tablero
 		this->tableroDeJuego->setCasilla(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
 		}
+
+		//si es hora de mover fichas
 		else
 		{
+			//repartir carta jugador
+			this->repartirCartaAlJugador();
 			
 			//Empiezan a mover fichas..
 		}
@@ -306,7 +308,7 @@ bool Tateti::solicitarIngresoNuevaFicha(int &filas, int &columnas,int & profundi
 		}
 		return true;
 	}
-	cout<<"->[Error]: ingresante un rango invalido, recuerda que va desde 1 al maximo\n";
+	cout<<"->[Error]: ingresante un rango invalido, recuerda que va desde 1 al maximo, PIERDES EL TURNO\n";
 	return false;
 }
 
@@ -314,6 +316,13 @@ bool Tateti::solicitarIngresoNuevaFicha(int &filas, int &columnas,int & profundi
 la ultima carta del mazo*/
 void Tateti::repartirCartaAlJugador()
 {
+	//saco la carta superior del mazo
+	Carta * cartaDelMazo = this->mazoPrincipal->obtenerCartaSuperior();
+	this->turnoActual->getMazoJugador()->agregarCarta(cartaDelMazo);
+
+	cout<<"->Jugador["<<this->turnoActual->obtenerIdJugador()<<"] ";
+	cout<<"'"<<this->turnoActual->obtenerNombreJugador()<<"'' Obtuviste la carta: ";
+	cartaDelMazo->imprimirHabilidadCarta();
 
 
 

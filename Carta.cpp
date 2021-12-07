@@ -54,30 +54,30 @@ void Carta::imprimirHabilidadCarta(){
 	switch (this->habilidadCarta)
 	{
 	case 0:
-		std::cout<<"CARTA_SIN_EFECTO = 0"<<std::endl;
+		std::cout<<"CARTA SINEFECTO "<<std::endl;
 		break;
 	case 1:
-		std::cout<<"CARTA_PERDER_TURNO = 1"<<std::endl;
+		std::cout<<"CARTA PERDER TURNO "<<std::endl;
 		break;
 	
 	case 2:
-		std::cout<<"CARTA_BLOQUEAR_FICHA = 2"<<std::endl;
+		std::cout<<"CARTA BLOQUEAR FICHA "<<std::endl;
 		break;
 	
 	case 3:
-		std::cout<<"CARTA_ANULAR_CASILLERO = 3"<<std::endl;
+		std::cout<<"CARTA ANULAR CASILLERO "<<std::endl;
 		break;
 	
 	case 4:
-		std::cout<<"CARTA_VOLVER_JUGADA = 4"<<std::endl;
+		std::cout<<"CARTA VOLVER JUGADA "<<std::endl;
 		break;
 	
 	case 5:
-		std::cout<<"CARTA_ELIMINAR_CARTA = 5"<<std::endl;
+		std::cout<<"CARTA ELIMINAR CARTA"<<std::endl;
 		break;
 	
 	case 6:
-		std::cout<<"CARTA_ROBAR_CARTAS = 6"<<std::endl;
+		std::cout<<"CARTA ROBAR  "<<std::endl;
 		break;
 	default:
 		break;

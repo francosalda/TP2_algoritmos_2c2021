@@ -34,7 +34,7 @@ Carta * Mazo::obtenerCartaSuperior()
 {
 	// se deuelve la ultima carta agregada al mazo es decir la superior
 	Carta * cartaSuperior = this->mazoCartas.obtener(this->mazoCartas.contarElementos());
-	//this->mazoCartas.remover(this->mazoCartas.contarElementos()); habilitar luego... 
+	this->mazoCartas.remover(this->mazoCartas.contarElementos()); 
 
 	return cartaSuperior;
 }/*POST: Libera la memoria dinamica del contenido de un mazo*/
