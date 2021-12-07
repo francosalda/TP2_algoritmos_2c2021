@@ -302,6 +302,6 @@ bool Tateti::solicitarIngresoNuevaFicha(int &filas, int &columnas,int & profundi
 		}
 		return true;
 	}
-	cout<<"->[Error]: ingresante un rango invalido, recuerda que va desde 0 al maximo\n";
+	cout<<"->[Error]: ingresante un rango invalido, recuerda que va desde 1 al maximo\n";
 	return false;
 }
