@@ -60,3 +60,14 @@ void Jugador::setearIdJugador(size_t id)
 {
 	this->idJugador = id;
 }
+/*Pre:existe el jugador
+Post: asigna el mazo del juegador a nuevoMazo*/
+void Jugador::setMazoJugador(Mazo * nuevoMazo)
+{
+	this->mazoJugador = nuevoMazo;
+}
+
+Mazo * Jugador::getMazoJugador()
+{
+	return this->mazoJugador;
+}

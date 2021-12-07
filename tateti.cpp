@@ -32,7 +32,8 @@ void Tateti:: iniciarJuego()
 	this->imprimirJugadores();
 	this->inicializarTurnosJugadores();
 	this->crearMazoPrincipal();
-	this->mazoPrincipal->imprimirMazo();
+	this->crearMazoJugadores();
+	//this->mazoPrincipal->imprimirMazo();
 	
 }
 
@@ -222,8 +223,10 @@ void Tateti:: avanzarTurno()
 /*POST: libera toda la memoria dinamic asociada al tateti*/
 Tateti::~Tateti()
 {
+	destruirMazoJugadores();
 	destruirJugadores();
 	destruiMazoPrincipal();
+	
 	delete this->tableroDeJuego;
 }
 
@@ -306,3 +309,43 @@ bool Tateti::solicitarIngresoNuevaFicha(int &filas, int &columnas,int & profundi
 	cout<<"->[Error]: ingresante un rango invalido, recuerda que va desde 1 al maximo\n";
 	return false;
 }
+
+/*le asigna al jugador del turno actual
+la ultima carta del mazo*/
+void Tateti::repartirCartaAlJugador()
+{
+
+
+
+}
+
+/*Post: crea en memoria dinamica
+el mazo de cartas de cada  jugadores*/
+void Tateti::crearMazoJugadores()
+{
+	this->listaDeJugadores.iniciarCursor();
+	while(listaDeJugadores.avanzarCursor())
+	{
+		Mazo * nuevoMazo = new Mazo(CANTIDAD_CARTAS_MAZO_JUGADORES);
+		this->listaDeJugadores.obtenerCursor()->setMazoJugador(nuevoMazo);
+	}
+
+
+}
+
+
+/*Post: elimina la memoria dinamica
+del mazo de todos los jugadores*/
+void Tateti::destruirMazoJugadores()
+{
+	this->listaDeJugadores.iniciarCursor();
+	while(listaDeJugadores.avanzarCursor())
+	{
+		(this->listaDeJugadores.obtenerCursor()->getMazoJugador())->destruirMazo();
+		delete (this->listaDeJugadores.obtenerCursor()->getMazoJugador());
+	}
+
+
+}
+
+

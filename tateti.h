@@ -7,6 +7,7 @@
 
 #define MAX_CANTIDAD_JUGADORES 20
 #define CANTIDAD_CARTAS_MAZO_PRINCIPAL 50 
+#define CANTIDAD_CARTAS_MAZO_JUGADORES 3
 
 
 /* [TDA Tateti]:
@@ -46,10 +47,13 @@ class Tateti
 		bool hayGanador();
 		void crearMazoPrincipal();
 		void destruiMazoPrincipal();
+		void crearMazoJugadores();
+		void destruirMazoJugadores();
 		void avanzarTurno();
 		void solicitarIngresoDeCordenadas(int &filas, int &columnas,int & profundidad);
 		size_t obtenerMinimaCantidadJugadasTateti();
 		size_t obtenerCantidadJugadoresActuales();
+		void repartirCartaAlJugador();
 		bool solicitarIngresoNuevaFicha(int &filas, int &columnas,int & profundidad);
 //metodos relacionados al tablero del tateti
 		void crearTablero();

@@ -37,7 +37,7 @@ Carta * Mazo::obtenerCartaSuperior()
 	//this->mazoCartas.remover(this->mazoCartas.contarElementos()); habilitar luego... 
 
 	return cartaSuperior;
-}/*POST: Libera la memoria dinamica de un mazo*/
+}/*POST: Libera la memoria dinamica del contenido de un mazo*/
 void Mazo::destruirMazo()
 {
 	this->mazoCartas.iniciarCursor();

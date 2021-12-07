@@ -28,6 +28,8 @@ public:
 	char obtenerSimboloFichaJugador();
 	void setFichaJugador(Ficha * nuevaFicha);
 	void destruirFichaJugador();
+	void setMazoJugador(Mazo * nuevoMazo);
+	Mazo * getMazoJugador();
 	size_t obtenerIdJugador();
 	void setearIdJugador(size_t id);
 	
