@@ -32,6 +32,7 @@ void Tateti:: iniciarJuego()
 	this->imprimirJugadores();
 	this->inicializarTurnosJugadores();
 	this->crearMazoPrincipal();
+	this->mazoPrincipal->imprimirMazo();
 	
 }
 

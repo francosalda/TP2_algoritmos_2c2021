@@ -67,3 +67,11 @@ void Mazo::barajarMazo()
 	}
 
 }
+
+void Mazo::imprimirMazo(){
+	this->mazoCartas.iniciarCursor();
+	while(this->mazoCartas.avanzarCursor())
+	{
+		this->mazoCartas.obtenerCursor()->imprimirHabilidadCarta();
+	}
+}

@@ -30,6 +30,7 @@ public:
 	void setHabilidad(habilidadCarta_t numero);
 	habilidadCarta_t getHabilidad();
 	habilidadCarta_t generarEfectoAleatorio();
+	void imprimirHabilidadCarta();
 	virtual ~Carta();
 };
 

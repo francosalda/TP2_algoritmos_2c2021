@@ -22,5 +22,7 @@ public:
 	Carta *obtenerCartaSuperior();
 	void barajarMazo();
 	void destruirMazo();
+	void imprimirMazo();
+
 };
 #endif /* MAZO_H_ */
