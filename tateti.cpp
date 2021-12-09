@@ -1,5 +1,6 @@
 #include "tateti.h"
 #include "Lista.h"
+#include "graficos.h"
 #include <iostream>
 #include <string>
 
@@ -184,7 +185,7 @@ void Tateti::jugarJuego()
 				this->avanzarTurno();
 				continue;
 			}	
-		this->repartirCartaAlJugador();
+		
 		//si esta en un rango valido guarda la ficha ingresada en el tablero
 		this->tableroDeJuego->setCasilla(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
 		}
@@ -206,6 +207,7 @@ void Tateti::jugarJuego()
 		
 		this->avanzarTurno();
 	}
+	imprimirTablero(this);
 	
 
 }
@@ -357,4 +359,28 @@ void Tateti::destruirMazoJugadores()
 
 }
 
+/*Pre: la ficha buscada le pertenece a un jugador ya creado
+Post: devuelve la id del jugador que es propietario de dicah ficha*/
+int Tateti::obtenerIdJugadorPropietarioFicha(char fichaBuscada)
+{
+	int idPropietario = -1;
+	this->listaDeJugadores.iniciarCursor();
+	{
+		while(this->listaDeJugadores.avanzarCursor())
+		{
+			if(this->listaDeJugadores.obtenerCursor()->obtenerSimboloFichaJugador() == fichaBuscada)
+			{
+				idPropietario = this->listaDeJugadores.obtenerCursor()->obtenerIdJugador();
+			}
+		}
 
+	}
+	return idPropietario;
+}
+
+/*
+Post: devuelve el tablero de juego actual*/
+Tablero * Tateti::obtenerTableroDeJuego()
+{
+	return this ->tableroDeJuego;
+}

@@ -59,7 +59,8 @@ class Tateti
 		void crearTablero();
 		bool estaCasilleroLibre(size_t fila,size_t columna,size_t profundidad);
 		bool estaEnRangoValido(int fila,int columna,int profundidad);
-	 
+		int obtenerIdJugadorPropietarioFicha(char ficha);
+	 	Tablero *obtenerTableroDeJuego();
 		/*asignarTablero();
 		asignarFichasJugador();
 		imprimirTablero();
