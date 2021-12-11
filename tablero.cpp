@@ -173,7 +173,8 @@ size_t Tablero::getCantProfundidadTablero()
                     for (int m = 0; m < 3; m++) {
                         matrizVecinal[l][m] = new Casillero*();
                         for (int n = 0; n < 3; n++) {
-                            matrizVecinal[l][m][n] = new Casillero();
+                            //matrizVecinal[l][m][n] = new Casillero();
+                            matrizVecinal[l][m][n] = NULL;
                         }
                     }
                 }

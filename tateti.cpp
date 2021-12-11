@@ -207,7 +207,7 @@ void Tateti::jugarJuego()
 		
 		this->avanzarTurno();
 	}
-	imprimirTablero(this);
+	imprimirTablero(this,this->tableroDeJuego->getCantFilasTablero(),this->tableroDeJuego->getCantColumnasTablero(),this->tableroDeJuego->getCantProfundidadTablero());
 	
 
 }

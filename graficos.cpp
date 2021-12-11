@@ -1,130 +1,96 @@
+#include <iostream>
+#include <sstream>
 #include "EasyBMP.h"
 #include "graficos.h"
 #include <string>
-#include <iostream>
-
+#include "Lista.h"
 
 using namespace std;
 
 
+/*Imprime en archivos del tipo BITMAPs el contenido del tablero.
+Cada jugador vera representado su ID en el casillero que coloco una ficha.
+*/
 
-void imprimirTablero(Tateti * partidaDeJuego)
+void imprimirTablero(Tateti * partidaDeJuego,size_t cantFilas,size_t cantColumnas,size_t cantProfundidad)
 {
-	BMP  * nuevoBitmapTableroProfundidad1 =  new BMP;
-	BMP  * nuevoBitmapTableroProfundidad2 =  new BMP;
-	BMP  * nuevoBitmapTableroProfundidad3 =  new BMP;
+	Lista<BMP*> * capasTablero  = new Lista<BMP*> ;
+	//solicita la memoria dinamica para los bitmaps
+	for(size_t cantidadCapas = 0; cantidadCapas <cantProfundidad;cantidadCapas++)
+	{
+		BMP * nuevoBitmap = new BMP;
+		capasTablero->agregar(nuevoBitmap);
+	}
+	
+	//carga la imagen auxiliar que contiene el vector de numeros
 	BMP auxNumeros;
 	auxNumeros.ReadFromFile("numbers.bmp");
 
+	//inicializa los bitmap, (luego debo crear una funcion que los inicialice de acuerdo a su largo y ancho)
+	capasTablero->obtener(1)->ReadFromFile("tablero_vacio.bmp");
+	capasTablero->obtener(2)->ReadFromFile("tablero_vacio.bmp");
+	capasTablero->obtener(3)->ReadFromFile("tablero_vacio.bmp");
 
-	nuevoBitmapTableroProfundidad1->ReadFromFile("tablero_vacio.bmp");
-	nuevoBitmapTableroProfundidad2->ReadFromFile("tablero_vacio.bmp");
-	nuevoBitmapTableroProfundidad3->ReadFromFile("tablero_vacio.bmp");
-
-
-
+	//variables para posicionamiento dentro del bitmap
 	int xnum,ynum;
 	int xcasillero,ycasillero;
 
-	Tablero * tableroDeJuego= partidaDeJuego->obtenerTableroDeJuego();
+	Tablero * tableroDeJuego = partidaDeJuego->obtenerTableroDeJuego();
 	Casillero * casilleroActual = NULL;
 	int idJugadorActual = -1;
-
-	
-
-		for(int col = 1; col <=3; col++)
+	//recorro el tablero dibujando las IDs de los jugadores donde colocaron una ficha
+	for(size_t profundidad = 1 ;profundidad <=cantProfundidad;profundidad++)
+	{		
+		for(size_t col = 1; col <= cantColumnas; col++)
 		{
-			for(int fil = 1; fil <=3;fil++)
+			for(size_t fil = 1; fil <=cantFilas;fil++)
 			{
-				casilleroActual= tableroDeJuego->getCasillero(fil,col, 1);
+				casilleroActual= tableroDeJuego->getCasillero(fil,col, profundidad);
 				char fichaActual = casilleroActual->obtenerSimboloFichaDelCasillero();
-				idJugadorActual=partidaDeJuego->obtenerIdJugadorPropietarioFicha(fichaActual);
+				idJugadorActual = partidaDeJuego->obtenerIdJugadorPropietarioFicha(fichaActual);
 				if(idJugadorActual <0)
 				{
+					//si la ficha no pertence a ningun jugador entonces no se encontro propietario -> no se grafica(ej:FICHA_VACIA)
 					continue;
 				}
-				obtenerCoordenasNumero(xnum,ynum,idJugadorActual);
-				obtenerCoordenasCasillero(xcasillero,ycasillero,fil,col);
-				RangedPixelToPixelCopy( auxNumeros, xnum ,ynum, 53, 0,*nuevoBitmapTableroProfundidad1, xcasillero, ycasillero);
+				obtenerCoordenasNumeroEnBMP(xnum,ynum,idJugadorActual);
+				obtenerCoordenasCasilleroEnBMP(xcasillero,ycasillero,fil,col);
+				RangedPixelToPixelCopy( auxNumeros, xnum ,ynum, 53, 0,*capasTablero->obtener(profundidad), xcasillero, ycasillero);
 
 			}
 		}
-		nuevoBitmapTableroProfundidad1->WriteToFile("tablero[1]");
-	
+		stringstream stringNumeroCapa;
+		stringNumeroCapa << profundidad;
+		string ruta = "Tablero_Profundidad["+stringNumeroCapa.str()+"].bmp";
+		capasTablero->obtener(profundidad)->WriteToFile(ruta.c_str());
 
+	}
 
-	for(int col = 1; col <=3; col++)
-		{
-			for(int fil = 1; fil <=3;fil++)
-			{
-
-				casilleroActual= tableroDeJuego->getCasillero(fil,col, 2);
-				char fichaActual = casilleroActual->obtenerSimboloFichaDelCasillero();
-				idJugadorActual=partidaDeJuego->obtenerIdJugadorPropietarioFicha(fichaActual);
-				if(idJugadorActual <0)
-				{
-					continue;
-				}
-				obtenerCoordenasNumero(xnum,ynum,idJugadorActual);
-				obtenerCoordenasCasillero(xcasillero,ycasillero,fil,col);
-				RangedPixelToPixelCopy( auxNumeros, xnum ,ynum, 53, 0,*nuevoBitmapTableroProfundidad2, xcasillero, ycasillero);
-
-			}
-		}
-		nuevoBitmapTableroProfundidad2->WriteToFile("tablero[2]");
-
-
-		for(int col = 1; col <=3; col++)
-		{
-			for(int fil = 1; fil <=3;fil++)
-			{
-				casilleroActual= tableroDeJuego->getCasillero(fil,col, 3);
-				char fichaActual = casilleroActual->obtenerSimboloFichaDelCasillero();
-				idJugadorActual=partidaDeJuego->obtenerIdJugadorPropietarioFicha(fichaActual);
-				if(idJugadorActual <0)
-				{
-					continue;
-				}
-				obtenerCoordenasNumero(xnum,ynum,idJugadorActual);
-				obtenerCoordenasCasillero(xcasillero,ycasillero,fil,col);
-				RangedPixelToPixelCopy( auxNumeros, xnum ,ynum, 53, 0,*nuevoBitmapTableroProfundidad3, xcasillero, ycasillero);
-
-			}
-		}
-		nuevoBitmapTableroProfundidad3->WriteToFile("tablero[3]");
-	
-
-	
-	
-	
-
-
-
-
-
-	delete nuevoBitmapTableroProfundidad1;
-	delete nuevoBitmapTableroProfundidad2;
-	delete nuevoBitmapTableroProfundidad3;
+	//libera la memoria dinamica de los bitmaps
+	capasTablero->iniciarCursor();
+	while(capasTablero->avanzarCursor())
+	{
+		delete capasTablero->obtenerCursor();
+	}
+	delete capasTablero;
 }
 
-/*retorna la coordendas x,y de donde
-debe copiarse la ficha del jugador 
-en el bitmap del tablero
-de acuerdo a que fila y columa este la ficha.*/
-void obtenerCoordenasCasillero(int &x,int &y, int fil,int col)
+/*setea las coordendas (x,y) en pixeles a partir de las cuales
+debe empezar a pegarse  la  imagen ficha del jugador 
+en el bitmap destino del tablero
+de acuerdo a la fila y columa recibida.*/
+void obtenerCoordenasCasilleroEnBMP(int &x,int &y, int fil,int col)
 {
-
-	x =75 + 205*(col-1);
+	x = 75 + 205*(col-1);
 	y = 60+ 150*(fil-1);
 
 }
 
-/*retorna las cordenadas x,y
-donde comienza el numero elegido en la imagen de numeros
+/*setea las cordenadas (x,y) en pixeles desde 
+donde comienza el numero elegido en la imagen del vector numeros
 (ATENCION: solo funciona hasta el 6)*/
-void obtenerCoordenasNumero(int &x,int &y, int numero)
+void obtenerCoordenasNumeroEnBMP(int &x,int &y, int numero)
 {
-	
 	x =55*numero;
 	y = 55+55*numero;
 
