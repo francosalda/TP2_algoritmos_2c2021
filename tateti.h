@@ -41,6 +41,7 @@ class Tateti
 		void imprimirJugadores();
 		void inicializarTurnosJugadores();
 		bool FichaYaOcupadaPorOtroJugador(char simboloFichaElegido);
+		bool perteneceFichaAlJugador(char simboloFichaElegido);
 //metodos relacionados a la partida de tateti
 		void iniciarJuego();
 		void jugarJuego();
@@ -55,18 +56,14 @@ class Tateti
 		size_t obtenerCantidadJugadoresActuales();
 		void repartirCartaAlJugador();
 		bool solicitarIngresoNuevaFicha(int &filas, int &columnas,int & profundidad);
+		bool solicitarMoverFicha(int &filas, int &columnas,int & profundidad);
 //metodos relacionados al tablero del tateti
 		void crearTablero();
 		bool estaCasilleroLibre(size_t fila,size_t columna,size_t profundidad);
 		bool estaEnRangoValido(int fila,int columna,int profundidad);
 		int obtenerIdJugadorPropietarioFicha(char ficha);
 	 	Tablero *obtenerTableroDeJuego();
-		/*asignarTablero();
-		asignarFichasJugador();
-		imprimirTablero();
-		imprimirCartasJugador();
-*/
-
+		
 };
 
 #endif

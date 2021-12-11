@@ -66,7 +66,9 @@ PRE: el casillero existe
 Post: copia el contenido de un casillero a otro casillero
 */
 void Casillero::copiarCasillero(Casillero* dest){
-    dest->contenidoCasillero = this->contenidoCasillero;
+    dest->contenidoCasillero->setSimboloFicha(this->contenidoCasillero->getSimboloFicha());
+    this->contenidoCasillero->setSimboloFicha(SIMBOLO_FICHA_VACIA);
+
 
 }
 

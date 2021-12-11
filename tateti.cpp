@@ -116,6 +116,21 @@ bool Tateti::FichaYaOcupadaPorOtroJugador(char simboloFichaElegido)
 	}
 	return false;
 }
+/*Post: devuelve true si la ficha cuyo simbolo se corresponde
+con el jugador actual, sino le pertenece a el,devuelve false
+*/
+bool Tateti::perteneceFichaAlJugador(char simboloFicha)
+{
+	listaDeJugadores.iniciarCursor();
+	while(this->listaDeJugadores.avanzarCursor())
+	{
+		if (this->listaDeJugadores.obtenerCursor()->obtenerSimboloFichaJugador() == simboloFicha &&  this->listaDeJugadores.obtenerCursor()->obtenerIdJugador() == this->turnoActual->obtenerIdJugador())
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
 
 /*POST: inicia la cola de turnos del tateti
@@ -169,15 +184,16 @@ void Tateti::jugarJuego()
 
 	cout<<"[DEBUG]: (SOLO 6 rondas y corta ya que no tenemos hayGanador() aun)\n";
 
-	while( this->cantidadJugadasRealizadas < 6) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
+	while( this->cantidadJugadasRealizadas < 7) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
 	{	
 		this->cantidadJugadasRealizadas++;
 		this->turnoActual = colaDeTurnos.desacolar();
 		cout<<"-> [Ronda: "<<this->cantidadJugadasRealizadas <<"] Es el turno del jugador ["<<this->turnoActual->obtenerIdJugador()<<"]: '"<<this->turnoActual->obtenerNombreJugador()<<"'\n";
-		
+	
 
-		if(cantidadJugadasRealizadas < minimasJugadasAntesDeMover)
+		if(cantidadJugadasRealizadas <= minimasJugadasAntesDeMover)
 		{
+			cout<<"Debes colocar una ficha nueva.\n";
 			//si fallo el ingreso de una ficha nueva por estar fuera de rango, pierde el turno
 			if(!solicitarIngresoNuevaFicha(filaIngresada,columnaIngresada,profundidadIngresada))
 			{
@@ -195,8 +211,14 @@ void Tateti::jugarJuego()
 		{
 			//repartir carta jugador
 			this->repartirCartaAlJugador();
-			
-			//Empiezan a mover fichas..
+			cout<<"Debes mover una ficha, por favor elige cual deseas mover:\n";
+			if(!solicitarMoverFicha(filaIngresada,columnaIngresada,profundidadIngresada))
+			{
+				cantidadJugadasRealizadas--;
+				this->avanzarTurno();
+				continue;
+			}
+	
 		}
 
 		
@@ -236,8 +258,8 @@ Tateti::~Tateti()
 
 
 /*Pre: el tablero y el casillero existen
-Post: devuelve true si el casillero contiene una ficha
-que no es la vacia*/
+Post: devuelve true si el casillero contiene la ficha VACIA
+false si contiene cualquier otra ficha*/
 bool Tateti::estaCasilleroLibre(size_t fila,size_t columna,size_t profundidad)
 {
 	return (this->tableroDeJuego->getCasillero(fila,columna,profundidad)->estaCasilleroVacio());
@@ -262,11 +284,11 @@ bool  Tateti::estaEnRangoValido(int fila,int columna,int profundidad)
 y almacena lo ingresado en las variables por referencia*/
 void Tateti::solicitarIngresoDeCordenadas(int &filas, int &columnas,int & profundidad)
 {
-		cout<<"Ingrese la fila donde desea colocar su ficha : \n";
+		cout<<"Ingrese la fila  de su ficha : \n";
 		cin >> filas;
-		cout<<"Ingrese la Columna donde desea colocar su ficha : \n";
+		cout<<"Ingrese la Columna de su ficha : \n";
 		cin >> columnas;
-		cout<<"Ingrese la profundidad donde desea colocar su ficha : \n";
+		cout<<"Ingrese la profundidad de su ficha : \n";
 		cin >> profundidad;
 }
 /*Post: Devuelve la minima cantidad
@@ -313,6 +335,41 @@ bool Tateti::solicitarIngresoNuevaFicha(int &filas, int &columnas,int & profundi
 	cout<<"->[Error]: ingresante un rango invalido, recuerda que va desde 1 al maximo, PIERDES EL TURNO\n";
 	return false;
 }
+/*Post carga la variable fila,columna y profundidad recibidas por referencia
+con los valores ingresados por el usuario si estan en un rango valido.
+caso contrario devuelve false*/
+bool Tateti::solicitarMoverFicha(int &filas, int &columnas,int & profundidad)
+{
+	solicitarIngresoDeCordenadas(filas,columnas,profundidad);
+	if(estaEnRangoValido(filas,columnas,profundidad))
+	{
+		Casillero * casilleroOrigen = this->tableroDeJuego->getCasillero(filas,columnas,profundidad);
+		char fichaActualEnEseCasillero = casilleroOrigen->obtenerSimboloFichaDelCasillero();
+		while(estaCasilleroLibre(filas,columnas,profundidad) || !perteneceFichaAlJugador(fichaActualEnEseCasillero))
+		{
+			cout<<"->[Error]: La casilla elegida no contiene ninguna ficha que te pernezca,elige otra:\n";
+			if(!solicitarMoverFicha(filas,columnas,profundidad))
+			{
+				return false;
+			}
+		}
+		int nuevaFila,nuevaCol,nuevaProfundidad;
+		cout<<"Elige la posicion a la cual deseas mover tu ficha:\n";
+		solicitarIngresoDeCordenadas(nuevaFila,nuevaCol,nuevaProfundidad);
+		if(!estaEnRangoValido(nuevaFila,nuevaCol,nuevaProfundidad) || !estaCasilleroLibre(nuevaFila,nuevaCol,nuevaProfundidad))
+		{
+			cout<<"->[Error] El casillero destino esta en un rango invalido o ya esta ocupado, PIERDES EL TURNO\n";
+			return false;
+		}
+		Casillero * casilleroDestino = this->tableroDeJuego->getCasillero(nuevaFila,nuevaCol,nuevaProfundidad);
+		casilleroOrigen->copiarCasillero(casilleroDestino);
+		return true;
+	}
+	cout<<"->[Error]: ingresante un rango invalido, recuerda que va desde 1 al maximo, PIERDES EL TURNO\n";
+	return false;
+
+}
+
 
 /*le asigna al jugador del turno actual
 la ultima carta del mazo*/
@@ -325,10 +382,12 @@ void Tateti::repartirCartaAlJugador()
 	cout<<"->Jugador["<<this->turnoActual->obtenerIdJugador()<<"] ";
 	cout<<"'"<<this->turnoActual->obtenerNombreJugador()<<"'' Obtuviste la carta: ";
 	cartaDelMazo->imprimirHabilidadCarta();
-
-
-
 }
+
+
+
+
+
 
 /*Post: crea en memoria dinamica
 el mazo de cartas de cada  jugadores*/
@@ -360,7 +419,8 @@ void Tateti::destruirMazoJugadores()
 }
 
 /*Pre: la ficha buscada le pertenece a un jugador ya creado
-Post: devuelve la id del jugador que es propietario de dicah ficha*/
+Post: devuelve la id del jugador que es propietario de dicah ficha
+o -1 si la ficha no pertenece a ningun jugador*/
 int Tateti::obtenerIdJugadorPropietarioFicha(char fichaBuscada)
 {
 	int idPropietario = -1;
