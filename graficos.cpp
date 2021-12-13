@@ -8,10 +8,37 @@
 using namespace std;
 
 
+
+/*Dibuja las lineas separadores del marco de los casilleros
+de las capas 2D del tablero que posee una
+cantidad de casilleros = cantFilas x cantColumnas  */
+void dibujarcapasVacias( Lista<BMP*> * capasTablero,size_t cantFilas,size_t cantColumnas,size_t cantProfundidad)
+{
+	BMP auxCasilleroVacio;
+	auxCasilleroVacio.ReadFromFile("casillero_vacio.bmp");
+	for(size_t i = 1; i <=cantProfundidad;i++ )
+	{
+		capasTablero->obtener(i)->SetSize(184*cantColumnas,152*cantFilas);
+		capasTablero->obtener(i)->SetBitDepth(8);
+
+		for(size_t j = 0; j <cantColumnas;j++ )
+		{
+			for(size_t k = 0; k <cantFilas;k++ )
+			{	
+				RangedPixelToPixelCopy( auxCasilleroVacio, 0 ,184, 0, 152,*capasTablero->obtener(i), j*184, 152*k);
+			}
+		}
+
+
+	}
+
+	
+}
+
+
 /*Imprime en archivos del tipo BITMAPs el contenido del tablero.
 Cada jugador vera representado su ID en el casillero que coloco una ficha.
 */
-
 void imprimirTablero(Tateti * partidaDeJuego,size_t cantFilas,size_t cantColumnas,size_t cantProfundidad)
 {
 	Lista<BMP*> * capasTablero  = new Lista<BMP*> ;
@@ -22,14 +49,11 @@ void imprimirTablero(Tateti * partidaDeJuego,size_t cantFilas,size_t cantColumna
 		capasTablero->agregar(nuevoBitmap);
 	}
 	
+	dibujarcapasVacias( capasTablero, cantFilas,cantColumnas,cantProfundidad);
+
 	//carga la imagen auxiliar que contiene el vector de numeros
 	BMP auxNumeros;
 	auxNumeros.ReadFromFile("numbers.bmp");
-
-	//inicializa los bitmap, (luego debo crear una funcion que los inicialice de acuerdo a su largo y ancho)
-	capasTablero->obtener(1)->ReadFromFile("tablero_vacio.bmp");
-	capasTablero->obtener(2)->ReadFromFile("tablero_vacio.bmp");
-	capasTablero->obtener(3)->ReadFromFile("tablero_vacio.bmp");
 
 	//variables para posicionamiento dentro del bitmap
 	int xnum,ynum;

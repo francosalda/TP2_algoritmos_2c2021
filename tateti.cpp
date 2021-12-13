@@ -184,7 +184,7 @@ void Tateti::jugarJuego()
 
 	cout<<"[DEBUG]: (SOLO 6 rondas y corta ya que no tenemos hayGanador() aun)\n";
 
-	while( this->cantidadJugadasRealizadas < 7) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
+	while( this->cantidadJugadasRealizadas < 6) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
 	{	
 		this->cantidadJugadasRealizadas++;
 		this->turnoActual = colaDeTurnos.desacolar();
