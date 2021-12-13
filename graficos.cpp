@@ -29,9 +29,7 @@ void dibujarcapasVacias( Lista<BMP*> * capasTablero,size_t cantFilas,size_t cant
 			}
 		}
 
-
 	}
-
 	
 }
 
