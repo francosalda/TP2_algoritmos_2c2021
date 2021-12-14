@@ -25,6 +25,7 @@ Tablero::Tablero(size_t cantFilas, size_t cantColumnas, size_t cantEnProfundidad
             for (size_t k = 0; k < this->cantEnProfundidad; k++)
             {
                 Casillero* nuevoCasillero = new Casillero(SIMBOLO_FICHA_VACIA);
+              
                 profundidad->agregar(nuevoCasillero);
             }
             columnas->agregar(profundidad);
@@ -153,36 +154,6 @@ size_t Tablero::getCantProfundidadTablero()
 
 
 
-
-
-
-/*void Tablero::crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad) {
-
-   Casillero *casilla;
-
-    for (int i = 0; i < this->cantFilas; i++) {
-        for (int j = 0; j < this->cantColumnas; j++) {
-            for (int k = 0; k < this->cantEnProfundidad; k++) {
-
-                casilla = this->getCasilla(i,j,k);
-                Casillero**** matrizVecinal = new Casillero***();
-
-                for (int l = 0; l <3; l++) {
-                    //Casillero *** columna = new Casillero**();
-                    matrizVecinal[l] = new Casillero** ();
-                    for (int m = 0; m < 3; m++) {
-                        matrizVecinal[l][m] = new Casillero*();
-                        for (int n = 0; n < 3; n++) {
-                            //matrizVecinal[l][m][n] = new Casillero();
-                            matrizVecinal[l][m][n] = NULL;
-                        }
-                    }
-                }
-                casilla->asignarMatrizVecinos(matrizVecinal);
-            }
-        }
-    }
-}*/
 
 
 

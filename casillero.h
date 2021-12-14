@@ -1,6 +1,7 @@
 #ifndef CASILLLERO_H
 #define CASILLLERO_H
 #include "ficha.h"
+#include "Lista.h"
 #include <iostream>
 using namespace std;
 
@@ -21,7 +22,8 @@ private:
 
     void vaciarCasillero();
     //edit matriz vecinos
-    Casillero**** matrizDeVecinos;
+   // Casillero**** matrizDeVecinos;
+    Lista<Lista<Lista<Casillero *>*>*> * matrizDeVecinos;
 
 
 public:
@@ -41,6 +43,9 @@ public:
     char obtenerSimboloFichaDelCasillero();
     void anularCasillero();
   
+
+    void crearMatrizVecinosVacia(int cantFil,int cantCol,int cantProf);
+    void destruirMatrizVecinos(int cantFil,int cantCol,int cantProf);
     //void asignarMatrizVecinos(Casillero**** matrizVec);
 
     //void asignarVecino(int l, int m, int n, Casillero* casilleroVecino);

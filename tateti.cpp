@@ -35,6 +35,7 @@ void Tateti:: iniciarJuego()
 	this->crearMazoPrincipal();
 	this->crearMazoJugadores();
 
+
 	
 }
 
@@ -229,7 +230,7 @@ void Tateti::jugarJuego()
 		
 		this->avanzarTurno();
 	}
-	imprimirTablero(this,this->tableroDeJuego->getCantFilasTablero(),this->tableroDeJuego->getCantColumnasTablero(),this->tableroDeJuego->getCantProfundidadTablero());
+	//imprimirTablero(this,this->tableroDeJuego->getCantFilasTablero(),this->tableroDeJuego->getCantColumnasTablero(),this->tableroDeJuego->getCantProfundidadTablero());
 	
 
 }
@@ -249,9 +250,10 @@ void Tateti:: avanzarTurno()
 /*POST: libera toda la memoria dinamic asociada al tateti*/
 Tateti::~Tateti()
 {
-	destruirMazoJugadores();
-	destruirJugadores();
-	destruiMazoPrincipal();
+	this->destruirMazoJugadores();
+	this->destruirJugadores();
+	this->destruiMazoPrincipal();
+//	this->destruirMatrizResultadosGanador(3,3,3);
 	
 	delete this->tableroDeJuego;
 }
@@ -444,3 +446,53 @@ Tablero * Tateti::obtenerTableroDeJuego()
 {
 	return this ->tableroDeJuego;
 }
+
+
+/*Post: crea una matriz de cantFilasXcantColumnasxcantProfundidad
+en memoria dinamica para realizar la suma de longitudes
+de las lineas de fichas de los jugadores y calcular si se logro
+el tateti*/
+
+
+/*void Tateti::crearMatrizResultadosGanador(int cantFilas,int cantColumnas,int cantProfundidad)
+{
+	int **** nueva_matriz = new int ***;
+	for(int i=0; i < cantFilas;i++)
+	{
+		nueva_matriz[i]= new int **;
+		for(int j=0; j < cantColumnas;j++)
+		{
+			nueva_matriz[i][j]= new int[];
+			for(int k=0; k < cantProfundidad;k++)
+			{
+				nueva_matriz[i][j][k] = new int;
+			}
+
+		}
+
+	}
+	this->matrizResultadosChequeoGanador =nueva_matriz;
+
+}*/
+
+/*Pre: existe la matriz de resultados
+Post: libera la memoria dinamica de la matriz de resultados*/
+/*
+void Tateti::destruirMatrizResultadosGanador(int cantFilas,int cantColumnas,int cantProfundidad)
+{
+
+	for(int i=0; i < cantFilas;i++)
+	{
+		for(int j=0; j < cantColumnas;j++)
+		{
+			for(int k=0; k < cantProfundidad;k++)
+			{
+				delete this->matrizResultadosChequeoGanador[i][j][k];
+			}
+			delete this->matrizResultadosChequeoGanador[i][j];
+		}
+		delete this->matrizResultadosChequeoGanador[i];
+	}
+	delete this->matrizResultadosChequeoGanador;
+
+}*/

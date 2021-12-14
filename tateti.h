@@ -31,6 +31,7 @@ class Tateti
 		size_t cantidadJugadasRealizadas;
 		Mazo * mazoPrincipal;
 		Jugador * turnoActual;
+		int ****matrizResultadosChequeoGanador;
 		// Tablero  tableroAnterior;
 	public:
 		Tateti();
@@ -57,6 +58,8 @@ class Tateti
 		void repartirCartaAlJugador();
 		bool solicitarIngresoNuevaFicha(int &filas, int &columnas,int & profundidad);
 		bool solicitarMoverFicha(int &filas, int &columnas,int & profundidad);
+		void crearMatrizResultadosGanador(int cantFilas,int cantColumnas,int cantProfundidad);
+		void destruirMatrizResultadosGanador(int cantFilas,int cantColumnas,int cantProfundidad);
 //metodos relacionados al tablero del tateti
 		void crearTablero();
 		bool estaCasilleroLibre(size_t fila,size_t columna,size_t profundidad);

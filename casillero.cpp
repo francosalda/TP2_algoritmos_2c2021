@@ -1,4 +1,4 @@
-#include "ficha.h"
+
 #include "casillero.h"
 #include <iostream>
 
@@ -10,17 +10,78 @@ Casillero::Casillero(char simboloFicha){
     this->contenidoCasillero = new Ficha(simboloFicha);
     this->turnosRestantesDesbloqueo = 0;
     this->casilleroAnulado = false;
-
-
-    //edit matriz vecinos
-   // this->vecinos = new Casillero*[3][3][3];
-    //edit matriz vecinos
-
-
+    this->crearMatrizVecinosVacia(3,3,3);
+   
+    
+          
 }
+
+/*Post condicion crea una matriz de vecinos
+para un casillero implementada con listas  con elementos
+puntero a casilleros iniciados en NULL*/
+void Casillero::crearMatrizVecinosVacia(int cantFil,int cantCol,int cantProf)
+{
+   Lista<Lista <Lista<Casillero *>*>*> * filas  = new Lista<Lista <Lista<Casillero *>*>*>;
+
+    for(int i=0;  i<cantFil; i++)
+    {
+        Lista<Lista <Casillero *>*> *columnas = new Lista<Lista <Casillero *>*>;
+        for (int j=0; j<cantCol; j++) 
+        {
+            Lista<Casillero *> * profundidad = new Lista<Casillero *>;
+
+            for (int k = 0; k < cantProf; k++)
+            {
+                Casillero* nuevoCasillero = NULL;
+              
+                profundidad->agregar(nuevoCasillero);
+            }
+            columnas->agregar(profundidad);
+        }
+        filas->agregar(columnas);
+    }
+
+    this->matrizDeVecinos = filas;
+}
+
+
+
+/*
+Pre:existe la matriz de vecinos
+Post: elimina la memoria dinamica de la matriz vecinal
+no elimina la memoria de los elementos de la matriz, solo
+de su estructura
+*/
+
+void Casillero::destruirMatrizVecinos(int cantFil,int cantCol,int cantProf)
+{
+    Lista<Lista <Lista<Casillero *>*>*> * filas = this->matrizDeVecinos;
+
+     while(filas->avanzarCursor())
+     {
+        Lista<Lista <Casillero *>*> *columnas = this->matrizDeVecinos->obtenerCursor();
+        while(columnas->avanzarCursor())
+        {
+
+            Lista<Casillero *> * profundidad = columnas->obtenerCursor();
+            //while(profundidad->avanzarCursor())
+            //{
+                //delete profundidad->obtenerCursor();
+
+            //}
+            delete profundidad;
+
+        }delete columnas;
+
+     }delete filas;
+}
+
+
 
 Casillero::~Casillero()
 {
+
+    this->destruirMatrizVecinos(3,3,3);
     if(this->contenidoCasillero)
     {
         delete  this->contenidoCasillero;    
