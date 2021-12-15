@@ -175,6 +175,24 @@ char Casillero::obtenerSimboloFichaDelCasillero() {
 }
 
 
+///void asignar(T elemento, unsigned int posicion);
+
+
+void Casillero::setCasillaMatrizVecinos(size_t cantFilas, size_t cantColumnas, size_t cantEnProfundidad, Casillero* punteroCasillero) {
+    this->matrizDeVecinos->obtener(cantFilas)->obtener(cantColumnas)->asignar(punteroCasillero, cantEnProfundidad)  ;
+
+   
+    ///this->matrizDeVecinos->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad) =  punteroCasillero ;
+
+}
+
+
+Lista<Lista<Lista<Casillero *>*>*> * Casillero::obtenerMatrizDeVecinos(){
+    return this->matrizDeVecinos;
+}
+
+
+
 /*void Casillero::asignarMatrizVecinos(Casillero ****matrizVec) {
     this->matrizDeVecinos = matrizVec;
 }

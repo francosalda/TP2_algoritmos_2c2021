@@ -22,6 +22,7 @@ public:
     size_t getCantFilasTablero();
     size_t getCantColumnasTablero();
     size_t getCantProfundidadTablero();
+    void adyacentesMatriz(size_t fil, size_t col,size_t pro);
   
    
     
