@@ -138,8 +138,7 @@ void Tablero::adyacentesMatriz(size_t fil, size_t col,size_t pro){
             for(size_t k = pro -1, k1 = 0; k < pro + 2; k++, k1++){
                 if (this->existeLaCasilla(i, j, k))
                 {
-                    this->casilleros->obtener(i)->obtener(j)->obtener(k);
-                    this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,);
+                    this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,this->getCasillero(i,j,k));
                 }else{
                     this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,NULL);
                 if (i == fil || j== col || k == pro)
@@ -152,8 +151,8 @@ void Tablero::adyacentesMatriz(size_t fil, size_t col,size_t pro){
         }
     }
 
-} 
-
+    } 
+}
 
 
 
