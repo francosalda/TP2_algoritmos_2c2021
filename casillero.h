@@ -46,6 +46,9 @@ public:
 
     void crearMatrizVecinosVacia(int cantFil,int cantCol,int cantProf);
     void destruirMatrizVecinos(int cantFil,int cantCol,int cantProf);
+    Lista<Lista<Lista<Casillero *>*>*> * obtenerMatrizDeVecinos();
+
+    void setCasillaMatrizVecinos(size_t cantFilas, size_t cantColumnas, size_t cantEnProfundidad, Casillero* punteroCasillero);
     //void asignarMatrizVecinos(Casillero**** matrizVec);
 
     //void asignarVecino(int l, int m, int n, Casillero* casilleroVecino);

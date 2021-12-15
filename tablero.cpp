@@ -130,7 +130,29 @@ size_t Tablero::getCantProfundidadTablero()
 
 
 
+void Tablero::adyacentesMatriz(size_t fil, size_t col,size_t pro){
+    for(size_t i = fil -1 , i1 = 0; i < fil + 2; i++, i1++){
 
+        for(size_t j = col -1, j1 = 0; j < col + 2; j++, j1++){
+
+            for(size_t k = pro -1, k1 = 0; k < pro + 2; k++, k1++){
+                if (this->existeLaCasilla(i, j, k))
+                {
+                    this->casilleros->obtener(i)->obtener(j)->obtener(k);
+                    this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,);
+                }else{
+                    this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,NULL);
+                if (i == fil || j== col || k == pro)
+                {
+                    continue;
+                }
+                
+
+            }
+        }
+    }
+
+} 
 
 
 
