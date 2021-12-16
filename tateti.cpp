@@ -243,7 +243,7 @@ void Tateti::jugarJuego()
 		//si esta en un rango valido guarda la ficha ingresada en el tablero
 		this->tableroDeJuego->setCasilla(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
 	
-		this->tableroDeJuego->adyacentesMatriz(filaIngresada, columnaIngresada,profundidadIngresada);
+		this->tableroDeJuego->llenarMatrizAdyacentes(filaIngresada, columnaIngresada,profundidadIngresada);
 
 
 		}

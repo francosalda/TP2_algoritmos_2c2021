@@ -128,9 +128,9 @@ size_t Tablero::getCantProfundidadTablero()
 
 /*Pre: existe la matriz de adyacentes , y existen los casilleros del tablero
 Post:  recorre el tablero al rededor del casillero central ubicado en [fil,col,prof]
-y completa la matriz de adyacentes de dicho casillero*/
+y completa la matriz de adyacentes de 3x3x3 de dicho casillero*/
 
-void Tablero::adyacentesMatriz(size_t fil, size_t col,size_t prof)
+void Tablero::llenarMatrizAdyacentes(size_t fil, size_t col,size_t prof)
 {
     for(size_t i = fil-1,i1 =1; i <= (fil+1);i++,i1++)
     {
