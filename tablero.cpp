@@ -126,7 +126,9 @@ size_t Tablero::getCantProfundidadTablero()
 
 }
 
-
+/*Pre: existe la matriz de adyacentes , y existen los casilleros del tablero
+Post:  recorre el tablero al rededor del casillero central ubicado en [fil,col,prof]
+y completa la matriz de adyacentes de dicho casillero*/
 
 void Tablero::adyacentesMatriz(size_t fil, size_t col,size_t prof)
 {
@@ -139,7 +141,6 @@ void Tablero::adyacentesMatriz(size_t fil, size_t col,size_t prof)
             {
                 if(this->existeLaCasilla(i, j, k))
                 {
-                    
                     if(i == fil && j ==col && k==prof)
                     {
                         Casillero * casilleroCentral = this->getCasillero(i,j,k);
