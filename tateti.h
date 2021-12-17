@@ -33,6 +33,7 @@ class Tateti
 		Jugador * turnoActual;
 		int ***matrizResultadosChequeoGanador;
 		int largoLineaGanarTateti;
+		bool hayTateti;
 		// Tablero  tableroAnterior;
 	public:
 		Tateti();

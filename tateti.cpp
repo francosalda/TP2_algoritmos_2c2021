@@ -35,6 +35,7 @@ void Tateti:: iniciarJuego()
 	this->crearMazoPrincipal();
 	this->crearMazoJugadores();
 	this->crearMatrizResultadosGanador(3,3,3);
+	this->largoLineaGanarTateti = 3;
 
 
 	
@@ -176,17 +177,18 @@ void  Tateti:: destruiMazoPrincipal()
 el tateti*/
 bool Tateti::hayGanador(int fil,int col,int prof)
 {
-	int matrizResultados[3][3][3];
+	
 	for(int i = 0 ; i < 3; i++)
 		{
 			for(int j = 0 ; j < 3; j++)
 			{
 				for(int k = 0 ; k < 3; k++)
 				{
-					matrizResultados[i][j][k]= 0;
+					this->matrizResultadosChequeoGanador[i][j][k]= 0;
 				}
 			}
 		}
+		//matrizResultadosChequeoGanador[0][0][0] = 2;
 	
 
 	
@@ -202,7 +204,8 @@ bool Tateti::hayGanador(int fil,int col,int prof)
 					if(i == 2 && j == 2 && k ==2)
 					{
 					
-						matrizResultados[i-1][j-1][k-1] = 1;
+						this->matrizResultadosChequeoGanador[i-1][j-1][k-1] = 1;
+						//matrizResultados[i-1][j-1][k-1] = 1;
 						continue;
 					}
 					
@@ -210,8 +213,8 @@ bool Tateti::hayGanador(int fil,int col,int prof)
 					{
 						cout<<"SE ENCONNTROP BUSCANDO EN LA DIRECCION : "<<i<<j<<k<<endl;
 					}
-						
-					matrizResultados[i-1][j-1][k-1]= casilleroOrigen->getLongitud(i,j,k,casilleroOrigen);
+						this->matrizResultadosChequeoGanador[i-1][j-1][k-1]= casilleroOrigen->getLongitud(i,j,k,casilleroOrigen);
+					//matrizResultados[i-1][j-1][k-1]= casilleroOrigen->getLongitud(i,j,k,casilleroOrigen);
 					
 					
 				}
@@ -226,50 +229,18 @@ bool Tateti::hayGanador(int fil,int col,int prof)
 				for(int j = 0 ; j < 3; j++)
 				{
 				
-					cout<<matrizResultados[i][j][k]<<",";
+					cout<<(this->matrizResultadosChequeoGanador[i][j][k])<<",";
 			}cout<<endl;
 
 		}cout<<endl;
 
 }
-	//	Lista<Lista<Lista<Casillero *>*>*> * matrizDeVecinosActual = this->tableroDeJuego->getCasillero(fil,col,prof)->obtenerMatrizDeVecinos();
-	//	char simboloFichaBuscada = this->tableroDeJuego->getCasillero(fil,col,prof)->obtenerSimboloFichaDelCasillero();
-	//	getLongitud( fil, col, prof, simboloFichaBuscada, matrizDeVecinosActual);
-		
-	
 
 
-	
-	
+	return chequearMatrizGanadorTateti();
 
 
 
-
-/*for(size_t i = fil -1 , i1 = 0; i < fil + 2; i++, i1++){
-
-        for(size_t j = col -1, j1 = 0; j < col + 2; j++, j1++){
-
-            for(size_t k = pro -1, k1 = 0; k < pro + 2; k++, k1++){
-                if (this->existeLaCasilla(i, j, k))
-                {
-
-                	//this->matrizResultadosChequeoGanador[][][] =this->getLongitud(i-fil,j-col,k-prof);
-                 //   this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,this->getCasillero(i,j,k));
-                }else{
-                   // this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,NULL);
-                if (i == fil || j== col || k == pro)
-                {
-                    continue;
-                }
-                
-
-            }
-        }
-    }*/
-
-   // } 
-
-	return false;
 }
 
 
@@ -278,7 +249,7 @@ bool Tateti::hayGanador(int fil,int col,int prof)
 /*es el bucle principal del juego*/
 void Tateti::jugarJuego()
 {
-	bool hayTateti = false;
+	this->hayTateti = false;
 	int filaIngresada= 0,columnaIngresada = 0,profundidadIngresada =0;
 	size_t minimasJugadasAntesDeMover = (this->obtenerMinimaCantidadJugadasTateti()) * (this->obtenerCantidadJugadoresActuales());
 
@@ -286,7 +257,7 @@ void Tateti::jugarJuego()
 	
 
 	//while( this->cantidadJugadasRealizadas < 6) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
-	while( !hayTateti ) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
+	while(!(this->hayTateti )) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
 	{	
 		
 		this->cantidadJugadasRealizadas++;
@@ -336,6 +307,9 @@ void Tateti::jugarJuego()
 		this->avanzarTurno();
 
 	}
+	cout<<"--------->>>Felicidades Jugador ["<<this->turnoActual->obtenerIdJugador()<<"] ";
+	cout<<this->turnoActual->obtenerNombreJugador()<<"<<<-------------"<<endl;
+	cout<<"Ganaste la partida"<<endl;
 	//imprimirTablero(this,this->tableroDeJuego->getCantFilasTablero(),this->tableroDeJuego->getCantColumnasTablero(),this->tableroDeJuego->getCantProfundidadTablero());
 	
 
@@ -602,6 +576,7 @@ void Tateti::destruirMatrizResultadosGanador(int cantFilas,int cantColumnas)
 }
 
 bool Tateti::chequearMatrizGanadorTateti(){
+	cout<<"LAROG DFE LINEA "<<this->largoLineaGanarTateti<<endl;
     if(this->matrizResultadosChequeoGanador[0][0][0] +1 +this->matrizResultadosChequeoGanador[2][2][2] == this->largoLineaGanarTateti){
 		return true;
 	} //1
