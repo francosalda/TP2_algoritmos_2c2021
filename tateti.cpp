@@ -168,107 +168,10 @@ void  Tateti:: destruiMazoPrincipal()
 
 
 
-
-
-
-
 /*POST: devuelve true si algun jugador logro realizar
 el tateti*/
-bool Tateti::hayGanador(int fil,int col,int prof)
+bool Tateti::hayGanador()
 {
-	int matrizResultados[3][3][3];
-	for(int i = 0 ; i < 3; i++)
-		{
-			for(int j = 0 ; j < 3; j++)
-			{
-				for(int k = 0 ; k < 3; k++)
-				{
-					matrizResultados[i][j][k]= 0;
-				}
-			}
-		}
-	
-
-	
-		Casillero * casilleroOrigen = this->tableroDeJuego->getCasillero(fil,col,prof);
-
-		for(int i = 1 ; i <= 3; i++)
-		{
-			for(int j = 1 ; j <= 3; j++)
-			{
-				for(int k = 1 ; k <= 3; k++)
-				{
-					//salteo el centro
-					if(i == 2 && j == 2 && k ==2)
-					{
-					
-						matrizResultados[i-1][j-1][k-1] = 1;
-						continue;
-					}
-					
-					if(casilleroOrigen->getLongitud(i,j,k,casilleroOrigen) == 1)
-					{
-						cout<<"SE ENCONNTROP BUSCANDO EN LA DIRECCION : "<<i<<j<<k<<endl;
-					}
-						
-					matrizResultados[i-1][j-1][k-1]= casilleroOrigen->getLongitud(i,j,k,casilleroOrigen);
-					
-					
-				}
-			}
-
-		}
-		cout<<"imprimiendo matriz de resultado :\n";
-		for(int k = 0 ; k < 3; k++)
-		{
-			for(int i = 0 ; i < 3; i++)
-			{
-				for(int j = 0 ; j < 3; j++)
-				{
-				
-					cout<<matrizResultados[i][j][k]<<",";
-			}cout<<endl;
-
-		}cout<<endl;
-
-}
-	//	Lista<Lista<Lista<Casillero *>*>*> * matrizDeVecinosActual = this->tableroDeJuego->getCasillero(fil,col,prof)->obtenerMatrizDeVecinos();
-	//	char simboloFichaBuscada = this->tableroDeJuego->getCasillero(fil,col,prof)->obtenerSimboloFichaDelCasillero();
-	//	getLongitud( fil, col, prof, simboloFichaBuscada, matrizDeVecinosActual);
-		
-	
-
-
-	
-	
-
-
-
-
-/*for(size_t i = fil -1 , i1 = 0; i < fil + 2; i++, i1++){
-
-        for(size_t j = col -1, j1 = 0; j < col + 2; j++, j1++){
-
-            for(size_t k = pro -1, k1 = 0; k < pro + 2; k++, k1++){
-                if (this->existeLaCasilla(i, j, k))
-                {
-
-                	//this->matrizResultadosChequeoGanador[][][] =this->getLongitud(i-fil,j-col,k-prof);
-                 //   this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,this->getCasillero(i,j,k));
-                }else{
-                   // this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,NULL);
-                if (i == fil || j== col || k == pro)
-                {
-                    continue;
-                }
-                
-
-            }
-        }
-    }*/
-
-   // } 
-
 	return false;
 }
 
@@ -278,17 +181,13 @@ bool Tateti::hayGanador(int fil,int col,int prof)
 /*es el bucle principal del juego*/
 void Tateti::jugarJuego()
 {
-	bool hayTateti = false;
-	int filaIngresada= 0,columnaIngresada = 0,profundidadIngresada =0;
+	int filaIngresada,columnaIngresada,profundidadIngresada;
 	size_t minimasJugadasAntesDeMover = (this->obtenerMinimaCantidadJugadasTateti()) * (this->obtenerCantidadJugadoresActuales());
 
 	cout<<"[DEBUG]: (SOLO 6 rondas y corta ya que no tenemos hayGanador() aun)\n";
-	
 
-	//while( this->cantidadJugadasRealizadas < 6) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
-	while( !hayTateti ) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
+	while( this->cantidadJugadasRealizadas < 6) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
 	{	
-		
 		this->cantidadJugadasRealizadas++;
 		this->turnoActual = colaDeTurnos.desacolar();
 		cout<<"-> [Ronda: "<<this->cantidadJugadasRealizadas <<"] Es el turno del jugador ["<<this->turnoActual->obtenerIdJugador()<<"]: '"<<this->turnoActual->obtenerNombreJugador()<<"'\n";
@@ -307,9 +206,6 @@ void Tateti::jugarJuego()
 		
 		//si esta en un rango valido guarda la ficha ingresada en el tablero
 		this->tableroDeJuego->setCasilla(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
-		this->tableroDeJuego->llenarMatrizAdyacentes(filaIngresada, columnaIngresada,profundidadIngresada);
-		this->hayGanador(filaIngresada,columnaIngresada,profundidadIngresada);
-
 		}
 
 		//si es hora de mover fichas
@@ -334,7 +230,6 @@ void Tateti::jugarJuego()
 		
 		
 		this->avanzarTurno();
-
 	}
 	//imprimirTablero(this,this->tableroDeJuego->getCantFilasTablero(),this->tableroDeJuego->getCantColumnasTablero(),this->tableroDeJuego->getCantProfundidadTablero());
 	
@@ -574,9 +469,12 @@ void Tateti::crearMatrizResultadosGanador(int cantFilas,int cantColumnas,int can
 			{
 				nuevaMatriz[i][j][k] = 0;
 			}
+
 		}
+
 	}
-	this->matrizResultadosChequeoGanador =nuevaMatriz;
+	this->matrizResultadosChequeoGanador = nuevaMatriz;
+
 }
 
 /*Pre: existe la matriz de resultados
@@ -600,3 +498,62 @@ void Tateti::destruirMatrizResultadosGanador(int cantFilas,int cantColumnas)
 	delete[] this->matrizResultadosChequeoGanador;
 
 }
+
+
+bool Tateti::hayGanador(){
+    if(this->matrizResultadosChequeoGanador[0][0][0] +1 +this->matrizResultadosChequeoGanador[2][2][2] == this->lineaTateti){
+		return true;
+	} //1
+	if(this->matrizResultadosChequeoGanador[0][1][0] +1 +this->matrizResultadosChequeoGanador[2][1][2] == this->lineaTateti){
+		return true;
+	} //2
+	if(this->matrizResultadosChequeoGanador[0][2][0] +1 +this->matrizResultadosChequeoGanador[2][0][2] == this->lineaTateti){
+		return true;
+	} //3
+	if(this->matrizResultadosChequeoGanador[0][0][2] +1 +this->matrizResultadosChequeoGanador[2][2][0] == this->lineaTateti){
+		return true;
+	} //4
+	if(this->matrizResultadosChequeoGanador[0][1][2] +1 +this->matrizResultadosChequeoGanador[2][1][0] == this->lineaTateti){
+		return true;
+	} //5
+	if(this->matrizResultadosChequeoGanador[0][2][2] +1 +this->matrizResultadosChequeoGanador[2][0][0] == this->lineaTateti){
+		return true;
+	} //6
+	if(this->matrizResultadosChequeoGanador[0][0][1] +1 +this->matrizResultadosChequeoGanador[2][2][1] == this->lineaTateti){
+		return true;
+	} //7
+	if(this->matrizResultadosChequeoGanador[0][2][1] +1 +this->matrizResultadosChequeoGanador[2][0][1] == this->lineaTateti){
+		return true;
+	} //8
+	if(this->matrizResultadosChequeoGanador[0][1][1] +1 +this->matrizResultadosChequeoGanador[2][1][1] == this->lineaTateti){
+		return true;
+	} //9
+	if(this->matrizResultadosChequeoGanador[1][0][2] +1 +this->matrizResultadosChequeoGanador[1][2][0] == this->lineaTateti){
+		return true;
+	} //10
+	if(this->matrizResultadosChequeoGanador[1][1][2] +1 +this->matrizResultadosChequeoGanador[1][1][0] == this->lineaTateti){
+		return true;
+	} //11
+	if(this->matrizResultadosChequeoGanador[1][2][2] +1 +this->matrizResultadosChequeoGanador[1][0][0] == this->lineaTateti){
+		return true;
+	} //12
+	if(this->matrizResultadosChequeoGanador[1][0][1] +1 +this->matrizResultadosChequeoGanador[1][2][1] == this->lineaTateti){
+		return true;
+	} //13
+
+	
+
+	
+
+	
+	
+
+	
+	
+	
+	
+	
+	
+
+	return false;
+} 
