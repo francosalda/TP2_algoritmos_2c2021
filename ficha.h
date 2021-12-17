@@ -12,6 +12,7 @@ class Ficha{
 private:
     char simbolo;
     bool estaBloqueada;
+    unsigned int  turnosRestantesDesbloqueo;
 public:
     Ficha();
     Ficha(char caracter);
@@ -20,8 +21,9 @@ public:
     bool estaBloqueadaFicha();
     void bloquearFicha();
     void desbloquearFicha();
+    void setTurnosRestantesDesbloqueo(unsigned int cantidadTurnos);
+    unsigned int getTurnosRestantesDesbloqueo();
+    void decrementarTurnosRestantesDesbloqueo();
     virtual ~Ficha();
-
-
 };
 #endif 

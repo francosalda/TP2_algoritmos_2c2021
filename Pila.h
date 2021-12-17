@@ -77,7 +77,6 @@ template<class T> void Pila<T>::apilar(const T& elemento) {
 template<class T> unsigned int Pila<T>::contarElementos() {
     return this->tamanio;
 }
-
 template<class T> T& Pila<T>::desapilar() {
     T elemento;
     if (!this->estaVacia()) {

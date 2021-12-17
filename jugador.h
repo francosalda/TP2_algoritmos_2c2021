@@ -23,15 +23,15 @@ public:
 	Jugador(string nombre,char simboloFicha);
 	~Jugador();
 
-	void setNombreJugador(string nombre);
 	string obtenerNombreJugador();
 	char obtenerSimboloFichaJugador();
+	void setNombreJugador(string nombre);
 	void setFichaJugador(Ficha * nuevaFicha);
-	void destruirFichaJugador();
 	void setMazoJugador(Mazo * nuevoMazo);
-	Mazo * getMazoJugador();
-	size_t obtenerIdJugador();
 	void setearIdJugador(size_t id);
+	size_t obtenerIdJugador();
+	Mazo * getMazoJugador();
+	void destruirFichaJugador();
 	
 
 /*

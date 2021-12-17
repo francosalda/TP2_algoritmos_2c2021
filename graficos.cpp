@@ -24,13 +24,13 @@ void dibujarcapasVacias( Lista<BMP*> * capasTablero,size_t cantFilas,size_t cant
 		for(size_t j = 0; j <cantColumnas;j++ )
 		{
 			for(size_t k = 0; k <cantFilas;k++ )
-			{	
+			{
 				RangedPixelToPixelCopy( auxCasilleroVacio, 0 ,184, 0, 152,*capasTablero->obtener(i), j*184, 152*k);
 			}
 		}
 
 	}
-	
+
 }
 
 

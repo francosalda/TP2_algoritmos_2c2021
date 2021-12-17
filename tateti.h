@@ -7,7 +7,7 @@
 
 #define MAX_CANTIDAD_JUGADORES 20
 #define CANTIDAD_CARTAS_MAZO_PRINCIPAL 50 
-#define CANTIDAD_CARTAS_MAZO_JUGADORES 3
+#define CANTIDAD_CARTAS_MAZO_JUGADORES 5
 
 
 /* [TDA Tateti]:
@@ -59,21 +59,40 @@ class Tateti
 		size_t obtenerMinimaCantidadJugadasTateti();
 		size_t obtenerCantidadJugadoresActuales();
 		void repartirCartaAlJugador();
-		bool solicitarIngresoNuevaFicha(int &filas, int &columnas,int & profundidad);
 		bool solicitarMoverFicha(int &filas, int &columnas,int & profundidad);
+		bool esFichaValida(int &filas, int &columnas,int & profundidad);
+		void validarCasillero(Casillero* &casilleroOrigen,int &filas,int &columnas,int &profundidad);
+
 		void crearMatrizResultadosGanador(int cantFilas,int cantColumnas,int cantProfundidad);
 		void destruirMatrizResultadosGanador(int cantFilas,int cantColumnas);
 		bool chequearMatrizGanadorTateti();
-		
+		void activarGraficarBmp();
+		void desactivarGraficarBmp();
+
+
+
+		void usarCarta(unsigned int numero);
+		void anularCasillero();
+		void eliminarCartaJugador();
+		void robarCartaJugador();
+		void bloquearFicha();
 //metodos relacionados al tablero del tateti
 		void crearTablero();
 		bool estaCasilleroLibre(size_t fila,size_t columna,size_t profundidad);
 		bool estaEnRangoValido(int fila,int columna,int profundidad);
 		int obtenerIdJugadorPropietarioFicha(char ficha);
 	 	Tablero *obtenerTableroDeJuego();
-	 	void activarGraficarBmp();
-	 	void desactivarGraficarBmp();
-		
+
+
+
+
+		bool estaFichaBloqueada(Casillero * casilleroOrigen);
+	 	void imprimirCordenadasFichaJugador(char ficha);
+	 	void decrementarTurnosCasillerosYFichas();
+	 	void desbloquearCasilleroYficha();
+		bool estaCasilleroAnulado(size_t fila,size_t columna,size_t nuevaProfundidad);
+
+
 };
 
 #endif

@@ -5,7 +5,6 @@
 #include <iostream>
 using namespace std;
 
-
 /*[TDA CASILLERO]
     .contenidoCasillero : Es la ficha almacenada por el casillero
     .turnosRestantesDesbloqueo: es la cantidad de turnos antes de poder desbloquearse
@@ -30,9 +29,12 @@ public:
     Casillero(char simboloFicha);
     virtual ~Casillero();
 
+
     bool estaCasilleroVacio();
     bool estaCasilleroAnulado();
     void copiarCasillero(Casillero* dest);
+
+  
     
     void setTurnosRestantesDesbloqueo(size_t cantidadTurnos);
     size_t getTurnosRestantesDesbloqueo(); 
@@ -42,19 +44,27 @@ public:
     void setSimboloFichaDelCasillero(char simboloFicha);
     char obtenerSimboloFichaDelCasillero();
     void anularCasillero();
-  
+
+    Ficha* obtenerContenidoCasillero();
+    void desbloquearCasillero();
 
     void crearMatrizVecinosVacia(int cantFil,int cantCol,int cantProf);
     void destruirMatrizVecinos(int cantFil,int cantCol,int cantProf);
-    Lista<Lista<Lista<Casillero *>*>*> * obtenerMatrizDeVecinos();
 
+    Lista<Lista<Lista<Casillero *>*>*> * obtenerMatrizDeVecinos();
     void setCasillaMatrizVecinos(size_t cantFilas, size_t cantColumnas, size_t cantEnProfundidad, Casillero* punteroCasillero);
+
+
     Casillero * getAdayacente(int i , int j, int k);
     bool estaCasillaAdayacenteVacia(int i , int j, int k);
     bool existeCasillaAdyacente(int i , int j, int k);
     size_t getLongitud(int i,int j,int k,Casillero * casilleroOrigen);
-    //void asignarMatrizVecinos(Casillero**** matrizVec);
 
+
+
+
+
+    //void asignarMatrizVecinos(Casillero**** matrizVec);
     //void asignarVecino(int l, int m, int n, Casillero* casilleroVecino);
 
 

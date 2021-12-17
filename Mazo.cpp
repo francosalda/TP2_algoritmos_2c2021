@@ -2,21 +2,30 @@
 #include <cstdlib> 
 #include <ctime> 
 #include <iostream>
-
+/*
+ * POST:devuelve la cantidad de cartas que tiene un mazo
+ */
+unsigned int Mazo::getCantidadCartas()
+{
+	return this->mazoCartas.contarElementos();
+}
 /*
 POST: Crea una mazo con una cantidad de cartas sin efecto
 */
 
 Mazo::Mazo(int cantidadCartas)
 {
-	Carta * nuevaCarta = NULL;
+	//Carta * nuevaCarta = NULL;
 	for(int i = 0 ; i <cantidadCartas ; i++ )
 	{
-		nuevaCarta = new Carta(CARTA_SIN_EFECTO);
-		this->mazoCartas.agregar(nuevaCarta);
+		//nuevaCarta = new Carta(CARTA_SIN_EFECTO);
+		this->mazoCartas.agregar(new Carta());
 	}
 }
+Mazo::Mazo()
+{
 
+}
 /*
 PRE: existe la carta nueva y el mazo
 POST: agrega al mazo la carta recibida al final del mismo
@@ -40,6 +49,7 @@ Carta * Mazo::obtenerCartaSuperior()
 }/*POST: Libera la memoria dinamica del contenido de un mazo*/
 void Mazo::destruirMazo()
 {
+	//this->mazoCartas.~Lista();
 	this->mazoCartas.iniciarCursor();
 	while(this->mazoCartas.avanzarCursor())
 	{
@@ -51,7 +61,6 @@ void Mazo::destruirMazo()
 Mazo::~Mazo()
 {
 	
-
 }
 /*
 Post: asgina de manera aleatoria
@@ -69,9 +78,21 @@ void Mazo::barajarMazo()
 }
 
 void Mazo::imprimirMazo(){
+	int i=1;
 	this->mazoCartas.iniciarCursor();
 	while(this->mazoCartas.avanzarCursor())
 	{
+		std::cout<<"carta numero "<<i++<<": ";
 		this->mazoCartas.obtenerCursor()->imprimirHabilidadCarta();
 	}
 }
+Lista<Carta*>& Mazo::getMazoCartas()
+{
+	return this->mazoCartas;
+}
+void Mazo::eliminarCarta(unsigned int pos)
+{
+	this->mazoCartas.remover(pos);
+}
+
+

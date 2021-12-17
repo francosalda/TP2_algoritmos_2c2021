@@ -1,7 +1,7 @@
 #include <iostream>
 #include "tablero.h"
 #include "casillero.h"
-using namespace std;
+
 
 
 Tablero::Tablero(size_t cantFilas, size_t cantColumnas, size_t cantEnProfundidad) {
@@ -18,14 +18,13 @@ Tablero::Tablero(size_t cantFilas, size_t cantColumnas, size_t cantEnProfundidad
     for(size_t i=0;  i<this->cantFilas; i++)
     {
         Lista<Lista <Casillero *>*> *columnas = new Lista<Lista <Casillero *>*>;
-        for (size_t j=0; j<this->cantColumnas; j++) 
+        for (size_t j=0; j<this->cantColumnas; j++)
         {
             Lista<Casillero *> * profundidad = new Lista<Casillero *>;
 
             for (size_t k = 0; k < this->cantEnProfundidad; k++)
             {
                 Casillero* nuevoCasillero = new Casillero(SIMBOLO_FICHA_VACIA);
-              
                 profundidad->agregar(nuevoCasillero);
             }
             columnas->agregar(profundidad);
@@ -62,6 +61,11 @@ Tablero::~Tablero() {
    
 }
     
+/*
+Pre: existe el tablero y el casillero solicitado
+Post: devuelve el casillero ubicado en la posicion [fila][columna][profundidad]
+*/
+
 /*
 Pre: existe el tablero y el casillero solicitado
 Post: devuelve el casillero ubicado en la posicion [fila][columna][profundidad]
@@ -159,15 +163,16 @@ void Tablero::llenarMatrizAdyacentes(size_t fil, size_t col,size_t prof)
         }
     }
 
+
     //imprimir matriz de vecino para el casillero actual fil,col,prof
-  /*  cout<<"Imprimiendo matriz de vecinos del casillero del tablero:["<<fil<<","<<col<<","<<prof<<"]"<<endl;
+    /*cout<<"Imprimiendo matriz de vecinos del casillero del tablero:["<<fil<<","<<col<<","<<prof<<"]"<<endl;
     for(size_t i= 1 ; i <=3; i++)
     {
         for(size_t j= 1 ;j <=3; j++)
         {
             for(size_t k = 1 ; k <=3;k++)
             {
-                
+
                 Casillero * casilleroActual = this->getCasillero(fil,col,prof)->obtenerMatrizDeVecinos()->obtener(i)->obtener(j)->obtener(k);
                 //VERY IMPORTAN COMPROBATION
                 if(casilleroActual)
@@ -175,13 +180,13 @@ void Tablero::llenarMatrizAdyacentes(size_t fil, size_t col,size_t prof)
                         cout<<"["<<i<<","<<j<<","<<k<<"]";
                          cout<<casilleroActual->obtenerSimboloFichaDelCasillero()<<endl;
                 }
-               
+
             }
         }
 
     }*/
-    
-    
+
+
 
 
 
@@ -196,11 +201,11 @@ void Tablero::llenarMatrizAdyacentes(size_t fil, size_t col,size_t prof)
             {
                 if (i == fil && j== col && k == pro)
                 {
-                    
+
                     this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,this->getCasillero(i,j,k));
                     continue;
                 }
-                
+
                 if (this->existeLaCasilla(i, j, k))
                 {
                     this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,NULL);
@@ -209,19 +214,19 @@ void Tablero::llenarMatrizAdyacentes(size_t fil, size_t col,size_t prof)
                 else
                 {
                 //this->getCasillero(i+1,j+1,k+1)->setCasillaMatrizVecinos(i1,j1,k1,NULL);
-                
-            }
-                
 
             }
-                
-                
+
+
+            }
+
+
 
             }
         }
     }
 
-    } 
+    }
 */
 
 
@@ -245,6 +250,79 @@ void Tablero::llenarMatrizAdyacentes(size_t fil, size_t col,size_t prof)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*void Tablero::crearMatrizVecinos(int cantFilas, int cantColumnas, int cantEnProfundidad) {
+
+   Casillero *casilla;
+
+    for (int i = 0; i < this->cantFilas; i++) {
+        for (int j = 0; j < this->cantColumnas; j++) {
+            for (int k = 0; k < this->cantEnProfundidad; k++) {
+
+                casilla = this->getCasilla(i,j,k);
+                Casillero**** matrizVecinal = new Casillero***();
+
+                for (int l = 0; l <3; l++) {
+                    //Casillero *** columna = new Casillero**();
+                    matrizVecinal[l] = new Casillero** ();
+                    for (int m = 0; m < 3; m++) {
+                        matrizVecinal[l][m] = new Casillero*();
+                        for (int n = 0; n < 3; n++) {
+                            //matrizVecinal[l][m][n] = new Casillero();
+                            matrizVecinal[l][m][n] = NULL;
+                        }
+                    }
+                }
+                casilla->asignarMatrizVecinos(matrizVecinal);
+            }
+        }
+    }
+}*/
 
 
 

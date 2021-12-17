@@ -141,9 +141,6 @@ template<class T>void Lista<T>::agregar (T elemento, unsigned int  posicion)
             nuevo->cambiarSiguiente(anterior->obtenerSiguiente());
             anterior->cambiarSiguiente(nuevo);
         }
-
-
-
         this->tamanio++;
 
         /* cualquier recorrido actual queda invalidado */

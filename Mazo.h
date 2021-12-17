@@ -16,13 +16,16 @@ private:
 public:
 
 	Mazo(int cantidadCartas);
-	 virtual ~Mazo();
-
+	Mazo();
+	virtual ~Mazo();
 	void agregarCarta(Carta * nuevaCarta);
 	Carta *obtenerCartaSuperior();
 	void barajarMazo();
 	void destruirMazo();
 	void imprimirMazo();
+	void eliminarCarta(unsigned int pos);
+	Lista<Carta*>&getMazoCartas();
+	unsigned int getCantidadCartas();
 
 };
 #endif /* MAZO_H_ */

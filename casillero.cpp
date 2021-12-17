@@ -1,4 +1,3 @@
-
 #include "casillero.h"
 #include <iostream>
 
@@ -11,9 +10,16 @@ Casillero::Casillero(char simboloFicha){
     this->turnosRestantesDesbloqueo = 0;
     this->casilleroAnulado = false;
     this->crearMatrizVecinosVacia(3,3,3);
-   
-    
-          
+}
+Casillero::~Casillero()
+{
+
+    this->destruirMatrizVecinos(3,3,3);
+    if(this->contenidoCasillero)
+    {
+        delete  this->contenidoCasillero;
+    }
+
 }
 
 /*Post condicion crea una matriz de vecinos
@@ -26,14 +32,14 @@ void Casillero::crearMatrizVecinosVacia(int cantFil,int cantCol,int cantProf)
     for(int i=0;  i<cantFil; i++)
     {
         Lista<Lista <Casillero *>*> *columnas = new Lista<Lista <Casillero *>*>;
-        for (int j=0; j<cantCol; j++) 
+        for (int j=0; j<cantCol; j++)
         {
             Lista<Casillero *> * profundidad = new Lista<Casillero *>;
 
             for (int k = 0; k < cantProf; k++)
             {
                 Casillero* nuevoCasillero = NULL;
-              
+
                 profundidad->agregar(nuevoCasillero);
             }
             columnas->agregar(profundidad);
@@ -43,8 +49,6 @@ void Casillero::crearMatrizVecinosVacia(int cantFil,int cantCol,int cantProf)
 
     this->matrizDeVecinos = filas;
 }
-
-
 
 /*
 Pre:existe la matriz de vecinos
@@ -75,20 +79,21 @@ void Casillero::destruirMatrizVecinos(int cantFil,int cantCol,int cantProf)
 
      }delete filas;
 }
+void Casillero::setCasillaMatrizVecinos(size_t cantFilas, size_t cantColumnas, size_t cantEnProfundidad, Casillero* punteroCasillero) {
+    this->matrizDeVecinos->obtener(cantFilas)->obtener(cantColumnas)->asignar(punteroCasillero, cantEnProfundidad)  ;
 
 
+    ///this->matrizDeVecinos->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad) =  punteroCasillero ;
 
-Casillero::~Casillero()
-{
-
-    this->destruirMatrizVecinos(3,3,3);
-    if(this->contenidoCasillero)
-    {
-        delete  this->contenidoCasillero;    
-    }
-    
+}
+Lista<Lista<Lista<Casillero *>*>*> * Casillero::obtenerMatrizDeVecinos(){
+    return this->matrizDeVecinos;
 }
 
+Casillero *  Casillero::getAdayacente(int i , int j, int k)
+{
+    return this->matrizDeVecinos->obtener(i)->obtener(j)->obtener(k);
+}
 /*
 Post: : devuelve true si el casillero esta vacio
 */
@@ -100,102 +105,6 @@ bool Casillero::estaCasilleroVacio()
     }
     return false;
 }
-/* Post: devuelve true si el casillero esta anulado para colocar fichas*/
-bool Casillero::estaCasilleroAnulado(){
-    return this->casilleroAnulado;
-}
-/*
-PRE: el casillero esta vacio al momento de anularse
-Post:  anula un casillero , entonces no podran colocarse fichas en el
-*/
-void Casillero::anularCasillero(){
-    this->casilleroAnulado = true;
-}
-/*
-PRE: el casillero existe
-Post: vacia un casillero para que pueda colocarse otra ficha
-asignandole la ficha vacia
-*/
-void Casillero::vaciarCasillero(){
-    this->contenidoCasillero->setSimboloFicha(SIMBOLO_FICHA_VACIA);
-    this->turnosRestantesDesbloqueo = 0;
-    this->casilleroAnulado = false;
-
-}
-/*
-PRE: el casillero existe
-Post: copia el contenido de un casillero a otro casillero
-*/
-void Casillero::copiarCasillero(Casillero* dest){
-    dest->contenidoCasillero->setSimboloFicha(this->contenidoCasillero->getSimboloFicha());
-    this->contenidoCasillero->setSimboloFicha(SIMBOLO_FICHA_VACIA);
-
-
-}
-
-/*
-Pre: casillero fue creado anteriormete
-Post :retorna la cantidad de turnos restantes por los cuales el casillero esta bloqueado
-*/
-size_t Casillero::getTurnosRestantesDesbloqueo(){
-    return this->turnosRestantesDesbloqueo;
-}
-
-/*
-Pre : casillero creado anteriormete
-Post : setea la cantidad de turnos restantes por los cuales el casillero esta bajo efectos de una carta
-*/
-
-void Casillero::setTurnosRestantesDesbloqueo(size_t cantidadTurnos){
-    this->turnosRestantesDesbloqueo = cantidadTurnos;
-
-}
-/*Post : Decrementa en 1 la cantidad de turnos restantes para que pueda usarse el casillero*/
-
-void Casillero::decrementarTurnosRestantesDesbloqueo(){
-    (this->turnosRestantesDesbloqueo)--;
-}
-/*
-PRE: el casillero fue creado anteriormente y posee una ficha en el
-Post : Bloquea la ficha del casillero
-*/
-void Casillero::bloquearFichaDelCasillero(){
-    //(this->contenidoCasillero)->bloquearFicha();
-
-}
-
-
-void Casillero::setSimboloFichaDelCasillero(char simboloFicha) {
-    this->contenidoCasillero->setSimboloFicha(simboloFicha);
-}
-
-
-char Casillero::obtenerSimboloFichaDelCasillero() {
-    return this->contenidoCasillero->getSimboloFicha();
-}
-
-
-///void asignar(T elemento, unsigned int posicion);
-
-
-void Casillero::setCasillaMatrizVecinos(size_t cantFilas, size_t cantColumnas, size_t cantEnProfundidad, Casillero* punteroCasillero) {
-    this->matrizDeVecinos->obtener(cantFilas)->obtener(cantColumnas)->asignar(punteroCasillero, cantEnProfundidad)  ;
-
-   
-    ///this->matrizDeVecinos->obtener(cantFilas)->obtener(cantColumnas)->obtener(cantEnProfundidad) =  punteroCasillero ;
-
-}
-
-
-Lista<Lista<Lista<Casillero *>*>*> * Casillero::obtenerMatrizDeVecinos(){
-    return this->matrizDeVecinos;
-}
-
-Casillero *  Casillero::getAdayacente(int i , int j, int k)
-{
-    return this->matrizDeVecinos->obtener(i)->obtener(j)->obtener(k);
-}
-
 bool Casillero::estaCasillaAdayacenteVacia(int i , int j, int k)
 {
     if(getAdayacente(i,j,k)->estaCasilleroVacio())
@@ -242,6 +151,94 @@ size_t Casillero:: getLongitud(int i,int j,int k,Casillero * casilleroOrigen)
 }
 
 
+/* Post: devuelve true si el casillero esta anulado para colocar fichas*/
+bool Casillero::estaCasilleroAnulado(){
+    return this->casilleroAnulado;
+}
+/*
+PRE: el casillero esta vacio al momento de anularse
+Post:  anula un casillero , entonces no podran colocarse fichas en el
+*/
+void Casillero::anularCasillero(){
+    this->casilleroAnulado = true;
+}
+/*
+PRE: el casillero existe
+Post: vacia un casillero para que pueda colocarse otra ficha
+asignandole la ficha vacia
+*/
+void Casillero::vaciarCasillero(){
+    this->contenidoCasillero->setSimboloFicha(SIMBOLO_FICHA_VACIA);
+    this->turnosRestantesDesbloqueo = 0;
+    this->casilleroAnulado = false;
+
+}
+/*
+PRE: el casillero existe
+Post: copia el contenido de un casillero a otro casillero
+*/
+void Casillero::copiarCasillero(Casillero* dest){
+    dest->contenidoCasillero->setSimboloFicha(this->contenidoCasillero->getSimboloFicha());
+    this->contenidoCasillero->setSimboloFicha(SIMBOLO_FICHA_VACIA);
+}
+
+/*
+Pre: casillero fue creado anteriormete
+Post :retorna la cantidad de turnos restantes por los cuales el casillero esta bloqueado
+*/
+size_t Casillero::getTurnosRestantesDesbloqueo(){
+    return this->turnosRestantesDesbloqueo;
+}
+
+/*
+Pre : casillero creado anteriormete
+Post : setea la cantidad de turnos restantes por los cuales el casillero esta bajo efectos de una carta
+*/
+
+void Casillero::setTurnosRestantesDesbloqueo(size_t cantidadTurnos){
+    this->turnosRestantesDesbloqueo = cantidadTurnos;
+
+}
+/*Post : Decrementa en 1 la cantidad de turnos restantes para que pueda usarse el casillero*/
+
+void Casillero::decrementarTurnosRestantesDesbloqueo(){
+    (this->turnosRestantesDesbloqueo)--;
+}
+/*
+PRE: el casillero fue creado anteriormente y posee una ficha en el
+Post : Bloquea la ficha del casillero
+*/
+void Casillero::bloquearFichaDelCasillero(){
+    this->contenidoCasillero->bloquearFicha();
+}
+/*
+ * POST:asigna una ficha en el contenido del casillero
+ */
+
+void Casillero::setSimboloFichaDelCasillero(char simboloFicha) {
+    this->contenidoCasillero->setSimboloFicha(simboloFicha);
+}
+/*
+ * POST:obtiene la ficha del casillero
+ */
+
+char Casillero::obtenerSimboloFichaDelCasillero() {
+    return this->contenidoCasillero->getSimboloFicha();
+}
+/*
+ * POST:devuelve el contenido del casillero
+ */
+Ficha* Casillero::obtenerContenidoCasillero()
+{
+	return this->contenidoCasillero;
+}
+/*
+ * POST:Desbloquea el casillero cambiando el estado de casilleroAnulado a false
+ */
+void Casillero::desbloquearCasillero()
+{
+	this->casilleroAnulado=false;
+}
 
 /*void Casillero::asignarMatrizVecinos(Casillero ****matrizVec) {
     this->matrizDeVecinos = matrizVec;

@@ -5,6 +5,7 @@ Post: Inicializa una ficha totalemente vacia
 Ficha::Ficha(){
     this->estaBloqueada = false;
     this->simbolo = SIMBOLO_FICHA_VACIA;
+    this->turnosRestantesDesbloqueo=0;
 }
 /*
 Post : devuelve una ficha  conteniendo el caracter ingresado por el jugador
@@ -12,9 +13,8 @@ Post : devuelve una ficha  conteniendo el caracter ingresado por el jugador
 Ficha::Ficha(char caracter){
     this->estaBloqueada = false;
     this->simbolo = caracter;
-
+    this->turnosRestantesDesbloqueo=0;
 }
-
 Ficha::~Ficha()
 {
 }
@@ -59,4 +59,23 @@ post: bloque la ficha ingresada
 void Ficha::desbloquearFicha(){
     this->estaBloqueada = false;
 }
+/*
+ * POST:asigna a "turnosRestantesDesbloqueo"la cantidad de turnos que le falta antes de que se desbloquee la ficha
+ */
+void Ficha::setTurnosRestantesDesbloqueo(unsigned int cantidadTurnos){
+    this->turnosRestantesDesbloqueo = cantidadTurnos;
 
+}
+/*
+ * POST:Resta en uno la cantidad de turnos que le falta a la ficha antes de desbloquearse
+ */
+void Ficha::decrementarTurnosRestantesDesbloqueo(){
+    (this->turnosRestantesDesbloqueo)--;
+}
+/*
+ * POST:devuelve la cantidad de turnos que le falta a la ficha antes de desbloquearse
+ */
+unsigned int Ficha::getTurnosRestantesDesbloqueo()
+{
+	return this->turnosRestantesDesbloqueo;
+}
