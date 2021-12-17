@@ -62,6 +62,7 @@ class Tateti
 		bool solicitarMoverFicha(int &filas, int &columnas,int & profundidad);
 		bool esFichaValida(int &filas, int &columnas,int & profundidad);
 		void validarCasillero(Casillero* &casilleroOrigen,int &filas,int &columnas,int &profundidad);
+		void solicitarIngresoDeLargoLineaTateti();
 
 		void crearMatrizResultadosGanador(int cantFilas,int cantColumnas,int cantProfundidad);
 		void destruirMatrizResultadosGanador(int cantFilas,int cantColumnas);

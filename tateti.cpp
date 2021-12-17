@@ -82,6 +82,7 @@ void Tateti:: iniciarJuego()
 	cout<<"--------------->Bienvenido a TATETI   Multiplayer<-----------------------\n";
 	this->crearTablero();
 	this->crearJugadores();
+	this->solicitarIngresoDeLargoLineaTateti();
 	this->crearMatrizResultadosGanador(3,3,3);
 	this->imprimirJugadores();
 	this->crearMazoPrincipal();
@@ -89,20 +90,6 @@ void Tateti:: iniciarJuego()
 	this->inicializarTurnosJugadores();
 }
 
-/*
-Post crea un tablero de jueego
-*/
-void Tateti::crearTablero(){
-	size_t fila,columna,profundidad;
-	cout<<"ingresa las dimensiones del tablero"<<endl;
-	cout<<"filas:"<<endl;;
-	cin >> fila;
-	cout<<"Columnas:"<<endl;
-	cin >> columna;
-	cout<<"profundidad:"<<endl;
-	cin >> profundidad;
-	this->tableroDeJuego = new Tablero(fila,columna,profundidad);
-}
 /*POST: inicializa la lista de jugadores del tateti
 con sus nombres y fichas*/
 void Tateti::  crearJugadores()
@@ -112,9 +99,9 @@ void Tateti::  crearJugadores()
 	cout<<"Ingrese la cantidad de jugadores: \n";
 	cin>>(inputCantidadJugadores);
 	//comprueba el rango de los jugadores
-	while(inputCantidadJugadores < 2 )
+	while(inputCantidadJugadores < 2 || inputCantidadJugadores > 6 )
 	{
-		cout<<"[Error]: Deben jugar almenos 2 jugadores, ingrese una nueva cantidad: ";
+		cout<<"[Error]: Deben jugar de 2 a 6 jugadores: ";
 		cin>>(inputCantidadJugadores);
 	}
 	//se ingresan los datos de los jugadores
@@ -137,6 +124,18 @@ void Tateti::  crearJugadores()
 		nuevoJugador->setearIdJugador(i+1);
 		this->listaDeJugadores.agregar(nuevoJugador);
 	}
+}
+void Tateti::solicitarIngresoDeLargoLineaTateti()
+{
+	int input;
+	cout<<"Ingrese el largo de linea con el cual se ganara la partida:"<<endl;
+	cin>>input;
+	while(input < 1)
+	{
+		cout<<"[Error ]La cantidad debe ser mayor a 1 , intente de nuevo : "<<endl;
+		cin>>input;
+	}
+	this->largoLineaGanarTateti = input;
 }
 
 void Tateti::crearMatrizResultadosGanador(int cantFilas,int cantColumnas,int cantProfundidad)
@@ -207,7 +206,34 @@ void Tateti::crearMazoJugadores()
 
 
 
+/*
+Post crea un tablero de jueego
+*/
+void Tateti::crearTablero(){
+	size_t fila,columna,profundidad;
+	cout<<"ingresa las dimensiones del tablero"<<endl;
+	cout<<"filas:"<<endl;;
+	cin >> fila;
+	cout<<"Columnas:"<<endl;
+	cin >> columna;
+	cout<<"profundidad:"<<endl;
+	cin >> profundidad;
 
+	while(fila <1 || columna<1 || profundidad < 1 )
+	{
+		cout<<"[Error]La cantidad de filas,columnas y profundidad debe ser mayor a 1"<<endl;
+		cout<<"ingresa las dimensiones del tablero"<<endl;
+	cout<<"filas:"<<endl;;
+	cin >> fila;
+	cout<<"Columnas:"<<endl;
+	cin >> columna;
+	cout<<"profundidad:"<<endl;
+	cin >> profundidad;
+
+	}
+
+	this->tableroDeJuego = new Tablero(fila,columna,profundidad);
+}
 
 
 
@@ -277,7 +303,11 @@ void Tateti::jugarJuego()
 	cout<<"--------->>>Felicidades Jugador ["<<this->turnoActual->obtenerIdJugador()<<"] ";
 	cout<<this->turnoActual->obtenerNombreJugador()<<"<<<-------------"<<endl;
 	cout<<"Ganaste la partida"<<endl;
-	//imprimirTablero(this,this->tableroDeJuego->getCantFilasTablero(),this->tableroDeJuego->getCantColumnasTablero(),this->tableroDeJuego->getCantProfundidadTablero());
+	if(this->graficarBitmap)
+	{
+		imprimirTablero(this,this->tableroDeJuego->getCantFilasTablero(),this->tableroDeJuego->getCantColumnasTablero(),this->tableroDeJuego->getCantProfundidadTablero());	
+	}
+	
 	
 	
 }
