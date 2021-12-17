@@ -32,6 +32,7 @@ class Tateti
 		Mazo * mazoPrincipal;
 		Jugador * turnoActual;
 		int ***matrizResultadosChequeoGanador;
+		int largoLineaGanarTateti;
 		// Tablero  tableroAnterior;
 	public:
 		Tateti();
@@ -60,6 +61,7 @@ class Tateti
 		bool solicitarMoverFicha(int &filas, int &columnas,int & profundidad);
 		void crearMatrizResultadosGanador(int cantFilas,int cantColumnas,int cantProfundidad);
 		void destruirMatrizResultadosGanador(int cantFilas,int cantColumnas);
+		bool chequearMatrizGanadorTateti();
 		
 //metodos relacionados al tablero del tateti
 		void crearTablero();

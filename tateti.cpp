@@ -600,3 +600,51 @@ void Tateti::destruirMatrizResultadosGanador(int cantFilas,int cantColumnas)
 	delete[] this->matrizResultadosChequeoGanador;
 
 }
+
+bool Tateti::chequearMatrizGanadorTateti(){
+    if(this->matrizResultadosChequeoGanador[0][0][0] +1 +this->matrizResultadosChequeoGanador[2][2][2] == this->largoLineaGanarTateti){
+		return true;
+	} //1
+	if(this->matrizResultadosChequeoGanador[0][1][0] +1 +this->matrizResultadosChequeoGanador[2][1][2] == this->largoLineaGanarTateti){
+		return true;
+	} //2
+	if(this->matrizResultadosChequeoGanador[0][2][0] +1 +this->matrizResultadosChequeoGanador[2][0][2] == this->largoLineaGanarTateti){
+		return true;
+	} //3
+	if(this->matrizResultadosChequeoGanador[0][0][2] +1 +this->matrizResultadosChequeoGanador[2][2][0] == this->largoLineaGanarTateti){
+		return true;
+	} //4
+	if(this->matrizResultadosChequeoGanador[0][1][2] +1 +this->matrizResultadosChequeoGanador[2][1][0] == this->largoLineaGanarTateti){
+		return true;
+	} //5
+	if(this->matrizResultadosChequeoGanador[0][2][2] +1 +this->matrizResultadosChequeoGanador[2][0][0] == this->largoLineaGanarTateti){
+		return true;
+	} //6
+	if(this->matrizResultadosChequeoGanador[0][0][1] +1 +this->matrizResultadosChequeoGanador[2][2][1] == this->largoLineaGanarTateti){
+		return true;
+	} //7
+	if(this->matrizResultadosChequeoGanador[0][2][1] +1 +this->matrizResultadosChequeoGanador[2][0][1] == this->largoLineaGanarTateti){
+		return true;
+	} //8
+	if(this->matrizResultadosChequeoGanador[0][1][1] +1 +this->matrizResultadosChequeoGanador[2][1][1] == this->largoLineaGanarTateti){
+		return true;
+	} //9
+	if(this->matrizResultadosChequeoGanador[1][0][2] +1 +this->matrizResultadosChequeoGanador[1][2][0] == this->largoLineaGanarTateti){
+		return true;
+	} //10
+	if(this->matrizResultadosChequeoGanador[1][1][2] +1 +this->matrizResultadosChequeoGanador[1][1][0] == this->largoLineaGanarTateti){
+		return true;
+	} //11
+	if(this->matrizResultadosChequeoGanador[1][2][2] +1 +this->matrizResultadosChequeoGanador[1][0][0] == this->largoLineaGanarTateti){
+		return true;
+	} //12
+	if(this->matrizResultadosChequeoGanador[1][0][1] +1 +this->matrizResultadosChequeoGanador[1][2][1] == this->largoLineaGanarTateti){
+		return true;
+	} //13
+
+	
+
+	
+
+	return false;
+} 
