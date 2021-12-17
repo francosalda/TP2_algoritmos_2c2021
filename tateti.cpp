@@ -177,6 +177,18 @@ el tateti*/
 bool Tateti::hayGanador(int fil,int col,int prof)
 {
 	int matrizResultados[3][3][3];
+	for(int i = 0 ; i < 3; i++)
+		{
+			for(int j = 0 ; j < 3; j++)
+			{
+				for(int k = 0 ; k < 3; k++)
+				{
+					matrizResultados[i][j][k]= 0;
+				}
+			}
+		}
+	
+
 	
 		Casillero * casilleroOrigen = this->tableroDeJuego->getCasillero(fil,col,prof);
 
@@ -189,31 +201,39 @@ bool Tateti::hayGanador(int fil,int col,int prof)
 					//salteo el centro
 					if(i == 2 && j == 2 && k ==2)
 					{
+					
+						matrizResultados[i-1][j-1][k-1] = 1;
 						continue;
+					}
+					
+					if(casilleroOrigen->getLongitud(i,j,k,casilleroOrigen) == 1)
+					{
+						cout<<"SE ENCONNTROP BUSCANDO EN LA DIRECCION : "<<i<<j<<k<<endl;
 					}
 						
 					matrizResultados[i-1][j-1][k-1]= casilleroOrigen->getLongitud(i,j,k,casilleroOrigen);
+					
 					
 				}
 			}
 
 		}
-	/*	cout<<"imprimiendo matriz de resultado :\n";
-		//imprimir matriz de resultado
+		cout<<"imprimiendo matriz de resultado :\n";
+		for(int k = 0 ; k < 3; k++)
+			{
 		for(int i = 0 ; i < 3; i++)
 		{
 			for(int j = 0 ; j < 3; j++)
 			{
-				for(int k = 0 ; k < 3; k++)
-				{
+				
 					cout<<matrizResultados[i][j][k]<<",";
-				}
-				cout<<endl;
-			}
+				
+				
+			}cout<<endl;
 
-		}
-*/
+		}cout<<endl;
 
+}
 	//	Lista<Lista<Lista<Casillero *>*>*> * matrizDeVecinosActual = this->tableroDeJuego->getCasillero(fil,col,prof)->obtenerMatrizDeVecinos();
 	//	char simboloFichaBuscada = this->tableroDeJuego->getCasillero(fil,col,prof)->obtenerSimboloFichaDelCasillero();
 	//	getLongitud( fil, col, prof, simboloFichaBuscada, matrizDeVecinosActual);
