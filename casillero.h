@@ -49,6 +49,10 @@ public:
     Lista<Lista<Lista<Casillero *>*>*> * obtenerMatrizDeVecinos();
 
     void setCasillaMatrizVecinos(size_t cantFilas, size_t cantColumnas, size_t cantEnProfundidad, Casillero* punteroCasillero);
+    Casillero * getAdayacente(int i , int j, int k);
+    bool estaCasillaAdayacenteVacia(int i , int j, int k);
+    bool existeCasillaAdyacente(int i , int j, int k);
+    size_t getLongitud(int i,int j,int k,Casillero * casilleroOrigen);
     //void asignarMatrizVecinos(Casillero**** matrizVec);
 
     //void asignarVecino(int l, int m, int n, Casillero* casilleroVecino);

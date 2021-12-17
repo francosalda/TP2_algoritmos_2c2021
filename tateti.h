@@ -60,7 +60,7 @@ class Tateti
 		bool solicitarMoverFicha(int &filas, int &columnas,int & profundidad);
 		void crearMatrizResultadosGanador(int cantFilas,int cantColumnas,int cantProfundidad);
 		void destruirMatrizResultadosGanador(int cantFilas,int cantColumnas);
-		size_t getLongitud(int fil,int col,int prof);
+		
 //metodos relacionados al tablero del tateti
 		void crearTablero();
 		bool estaCasilleroLibre(size_t fila,size_t columna,size_t profundidad);

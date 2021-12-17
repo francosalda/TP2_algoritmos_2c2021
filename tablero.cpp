@@ -160,7 +160,7 @@ void Tablero::llenarMatrizAdyacentes(size_t fil, size_t col,size_t prof)
     }
 
     //imprimir matriz de vecino para el casillero actual fil,col,prof
-    /*cout<<"Imprimiendo matriz de vecinos del casillero del tablero:["<<fil<<","<<col<<","<<prof<<"]"<<endl;
+  /*  cout<<"Imprimiendo matriz de vecinos del casillero del tablero:["<<fil<<","<<col<<","<<prof<<"]"<<endl;
     for(size_t i= 1 ; i <=3; i++)
     {
         for(size_t j= 1 ;j <=3; j++)

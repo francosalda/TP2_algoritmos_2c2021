@@ -191,6 +191,56 @@ Lista<Lista<Lista<Casillero *>*>*> * Casillero::obtenerMatrizDeVecinos(){
     return this->matrizDeVecinos;
 }
 
+Casillero *  Casillero::getAdayacente(int i , int j, int k)
+{
+    return this->matrizDeVecinos->obtener(i)->obtener(j)->obtener(k);
+}
+
+bool Casillero::estaCasillaAdayacenteVacia(int i , int j, int k)
+{
+    if(getAdayacente(i,j,k)->estaCasilleroVacio())
+    {
+     
+     cout<<"Vacia: "<<i<<","<<j<<","<<k<<endl;
+        return true;
+    }
+    return false;
+}
+
+bool Casillero::existeCasillaAdyacente(int i , int j, int k)
+{
+    if(i<1 || j<1||k<1 || i >3 ||j>3 || k>3 )
+    {
+        return false;
+    }
+    return true;
+}
+
+
+size_t Casillero:: getLongitud(int i,int j,int k,Casillero * casilleroOrigen)
+{
+ 
+    cout<<"revisando la  "<<i<<","<<j<<","<<k<<endl;
+
+    if(!casilleroOrigen->existeCasillaAdyacente(i,j,k)  || casilleroOrigen->estaCasillaAdayacenteVacia(i,j,k))
+    {
+        return 0;
+    }
+
+
+    cout<<"nNO VACIA:"<<i<<","<<j<<","<<k<<endl;
+    Casillero * casilleroAdyacente = casilleroOrigen->getAdayacente(i,j,k);
+    return 0;
+    if(casilleroAdyacente->obtenerSimboloFichaDelCasillero() == casilleroOrigen->obtenerSimboloFichaDelCasillero())
+    {
+        cout<<"MSIMA FECHA FEECTGACs!"<<endl;
+        return 1+casilleroAdyacente->getLongitud(i,j,k,casilleroAdyacente);
+    }
+
+
+    return 0; 
+}
+
 
 
 /*void Casillero::asignarMatrizVecinos(Casillero ****matrizVec) {

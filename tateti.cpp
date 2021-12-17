@@ -170,18 +170,63 @@ void  Tateti:: destruiMazoPrincipal()
 
 
 
-size_t Tateti::getLongitud(int fil,int col,int prof)
-{
-
-
-	return 0;
-}
 
 
 /*POST: devuelve true si algun jugador logro realizar
 el tateti*/
 bool Tateti::hayGanador(int fil,int col,int prof)
 {
+	int matrizResultados[3][3][3];
+	
+		Casillero * casilleroOrigen = this->tableroDeJuego->getCasillero(fil,col,prof);
+
+		for(int i = 1 ; i <= 3; i++)
+		{
+			for(int j = 1 ; j <= 3; j++)
+			{
+				for(int k = 1 ; k <= 3; k++)
+				{
+					//salteo el centro
+					if(i == 2 && j == 2 && k ==2)
+					{
+						continue;
+					}
+						
+					matrizResultados[i-1][j-1][k-1]= casilleroOrigen->getLongitud(i,j,k,casilleroOrigen);
+					
+				}
+			}
+
+		}
+	/*	cout<<"imprimiendo matriz de resultado :\n";
+		//imprimir matriz de resultado
+		for(int i = 0 ; i < 3; i++)
+		{
+			for(int j = 0 ; j < 3; j++)
+			{
+				for(int k = 0 ; k < 3; k++)
+				{
+					cout<<matrizResultados[i][j][k]<<",";
+				}
+				cout<<endl;
+			}
+
+		}
+*/
+
+	//	Lista<Lista<Lista<Casillero *>*>*> * matrizDeVecinosActual = this->tableroDeJuego->getCasillero(fil,col,prof)->obtenerMatrizDeVecinos();
+	//	char simboloFichaBuscada = this->tableroDeJuego->getCasillero(fil,col,prof)->obtenerSimboloFichaDelCasillero();
+	//	getLongitud( fil, col, prof, simboloFichaBuscada, matrizDeVecinosActual);
+		
+	
+
+
+	
+	
+
+
+
+
 /*for(size_t i = fil -1 , i1 = 0; i < fil + 2; i++, i1++){
 
         for(size_t j = col -1, j1 = 0; j < col + 2; j++, j1++){
@@ -215,15 +260,17 @@ bool Tateti::hayGanador(int fil,int col,int prof)
 /*es el bucle principal del juego*/
 void Tateti::jugarJuego()
 {
-	
-	int filaIngresada,columnaIngresada,profundidadIngresada;
+	bool hayTateti = false;
+	int filaIngresada= 0,columnaIngresada = 0,profundidadIngresada =0;
 	size_t minimasJugadasAntesDeMover = (this->obtenerMinimaCantidadJugadasTateti()) * (this->obtenerCantidadJugadoresActuales());
 
 	cout<<"[DEBUG]: (SOLO 6 rondas y corta ya que no tenemos hayGanador() aun)\n";
+	
 
-	while( this->cantidadJugadasRealizadas < 6) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
-	//while( !this->hayGanador(filaIngresada,columnaIngresada,profundidadIngresada)) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
+	//while( this->cantidadJugadasRealizadas < 6) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
+	while( !hayTateti ) // seria while(!this->hayGanador())  pero no funciona aun el chequeo de ganador
 	{	
+		
 		this->cantidadJugadasRealizadas++;
 		this->turnoActual = colaDeTurnos.desacolar();
 		cout<<"-> [Ronda: "<<this->cantidadJugadasRealizadas <<"] Es el turno del jugador ["<<this->turnoActual->obtenerIdJugador()<<"]: '"<<this->turnoActual->obtenerNombreJugador()<<"'\n";
@@ -242,9 +289,8 @@ void Tateti::jugarJuego()
 		
 		//si esta en un rango valido guarda la ficha ingresada en el tablero
 		this->tableroDeJuego->setCasilla(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
-	
 		this->tableroDeJuego->llenarMatrizAdyacentes(filaIngresada, columnaIngresada,profundidadIngresada);
-
+		this->hayGanador(filaIngresada,columnaIngresada,profundidadIngresada);
 
 		}
 
