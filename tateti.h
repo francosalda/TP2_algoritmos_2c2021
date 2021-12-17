@@ -67,7 +67,7 @@ class Tateti
 		bool estaEnRangoValido(int fila,int columna,int profundidad);
 		int obtenerIdJugadorPropietarioFicha(char ficha);
 	 	Tablero *obtenerTableroDeJuego();
-		bool hayGanador();
+		
 };
 
 #endif

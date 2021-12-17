@@ -1,7 +1,7 @@
 #include <iostream>
 #include "tablero.h"
 #include "casillero.h"
-
+using namespace std;
 
 
 Tablero::Tablero(size_t cantFilas, size_t cantColumnas, size_t cantEnProfundidad) {
@@ -93,10 +93,8 @@ Lista<Lista<Lista<Casillero*>*>*>* Tablero::obtenerMatrizTablero()
 }   
 
 bool Tablero::existeLaCasilla(size_t m, size_t n, size_t l) {
-    if(
-    this->cantFilas < m ||
-    this->cantColumnas < n ||
-    this->cantEnProfundidad < l){
+    if(this->cantFilas < m ||this->cantColumnas < n ||this->cantEnProfundidad < l ||
+        m< 1 || n<1 || l<1){
         return false;
     }
     return true;
@@ -128,23 +126,95 @@ size_t Tablero::getCantProfundidadTablero()
 
 }
 
+/*Pre: existe la matriz de adyacentes , y existen los casilleros del tablero
+Post:  recorre el tablero al rededor del casillero central ubicado en [fil,col,prof]
+y completa la matriz de adyacentes de 3x3x3 de dicho casillero*/
 
+void Tablero::llenarMatrizAdyacentes(size_t fil, size_t col,size_t prof)
+{
+    for(size_t i = fil-1,i1 =1; i <= (fil+1);i++,i1++)
+    {
+        for(size_t j = col-1,j1 = 1; j<= (col+1);j++,j1++)
+        {
 
-void Tablero::adyacentesMatriz(size_t fil, size_t col,size_t pro){
-    for(size_t i = fil -1 , i1 = 0; i < fil + 2; i++, i1++){
-
-        for(size_t j = col -1, j1 = 0; j < col + 2; j++, j1++){
-
-            for(size_t k = pro -1, k1 = 0; k < pro + 2; k++, k1++){
-                if (this->existeLaCasilla(i, j, k))
+            for(size_t k = prof-1,k1=1; k<= (prof+1);k++,k1++)
+            {
+                if(this->existeLaCasilla(i, j, k))
                 {
+                    if(i == fil && j ==col && k==prof)
+                    {
+                        Casillero * casilleroCentral = this->getCasillero(i,j,k);
+                        casilleroCentral->setCasillaMatrizVecinos(2,2,2,casilleroCentral);
+                        continue;
+                    } 
+                    this->getCasillero(fil,col,prof)->setCasillaMatrizVecinos(i1,j1,k1,this->getCasillero(i,j,k)); 
+                }
+                else
+                {
+                    this->getCasillero(fil,col,prof)->setCasillaMatrizVecinos(i1,j1,k1,NULL);
+                }
+
+             
+            }
+        }
+    }
+
+    //imprimir matriz de vecino para el casillero actual fil,col,prof
+  /*  cout<<"Imprimiendo matriz de vecinos del casillero del tablero:["<<fil<<","<<col<<","<<prof<<"]"<<endl;
+    for(size_t i= 1 ; i <=3; i++)
+    {
+        for(size_t j= 1 ;j <=3; j++)
+        {
+            for(size_t k = 1 ; k <=3;k++)
+            {
+                
+                Casillero * casilleroActual = this->getCasillero(fil,col,prof)->obtenerMatrizDeVecinos()->obtener(i)->obtener(j)->obtener(k);
+                //VERY IMPORTAN COMPROBATION
+                if(casilleroActual)
+                {
+                        cout<<"["<<i<<","<<j<<","<<k<<"]";
+                         cout<<casilleroActual->obtenerSimboloFichaDelCasillero()<<endl;
+                }
+               
+            }
+        }
+
+    }*/
+    
+    
+
+
+
+
+
+}
+   /* for(size_t i = fil -1 , i1 = 0; i < fil + 1; i++, i1++){
+
+        for(size_t j = col -1, j1 = 0; j < col + 1; j++, j1++){
+
+            for(size_t k = pro-1, k1 = 0; k < pro + 1; k++, k1++)
+            {
+                if (i == fil && j== col && k == pro)
+                {
+                    
                     this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,this->getCasillero(i,j,k));
-                }else{
-                    this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,NULL);
-                if (i == fil || j== col || k == pro)
-                {
                     continue;
                 }
+                
+                if (this->existeLaCasilla(i, j, k))
+                {
+                    this->getCasillero(i,j,k)->setCasillaMatrizVecinos(i1,j1,k1,NULL);
+                    //this->getCasillero(i+1,j+1,k+1)->setCasillaMatrizVecinos(i1,j1,k1,this->getCasillero(i+1,j+1,k+1));
+                }
+                else
+                {
+                //this->getCasillero(i+1,j+1,k+1)->setCasillaMatrizVecinos(i1,j1,k1,NULL);
+                
+            }
+                
+
+            }
+                
                 
 
             }
@@ -152,7 +222,7 @@ void Tablero::adyacentesMatriz(size_t fil, size_t col,size_t pro){
     }
 
     } 
-}
+*/
 
 
 
@@ -181,7 +251,7 @@ void Tablero::adyacentesMatriz(size_t fil, size_t col,size_t pro){
 
 //ASIGNO LOS VECINOS
 // edit matriz vecinos // Algoritmo que Asigna la matriz de vecinos //falta implementar existeLaCasilla
-
+/*
     for (int i = 0; i < this->cantColumnas; i++) { //el primer for me agarra la primer columna
         for (int j = 0; j < this->cantFilas; j++) { //el segundo for me define la fila
             for (int k = 0; k < this->cantEnProfundidad; k++) { //el 3er for la profundidad
@@ -227,5 +297,5 @@ bool Tablero::hayTateti(Casillero *casilleroOrigen, direccion) { //casilleroOrig
        }
    }
 }
+*/
 //edit matriz vecinos
-
