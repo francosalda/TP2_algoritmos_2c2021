@@ -14,6 +14,7 @@ Tateti::Tateti()
 	this->tableroDeJuego = NULL;
 	this->cantidadJugadasRealizadas= 0;
 	this->mazoPrincipal = NULL;
+	this->graficarBitmap=false;
 }
 
 /*
@@ -34,7 +35,7 @@ void Tateti:: iniciarJuego()
 	this->inicializarTurnosJugadores();
 	this->crearMazoPrincipal();
 	this->crearMazoJugadores();
-	this->crearMatrizResultadosGanador(3,3,3);
+	this->crearMatrizResultadosGanador(4,4,4);
 	this->largoLineaGanarTateti = 3;
 
 }
@@ -76,9 +77,9 @@ void Tateti::  crearJugadores()
 	cout<<"Ingrese la cantidad de jugadores: \n";
 	cin>>(inputCantidadJugadores);
 	//comprueba el rango de los jugadores
-	while(inputCantidadJugadores < 2 )
+	while(inputCantidadJugadores < 2 || inputCantidadJugadores > 6)
 	{
-		cout<<"[Error]: Deben jugar almenos 2 jugadores, ingrese una nueva cantidad: ";
+		cout<<"[Error]: La cantidad de jugadores debe ser de entre 2 y 6, ingrese una nueva cantidad: ";
 		cin>>(inputCantidadJugadores);
 	}
 	//se ingresan los datos de los jugadores
@@ -573,13 +574,9 @@ void Tateti::destruirMatrizResultadosGanador(int cantFilas,int cantColumnas)
 
 }
 
-bool Tateti::chequearMatrizGanadorTateti(){
+bool Tateti::chequearMatrizGanadorTateti()
+{
 
-
-
-	cout<<"LARGOOO 111:"<<this->matrizResultadosChequeoGanador[1][1][1]<<endl;
-	cout<<"LARGOOO 110:"<<this->matrizResultadosChequeoGanador[1][1][0]<<endl;
-	cout<<"LARGOOO 112:"<<this->matrizResultadosChequeoGanador[1][1][2]<<endl;
 	 if((this->matrizResultadosChequeoGanador[0][0][0] +1 +this->matrizResultadosChequeoGanador[2][2][2]) == this->largoLineaGanarTateti){
 		return true;
 	} //1
@@ -620,9 +617,15 @@ bool Tateti::chequearMatrizGanadorTateti(){
 	if((this->matrizResultadosChequeoGanador[1][0][1] +1 +this->matrizResultadosChequeoGanador[1][2][1]) == this->largoLineaGanarTateti){
 		return true;
 	} //13
-
-
-	
-
 	return false;
 } 
+
+
+void Tateti::activarGraficarBmp()
+{
+	this->graficarBitmap = true;
+}
+void Tateti::desactivarGraficarBmp()
+{
+	this->graficarBitmap = false;
+}

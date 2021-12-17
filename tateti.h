@@ -34,6 +34,7 @@ class Tateti
 		int ***matrizResultadosChequeoGanador;
 		int largoLineaGanarTateti;
 		bool hayTateti;
+		bool graficarBitmap;
 		// Tablero  tableroAnterior;
 	public:
 		Tateti();
@@ -70,6 +71,8 @@ class Tateti
 		bool estaEnRangoValido(int fila,int columna,int profundidad);
 		int obtenerIdJugadorPropietarioFicha(char ficha);
 	 	Tablero *obtenerTableroDeJuego();
+	 	void activarGraficarBmp();
+	 	void desactivarGraficarBmp();
 		
 };
 
