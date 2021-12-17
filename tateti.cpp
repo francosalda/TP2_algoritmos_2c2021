@@ -219,7 +219,7 @@ void Tateti::crearTablero(){
 	cout<<"profundidad:"<<endl;
 	cin >> profundidad;
 
-	while(fila <1 || columna<1 || profundidad < 1 )
+	while(fila <2 || columna<2 || profundidad < 2 )
 	{
 		cout<<"[Error]La cantidad de filas,columnas y profundidad debe ser mayor a 1"<<endl;
 		cout<<"ingresa las dimensiones del tablero"<<endl;
