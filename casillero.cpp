@@ -220,7 +220,6 @@ bool Casillero::existeCasillaAdyacente(int i , int j, int k)
 size_t Casillero:: getLongitud(int i,int j,int k,Casillero * casilleroOrigen)
 {
  
-    cout<<"revisando la  "<<i<<","<<j<<","<<k<<endl;
 
     if(!casilleroOrigen->existeCasillaAdyacente(i,j,k)  || casilleroOrigen->estaCasillaAdayacenteVacia(i,j,k))
     {
@@ -228,13 +227,13 @@ size_t Casillero:: getLongitud(int i,int j,int k,Casillero * casilleroOrigen)
     }
 
 
-    cout<<"nNO VACIA:"<<i<<","<<j<<","<<k<<endl;
+    
     Casillero * casilleroAdyacente = casilleroOrigen->getAdayacente(i,j,k);
    
 
     if(casilleroAdyacente->obtenerSimboloFichaDelCasillero() == casilleroOrigen->obtenerSimboloFichaDelCasillero())
     {
-        cout<<"MSIMA FECHA FEECTGACs!"<<endl;
+
         return 1+casilleroAdyacente->getLongitud(i,j,k,casilleroAdyacente);
     }
 

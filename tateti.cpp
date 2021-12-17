@@ -211,7 +211,7 @@ bool Tateti::hayGanador(int fil,int col,int prof)
 					
 					if(casilleroOrigen->getLongitud(i,j,k,casilleroOrigen) == 1)
 					{
-						cout<<"SE ENCONNTROP BUSCANDO EN LA DIRECCION : "<<i<<j<<k<<endl;
+						
 					}
 						this->matrizResultadosChequeoGanador[i-1][j-1][k-1]= casilleroOrigen->getLongitud(i,j,k,casilleroOrigen);
 					//matrizResultados[i-1][j-1][k-1]= casilleroOrigen->getLongitud(i,j,k,casilleroOrigen);
@@ -221,7 +221,7 @@ bool Tateti::hayGanador(int fil,int col,int prof)
 			}
 
 		}
-		cout<<"imprimiendo matriz de resultado :\n";
+		/*cout<<"imprimiendo matriz de resultado :\n";
 		for(int k = 0 ; k < 3; k++)
 		{
 			for(int i = 0 ; i < 3; i++)
@@ -236,7 +236,7 @@ bool Tateti::hayGanador(int fil,int col,int prof)
 
 }
 
-
+*/
 	return chequearMatrizGanadorTateti();
 
 
@@ -279,7 +279,7 @@ void Tateti::jugarJuego()
 		//si esta en un rango valido guarda la ficha ingresada en el tablero
 		this->tableroDeJuego->setCasilla(filaIngresada,columnaIngresada,profundidadIngresada,this->turnoActual->obtenerSimboloFichaJugador());
 		this->tableroDeJuego->llenarMatrizAdyacentes(filaIngresada, columnaIngresada,profundidadIngresada);
-		this->hayGanador(filaIngresada,columnaIngresada,profundidadIngresada);
+		this->hayTateti = this->hayGanador(filaIngresada,columnaIngresada,profundidadIngresada);
 
 		}
 
@@ -576,48 +576,53 @@ void Tateti::destruirMatrizResultadosGanador(int cantFilas,int cantColumnas)
 }
 
 bool Tateti::chequearMatrizGanadorTateti(){
-	cout<<"LAROG DFE LINEA "<<this->largoLineaGanarTateti<<endl;
-    if(this->matrizResultadosChequeoGanador[0][0][0] +1 +this->matrizResultadosChequeoGanador[2][2][2] == this->largoLineaGanarTateti){
+
+
+
+	cout<<"LARGOOO 111:"<<this->matrizResultadosChequeoGanador[1][1][1]<<endl;
+	cout<<"LARGOOO 110:"<<this->matrizResultadosChequeoGanador[1][1][0]<<endl;
+	cout<<"LARGOOO 112:"<<this->matrizResultadosChequeoGanador[1][1][2]<<endl;
+	 if((this->matrizResultadosChequeoGanador[0][0][0] +1 +this->matrizResultadosChequeoGanador[2][2][2]) == this->largoLineaGanarTateti){
 		return true;
 	} //1
-	if(this->matrizResultadosChequeoGanador[0][1][0] +1 +this->matrizResultadosChequeoGanador[2][1][2] == this->largoLineaGanarTateti){
+	if((this->matrizResultadosChequeoGanador[0][1][0] +1 +this->matrizResultadosChequeoGanador[2][1][2]) == this->largoLineaGanarTateti){
 		return true;
 	} //2
-	if(this->matrizResultadosChequeoGanador[0][2][0] +1 +this->matrizResultadosChequeoGanador[2][0][2] == this->largoLineaGanarTateti){
+	if((this->matrizResultadosChequeoGanador[0][2][0] +1 +this->matrizResultadosChequeoGanador[2][0][2]) == this->largoLineaGanarTateti){
 		return true;
 	} //3
-	if(this->matrizResultadosChequeoGanador[0][0][2] +1 +this->matrizResultadosChequeoGanador[2][2][0] == this->largoLineaGanarTateti){
+	if((this->matrizResultadosChequeoGanador[0][0][2] +1 +this->matrizResultadosChequeoGanador[2][2][0]) == this->largoLineaGanarTateti){
 		return true;
 	} //4
-	if(this->matrizResultadosChequeoGanador[0][1][2] +1 +this->matrizResultadosChequeoGanador[2][1][0] == this->largoLineaGanarTateti){
+	if((this->matrizResultadosChequeoGanador[0][1][2] +1 +this->matrizResultadosChequeoGanador[2][1][0]) == this->largoLineaGanarTateti){
 		return true;
 	} //5
-	if(this->matrizResultadosChequeoGanador[0][2][2] +1 +this->matrizResultadosChequeoGanador[2][0][0] == this->largoLineaGanarTateti){
+	if((this->matrizResultadosChequeoGanador[0][2][2] +1 +this->matrizResultadosChequeoGanador[2][0][0]) == this->largoLineaGanarTateti){
 		return true;
 	} //6
-	if(this->matrizResultadosChequeoGanador[0][0][1] +1 +this->matrizResultadosChequeoGanador[2][2][1] == this->largoLineaGanarTateti){
+	if((this->matrizResultadosChequeoGanador[0][0][1] +1 +this->matrizResultadosChequeoGanador[2][2][1]) == this->largoLineaGanarTateti){
 		return true;
 	} //7
-	if(this->matrizResultadosChequeoGanador[0][2][1] +1 +this->matrizResultadosChequeoGanador[2][0][1] == this->largoLineaGanarTateti){
+	if((this->matrizResultadosChequeoGanador[0][2][1] +1 +this->matrizResultadosChequeoGanador[2][0][1]) == this->largoLineaGanarTateti){
 		return true;
 	} //8
-	if(this->matrizResultadosChequeoGanador[0][1][1] +1 +this->matrizResultadosChequeoGanador[2][1][1] == this->largoLineaGanarTateti){
+	if((this->matrizResultadosChequeoGanador[0][1][1] +1 +this->matrizResultadosChequeoGanador[2][1][1]) == this->largoLineaGanarTateti){
 		return true;
 	} //9
-	if(this->matrizResultadosChequeoGanador[1][0][2] +1 +this->matrizResultadosChequeoGanador[1][2][0] == this->largoLineaGanarTateti){
+	if((this->matrizResultadosChequeoGanador[1][0][2] +1 +this->matrizResultadosChequeoGanador[1][2][0]) == this->largoLineaGanarTateti){
 		return true;
 	} //10
-	if(this->matrizResultadosChequeoGanador[1][1][2] +1 +this->matrizResultadosChequeoGanador[1][1][0] == this->largoLineaGanarTateti){
+	if((this->matrizResultadosChequeoGanador[1][1][2] +1 +this->matrizResultadosChequeoGanador[1][1][0]) ==this->largoLineaGanarTateti){
+
 		return true;
 	} //11
-	if(this->matrizResultadosChequeoGanador[1][2][2] +1 +this->matrizResultadosChequeoGanador[1][0][0] == this->largoLineaGanarTateti){
+	if((this->matrizResultadosChequeoGanador[1][2][2] +1 +this->matrizResultadosChequeoGanador[1][0][0]) == this->largoLineaGanarTateti){
 		return true;
 	} //12
-	if(this->matrizResultadosChequeoGanador[1][0][1] +1 +this->matrizResultadosChequeoGanador[1][2][1] == this->largoLineaGanarTateti){
+	if((this->matrizResultadosChequeoGanador[1][0][1] +1 +this->matrizResultadosChequeoGanador[1][2][1]) == this->largoLineaGanarTateti){
 		return true;
 	} //13
 
-	
 
 	
 
