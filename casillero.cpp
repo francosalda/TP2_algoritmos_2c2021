@@ -201,7 +201,7 @@ bool Casillero::estaCasillaAdayacenteVacia(int i , int j, int k)
     if(getAdayacente(i,j,k)->estaCasilleroVacio())
     {
      
-     cout<<"Vacia: "<<i<<","<<j<<","<<k<<endl;
+
         return true;
     }
     return false;

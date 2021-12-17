@@ -37,8 +37,6 @@ void Tateti:: iniciarJuego()
 	this->crearMatrizResultadosGanador(3,3,3);
 	this->largoLineaGanarTateti = 3;
 
-
-	
 }
 
 /*Imprime la lista de jugadores actuales con sus fichas*/
