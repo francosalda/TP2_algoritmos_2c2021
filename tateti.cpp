@@ -246,6 +246,7 @@ void Tateti::crearTablero(){
 /*es el bucle principal del juego*/
 void Tateti::jugarJuego()
 {
+	this->saltarJugadorSiguiente = false;
 	bool hayTateti = false;
 	int filaIngresada,columnaIngresada,profundidadIngresada;
 	size_t minimasJugadasAntesDeMover = (this->obtenerMinimaCantidadJugadasTateti()) * (this->obtenerCantidadJugadoresActuales());
@@ -299,6 +300,11 @@ void Tateti::jugarJuego()
 		this->tableroDeJuego->llenarMatrizAdyacentes(filaIngresada, columnaIngresada,profundidadIngresada);
 		hayTateti = this->hayGanador(filaIngresada,columnaIngresada,profundidadIngresada);
 		this->avanzarTurno();
+		if(this->saltarJugadorSiguiente){
+			this->turnoActual = colaDeTurnos.desacolar();
+			this->avanzarTurno();
+			this->saltarJugadorSiguiente = false;
+		}
 	}
 	cout<<"--------->>>Felicidades Jugador ["<<this->turnoActual->obtenerIdJugador()<<"] ";
 	cout<<this->turnoActual->obtenerNombreJugador()<<"<<<-------------"<<endl;
@@ -364,6 +370,7 @@ void Tateti::usarCarta(unsigned int numero)
 		habilidadCarta_t habilidad=this->turnoActual->getMazoJugador()->getMazoCartas().obtener(numero)->getHabilidad();
 		if(habilidad==CARTA_PERDER_TURNO)
 		{
+			this->saltarJugadorSiguiente = true;
 			//PIERDE TURNO EL SIGUIENTE JUGADOR SINO ES MUY COMPLICADO
 		}
 		else if(habilidad==CARTA_BLOQUEAR_FICHA)

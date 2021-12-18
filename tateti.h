@@ -35,6 +35,7 @@ class Tateti
 		int ***matrizResultadosChequeoGanador;
 		int largoLineaGanarTateti;
 		bool hayTateti;
+		bool saltarJugadorSiguiente;
 		bool graficarBitmap;
 		// Tablero  tableroAnterior;
 	public:
