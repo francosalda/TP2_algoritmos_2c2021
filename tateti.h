@@ -26,6 +26,7 @@ class Tateti
 {
 	private:
 		Tablero *tableroDeJuego;
+		Tablero *jugadaAnterior;
 		Lista <Jugador *>  listaDeJugadores; 
 		Cola <Jugador *> colaDeTurnos; //debe ser en realidad una cola de turnos de jugadores
 		size_t cantidadJugadasRealizadas;

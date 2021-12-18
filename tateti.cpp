@@ -249,7 +249,7 @@ void Tateti::jugarJuego()
 	bool hayTateti = false;
 	int filaIngresada,columnaIngresada,profundidadIngresada;
 	size_t minimasJugadasAntesDeMover = (this->obtenerMinimaCantidadJugadasTateti()) * (this->obtenerCantidadJugadoresActuales());
-
+	this->jugadaAnterior = this->tableroDeJuego;
 	while(!hayTateti)
 	{
 		this->cantidadJugadasRealizadas++;
@@ -376,7 +376,7 @@ void Tateti::usarCarta(unsigned int numero)
 		}
 		else if(habilidad==CARTA_VOLVER_JUGADA)
 		{
-
+			this->jugadaAnterior = this->tableroDeJuego;
 		}
 		else if(habilidad==CARTA_ELIMINAR_CARTA)
 		{
