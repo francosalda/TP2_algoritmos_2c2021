@@ -8,7 +8,7 @@ Ficha::Ficha(){
     this->turnosRestantesDesbloqueo=0;
 }
 /*
-Post : devuelve una ficha  conteniendo el caracter ingresado por el jugador
+Post : inicializa una ficha  con el simbolo   caracter 
 */
 Ficha::Ficha(char caracter){
     this->estaBloqueada = false;

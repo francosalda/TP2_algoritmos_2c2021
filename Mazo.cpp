@@ -12,7 +12,6 @@ unsigned int Mazo::getCantidadCartas()
 /*
 POST: Crea una mazo con una cantidad de cartas sin efecto
 */
-
 Mazo::Mazo(int cantidadCartas)
 {
 	//Carta * nuevaCarta = NULL;
@@ -76,16 +75,24 @@ void Mazo::barajarMazo()
 	}
 
 }
-
+/*
+Pre: el mazo existe
+Post: imprime las cartas que posee  el mazao
+*/
 void Mazo::imprimirMazo(){
 	int i=1;
 	this->mazoCartas.iniciarCursor();
+	std::cout<<"----------------Su mazo de carta------------------"<<std::endl;
 	while(this->mazoCartas.avanzarCursor())
 	{
 		std::cout<<"carta numero "<<i++<<": ";
 		this->mazoCartas.obtenerCursor()->imprimirHabilidadCarta();
 	}
 }
+/*
+Pre: existe el mazo
+Post: devuelve el mazo de cartas
+*/
 Lista<Carta*>& Mazo::getMazoCartas()
 {
 	return this->mazoCartas;

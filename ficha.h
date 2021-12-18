@@ -5,6 +5,7 @@
 /*  [TDA FICHA]
     .simbolo : es el caracter representativo de la ficha
     .establoqueada: representa si la ficha puede moverse o no
+    .turnosRestantesDesbloqueo : es la cantidad que restan de turnos antes de desbloquearse
 
 */
 class Ficha{

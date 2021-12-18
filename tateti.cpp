@@ -311,6 +311,8 @@ void Tateti::jugarJuego()
 	cout<<"Ganaste la partida"<<endl;
 	if(this->graficarBitmap)
 	{
+		cout<<"[Graficando tablero] por favor espere mientras se renderiza el tablero"<<endl;
+		cout<<"Esto puede demorar unos minutos...."<<endl;
 		imprimirTablero(this,this->tableroDeJuego->getCantFilasTablero(),this->tableroDeJuego->getCantColumnasTablero(),this->tableroDeJuego->getCantProfundidadTablero());	
 	}
 	
@@ -398,6 +400,8 @@ void Tateti::usarCarta(unsigned int numero)
 		delete carta;
 	}
 }
+/*
+Post:bloquea una ficha*/
 void Tateti::bloquearFicha()
 {
 	unsigned int id;
@@ -488,6 +492,7 @@ void Tateti::robarCartaJugador()
 	this->turnoActual->getMazoJugador()->agregarCarta(carta);
 	this->listaDeJugadores.obtener(id)->getMazoJugador()->eliminarCarta(numeroCarta);
 }
+/*POST: decrementa en 1 la cantidad de turnos bloqueado*/
 void Tateti::decrementarTurnosCasillerosYFichas()
 {
 	size_t i;
@@ -512,6 +517,8 @@ void Tateti::decrementarTurnosCasillerosYFichas()
 		}
 	}
 }
+/*
+Post: desbloquea una ficha y casillero bloqueado*/
 void Tateti::desbloquearCasilleroYficha()
 {
 	size_t i;
@@ -536,13 +543,15 @@ void Tateti::desbloquearCasilleroYficha()
 		}
 	}
 }
-
+/*
+Post: imprime las fichas colocadas por un jugador*/
 void Tateti::imprimirCordenadasFichaJugador(char ficha)
 {
 	size_t i;
 	size_t j;
 	size_t k;
 	int l=1;
+	cout<<"----------------------Tus fichas colocadas----------------"<<endl;
 	for(i=1;i<=this->tableroDeJuego->getCantFilasTablero();i++)
 	{
 		for(j=1;j<=this->tableroDeJuego->getCantColumnasTablero();j++)
@@ -703,15 +712,18 @@ bool Tateti::estaCasilleroLibre(size_t fila,size_t columna,size_t profundidad)
 {
 	return (this->tableroDeJuego->getCasillero(fila,columna,profundidad)->estaCasilleroVacio());
 }
+/*Post: indica si un casillero esta anulado -> true*/
 bool Tateti::estaCasilleroAnulado(size_t fila,size_t columna,size_t profundidad)
 {
 	return (this->tableroDeJuego->getCasillero(fila,columna,profundidad)->estaCasilleroAnulado());
 }
+/*si una ficha esta bloqueada devuelve rue*/
 bool Tateti::estaFichaBloqueada(Casillero * casilleroOrigen)
 {
 	return casilleroOrigen->obtenerContenidoCasillero()->estaBloqueadaFicha();
 }
-
+/*chequea la matriz de resultados de enteros y realiza la suma de opuestos + el centro
+para ver si algun jugador alcanzo el largo de la linea para lograr el tateti*/
 bool Tateti::chequearMatrizGanadorTateti()
 {
 
@@ -773,9 +785,6 @@ bool Tateti::hayGanador(int fil,int col,int prof)
 				}
 			}
 		}
-		//matrizResultadosChequeoGanador[0][0][0] = 2;
-	
-
 	
 		Casillero * casilleroOrigen = this->tableroDeJuego->getCasillero(fil,col,prof);
 
@@ -798,42 +807,23 @@ bool Tateti::hayGanador(int fil,int col,int prof)
 					{
 						
 					}
-						this->matrizResultadosChequeoGanador[i-1][j-1][k-1]= casilleroOrigen->getLongitud(i,j,k,casilleroOrigen);
-					//matrizResultados[i-1][j-1][k-1]= casilleroOrigen->getLongitud(i,j,k,casilleroOrigen);
-					
+						this->matrizResultadosChequeoGanador[i-1][j-1][k-1]= casilleroOrigen->getLongitud(i,j,k,casilleroOrigen);		
 					
 				}
 			}
 
 		}
-		/*cout<<"imprimiendo matriz de resultado :\n";
-		for(int k = 0 ; k < 3; k++)
-		{
-			for(int i = 0 ; i < 3; i++)
-			{
-				for(int j = 0 ; j < 3; j++)
-				{
-				
-					cout<<(this->matrizResultadosChequeoGanador[i][j][k])<<",";
-			}cout<<endl;
-
-		}cout<<endl;
-
-}
-
-*/
+		
 	return chequearMatrizGanadorTateti();
 
-
-
 }
 
-
-
+/*activa la graficación del tablero*/
 void Tateti::activarGraficarBmp()
 {
 	this->graficarBitmap = true;
 }
+/*desactiva la graficación del tablero*/
 void Tateti::desactivarGraficarBmp()
 {
 	this->graficarBitmap = false;

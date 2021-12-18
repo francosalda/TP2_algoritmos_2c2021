@@ -3,7 +3,7 @@
 
 
 /*
-Post: Inicializa un casillero listo para colocarle una ficha
+Post: Inicializa un casillero con  una ficha nueva con el simbolo especificado
 */
 Casillero::Casillero(char simboloFicha){
     this->contenidoCasillero = new Ficha(simboloFicha);
@@ -11,6 +11,11 @@ Casillero::Casillero(char simboloFicha){
     this->casilleroAnulado = false;
     this->crearMatrizVecinosVacia(3,3,3);
 }
+/*
+Pre:Existe el casillero
+Post: elimina la memoria dinamica del casillero
+y de la ficha que contiene
+*/
 Casillero::~Casillero()
 {
 
@@ -105,6 +110,10 @@ bool Casillero::estaCasilleroVacio()
     }
     return false;
 }
+/*Pre: existe la matriz de vecinos
+Post: devuelve true si  la casilla 
+en la matriz de vecinos en la posicion i,j,k tiene la ficha vacia
+*/
 bool Casillero::estaCasillaAdayacenteVacia(int i , int j, int k)
 {
     if(getAdayacente(i,j,k)->estaCasilleroVacio())
@@ -116,6 +125,10 @@ bool Casillero::estaCasillaAdayacenteVacia(int i , int j, int k)
     return false;
 }
 
+/*Pre: existe la matriz de vecinos
+Post: devuelve true si existe la casilla 
+en la matriz de vecinos en la posicion i,j,k
+*/
 bool Casillero::existeCasillaAdyacente(int i , int j, int k)
 {
     if(i<1 || j<1||k<1 || i >3 ||j>3 || k>3  || getAdayacente(i,j,k) == NULL)
@@ -125,7 +138,10 @@ bool Casillero::existeCasillaAdyacente(int i , int j, int k)
     return true;
 }
 
-
+/*
+Pre :existe la matriz de vecinos
+Pos:devuelve la cantidad de fichas iguales que hay en una determinada direcion
+de las matrices de vecinos (RECURSIVAMENTE)*/
 size_t Casillero:: getLongitud(int i,int j,int k,Casillero * casilleroOrigen)
 {
  
@@ -199,7 +215,8 @@ void Casillero::setTurnosRestantesDesbloqueo(size_t cantidadTurnos){
     this->turnosRestantesDesbloqueo = cantidadTurnos;
 
 }
-/*Post : Decrementa en 1 la cantidad de turnos restantes para que pueda usarse el casillero*/
+/*
+Pre : casillero creado anteriormetePost : Decrementa en 1 la cantidad de turnos restantes para que pueda usarse el casillero*/
 
 void Casillero::decrementarTurnosRestantesDesbloqueo(){
     (this->turnosRestantesDesbloqueo)--;
@@ -211,28 +228,31 @@ Post : Bloquea la ficha del casillero
 void Casillero::bloquearFichaDelCasillero(){
     this->contenidoCasillero->bloquearFicha();
 }
-/*
+/*Pre : casillero creado anteriormete
  * POST:asigna una ficha en el contenido del casillero
  */
 
 void Casillero::setSimboloFichaDelCasillero(char simboloFicha) {
     this->contenidoCasillero->setSimboloFicha(simboloFicha);
 }
-/*
+/*Pre : casillero creado anteriormete
  * POST:obtiene la ficha del casillero
  */
 
 char Casillero::obtenerSimboloFichaDelCasillero() {
     return this->contenidoCasillero->getSimboloFicha();
 }
-/*
+/*Pre : casillero creado anteriormete
  * POST:devuelve el contenido del casillero
  */
+/*
+Pre : casillero creado anteriormete
+Post: devuelve el contenido del casillero*/
 Ficha* Casillero::obtenerContenidoCasillero()
 {
 	return this->contenidoCasillero;
 }
-/*
+/*Pre : casillero creado anteriormete
  * POST:Desbloquea el casillero cambiando el estado de casilleroAnulado a false
  */
 void Casillero::desbloquearCasillero()
@@ -240,41 +260,4 @@ void Casillero::desbloquearCasillero()
 	this->casilleroAnulado=false;
 }
 
-/*void Casillero::asignarMatrizVecinos(Casillero ****matrizVec) {
-    this->matrizDeVecinos = matrizVec;
-}
-
-//edit matriz vecinos
-
-void Casillero::asignarVecino(int l, int m, int n, Casillero *casilleroVecino){
-    this->matrizDeVecinos[l+1][m+1][n+1] = casilleroVecino; //donde l m n son alto ancho profundo
-}
-*/
-/*
-bool Casillero::tieneVecino(int l, int m, int n) {
-    return false;
-}
-
-void Casillero::existeLaCasilla() {}
-
-
-unsigned int Casillero::getLongitud(unsigned int i, unsigned int j, unsigned int k) {
-    if(!tieneVecino(i,j,k) || (!estaOcupado(i,j,k))){ // si no tiene vecino devuelve 0, osea si no tiene vecino o si se acabo el tablero
-        return 0;
-    }
-    // tiene vecino?
-    Casillero *casilleroVecino = this->getVecino(i,j,k);
-    if (this->tienenMismaFicha(casilleroVecino)){ //Implementar tienenMismaFicha()
-        return (1 + casilleroVecino->getLongitud(i,j,k)); //Funcion recursiva
-    }
-    // las fichas son distitntas y la longitud de fichas iguales es 0
-    return 0;
-}
-
-Casillero *Casillero::getVecino(unsigned int i, unsigned int j, unsigned int k) {
-    return this->vecinos[i][j][k];
-}
-*
-*/
-//edit matriz vecinos
 

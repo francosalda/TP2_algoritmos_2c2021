@@ -1,5 +1,4 @@
 #include "Carta.h"
-
 #include <cstdlib> 
 #include <ctime> 
 #include <iostream>
@@ -49,7 +48,8 @@ Carta::~Carta()
 {
 
 }
-
+/*pre:Existe la carta
+post: imprime la habilidad de la carta*/
 void Carta::imprimirHabilidadCarta(){
 	switch (this->habilidadCarta)
 	{

@@ -32,17 +32,7 @@ public:
 	size_t obtenerIdJugador();
 	Mazo * getMazoJugador();
 	void destruirFichaJugador();
-	
-
-/*
-	void asignarMazoJugador();
-	void asignarCartaJugador();
-
-*/
-
 
 };
-
-
 
 #endif

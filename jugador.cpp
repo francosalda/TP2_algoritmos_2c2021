@@ -66,6 +66,9 @@ void Jugador::setMazoJugador(Mazo * nuevoMazo)
 	this->mazoJugador = nuevoMazo;
 }
 
+/*Pre: existe el jugador
+Post : devuelve el mazo del jugador
+*/
 Mazo * Jugador::getMazoJugador()
 {
 	return this->mazoJugador;

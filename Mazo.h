@@ -7,7 +7,6 @@
 	.mazoCartas : es el conjunto de todas las cartas que posee el mazo
 
 */
-
 class Mazo 
 {
 private:
