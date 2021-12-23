@@ -1,7 +1,4 @@
-#include "ficha.h"
-#include "casillero.h"
 #include <iostream>
-#include "jugador.h"
 #include "tateti.h"
 
 
